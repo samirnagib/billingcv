@@ -6,11 +6,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="232.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="154.0" layoutX="10.0" layoutY="11.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="581.0" />
-      <Label layoutX="25.0" layoutY="27.0" text="Bem vindo ao sistema de Rateio" />
+      <Label layoutX="185.0" layoutY="22.0" text="Bem vindo ao sistema de Rateio">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font></Label>
       <Button fx:id="btOK" layoutX="433.0" layoutY="188.0" mnemonicParsing="false" onAction="#onBtOKAction" prefHeight="25.0" prefWidth="71.0" text="OK" />
       <Button fx:id="btCancel" layoutX="515.0" layoutY="188.0" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="71.0" text="Cancelar" />
       <Label layoutX="25.0" layoutY="64.0" text="Usuário ou email:" />
