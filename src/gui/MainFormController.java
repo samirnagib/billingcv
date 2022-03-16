@@ -54,7 +54,7 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuUsersAction() {
-		System.out.println("onMenuUsersAction");
+		loadView("/gui/UsersList.fxml");
 	}
 	
 	@FXML
