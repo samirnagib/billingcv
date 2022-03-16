@@ -14,12 +14,15 @@ public class DB {
 	private static Connection conn = null;
 	
 	public static Connection getConnection() {
+		final String DB_USER = "appuser";
+		final String DB_PASSWORD = "Robot@032022";
+
 		
 		if (conn == null) {
 			try {
 				Properties props = loadProperties();
 				String url = props.getProperty("dburl");
-				conn = DriverManager.getConnection(url, props);
+				conn = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);
 			}
 			catch (SQLException e) {
 				throw new DbException(e.getMessage());
