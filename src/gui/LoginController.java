@@ -39,7 +39,7 @@ public class LoginController implements Initializable {
 	@FXML
 	public void onBtOKAction() throws SQLException, IOException, Exception {
 		// validação dos campos de usuario e senha
-		System.out.println("OK - Click");
+		//System.out.println("OK - Click");
 		if (txtUser.getText().isEmpty()) {
 			Alerts.showAlert("Mensagem de Erro", "", "O Campo usuário não pode estar em branco", AlertType.ERROR);
 			return;
@@ -49,8 +49,8 @@ public class LoginController implements Initializable {
 			Alerts.showAlert("Mensagem de Erro", "", "O campo Senha não pode estar em branco", AlertType.ERROR);
 			return;
 		}
-		System.out.println(txtUser.getText().toUpperCase());
-		System.out.println(txtSenha.getText().toUpperCase());
+		//System.out.println(txtUser.getText().toUpperCase());
+		//System.out.println(txtSenha.getText().toUpperCase());
 		
 		String LoginUser = txtUser.getText();
 		String UserPassword = txtSenha.getText();

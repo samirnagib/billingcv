@@ -6,28 +6,37 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainFormController">
    <content>
-      <VBox prefHeight="200.0" prefWidth="451.0">
+      <VBox prefHeight="200.0" prefWidth="932.0">
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="Tabelas">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem fx:id="menuUsers" mnemonicParsing="false" onAction="#onMenuUsersAction" text="Usuarios" />
+                        <MenuItem fx:id="menuClientType" mnemonicParsing="false" onAction="#onMenuClientTypeAction" text="Tipo de Clientes" />
+                        <MenuItem fx:id="menuOwner" mnemonicParsing="false" onAction="#onMenuOwnerAction" text="Responsável" />
+                        <MenuItem fx:id="menuClients" mnemonicParsing="false" onAction="#onMenuClientsAction" text="Clientes" />
+                        <MenuItem fx:id="menuBillTag" mnemonicParsing="false" onAction="#onMenuBillTagAction" text="TAG de Cobrança" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Importação">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem fx:id="menuImportClients" mnemonicParsing="false" onAction="#onMenuImportClientsAction" text="Clientes" />
+                        <MenuItem fx:id="menuImportCVFile" mnemonicParsing="false" onAction="#onMenuImportCVFileAction" text="Arquivo Commvault" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Relatórios">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="menuReportVideo" mnemonicParsing="false" onAction="#onMenuReportVideoAction" text="Em Video" />
+                        <MenuItem fx:id="menuReportPrint" mnemonicParsing="false" onAction="#onMenuReportPrintAction" text="Impresso" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Extras">
+                     <items>
+                        <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#onMenuExitAction" text="Sair" />
+                     </items></Menu>
               </menus>
             </MenuBar>
          </children>
