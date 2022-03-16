@@ -21,7 +21,7 @@ public class jbdcDAO {
 			st.setString(1, LoginUser);
 			st.setString(2, UserPassword);
 			
-			System.out.println(st);
+			//System.out.println(st);
 			
 			rs = st.executeQuery();
 			if (rs.next()) {
