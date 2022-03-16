@@ -1,14 +1,20 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import gui.util.Alerts;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 
 public class MainFormController implements Initializable {
 
@@ -38,6 +44,9 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	private MenuItem menuReportPrint;
+	
+	@FXML
+	private MenuItem menuAbout;
 	
 	@FXML
 	private MenuItem menuExit;
@@ -89,6 +98,11 @@ public class MainFormController implements Initializable {
 	}
 	
 	@FXML
+	public void onMenuAboutAction() {
+		loadView("/gui/About.fxml");		
+	}
+		
+	@FXML
 	public void onMenuExitAction() {
 		System.out.println("onMenuExitAction");
 		//Alerts.showConfirmation("Pergunta", "", "Você deseja Sair?");
@@ -98,5 +112,27 @@ public class MainFormController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 	
 	}
+	
+	private synchronized void loadView(String absoluteName) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			VBox newVBox = loader.load();
+			
+			Scene mainScene = LoginController.getMainScene();
+			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
+			
+			Node mainMenu = mainVBox.getChildren().get(0);
+			mainVBox.getChildren().clear();
+			mainVBox.getChildren().add(mainMenu);
+			mainVBox.getChildren().addAll(newVBox.getChildren());
+		
+		
+		}
+		catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loadind view", e.getMessage(), AlertType.ERROR);
+		}
+		
+	}
+	
 
 }

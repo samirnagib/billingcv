@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
+	private static Scene scene;
 	
 	@FXML
 	private TextField txtUser;
@@ -38,6 +39,8 @@ public class LoginController implements Initializable {
 	
 	@FXML
 	public void onBtOKAction() throws SQLException, IOException, Exception {
+		
+		
 		// validação dos campos de usuario e senha
 		//System.out.println("OK - Click");
 		if (txtUser.getText().isEmpty()) {
@@ -70,7 +73,7 @@ public class LoginController implements Initializable {
 			
         	Stage Stage1 = new Stage();
         	Stage1.setTitle("Sistema de rateio de custos de backup");
-        	Scene scene = new Scene(scrollPane);
+        	scene = new Scene(scrollPane);
         	Stage1.setScene(scene);
         	Stage1.show();
         	closeLogin();
@@ -78,6 +81,11 @@ public class LoginController implements Initializable {
         }
 
 	}
+	
+	public static Scene getMainScene() {
+		return scene;
+	}
+	
 	
 	public void closeLogin() {
 		stage1 = (Stage) btOK.getScene().getWindow();
