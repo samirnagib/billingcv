@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 import gui.util.Alerts;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

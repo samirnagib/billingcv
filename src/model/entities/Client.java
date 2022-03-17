@@ -12,56 +12,25 @@ public class Client implements Serializable {
 	private Integer idType;
 	private Integer idOwner;
 	
+	private ClientType clientType;
+	private Owner owner;
+	
+	
 	public Client() {
 	}
 
-	public Client(Integer idClient, String clientName, String clientHostname, Integer idType, Integer idOwner) {
+
+	public Client(Integer idClient, String clientName, String clientHostname, Integer idType, Integer idOwner,
+			ClientType clientType, Owner owner) {
 		this.idClient = idClient;
 		this.clientName = clientName;
 		this.clientHostname = clientHostname;
 		this.idType = idType;
 		this.idOwner = idOwner;
+		this.clientType = clientType;
+		this.owner = owner;
 	}
 
-	public Integer getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(Integer idClient) {
-		this.idClient = idClient;
-	}
-
-	public String getClientName() {
-		return clientName;
-	}
-
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
-	}
-
-	public String getClientHostname() {
-		return clientHostname;
-	}
-
-	public void setClientHostname(String clientHostname) {
-		this.clientHostname = clientHostname;
-	}
-
-	public Integer getIdType() {
-		return idType;
-	}
-
-	public void setIdType(Integer idType) {
-		this.idType = idType;
-	}
-
-	public Integer getIdOwner() {
-		return idOwner;
-	}
-
-	public void setIdOwner(Integer idOwner) {
-		this.idOwner = idOwner;
-	}
 
 	@Override
 	public int hashCode() {
@@ -70,6 +39,7 @@ public class Client implements Serializable {
 		result = prime * result + ((idClient == null) ? 0 : idClient.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -88,11 +58,14 @@ public class Client implements Serializable {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Client [idClient=" + idClient + ", clientName=" + clientName + ", clientHostname=" + clientHostname
-				+ ", idType=" + idType + ", idOwner=" + idOwner + "]";
+				+ ", idType=" + idType + ", idOwner=" + idOwner + ", clientType=" + clientType + ", owner=" + owner
+				+ "]";
 	}
+
 	
 	
 
