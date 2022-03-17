@@ -10,6 +10,7 @@ public interface ClientDao {
 	void update(Client obj);
 	void deleteById(Integer id);
 	Client findById(Integer id);
+	Client findByName(String name);
 	List<Client> findAll();
 	
 	

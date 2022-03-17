@@ -9,5 +9,6 @@ public interface UsersDao {
 	void update(Users obj);
 	void deleteById(Integer id);
 	Users findById(Integer id);
+	Users findByName(String name);
 	List<Users> findAll();
 }

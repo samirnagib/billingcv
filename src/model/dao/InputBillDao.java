@@ -11,7 +11,7 @@ public interface InputBillDao {
 	void deleteById(Integer id);
 	void deleteByMesAno(String competencia);
 	InputBill findById(Integer id);
-	
+	InputBill findByCompetencia(String competencia);
 	List<InputBill> findAll();
 
 }
