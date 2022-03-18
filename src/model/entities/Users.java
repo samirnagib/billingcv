@@ -14,6 +14,7 @@ public class Users implements Serializable {
 	private Integer userLevelAccess;
 	
 	
+	
 	public Users() {
 			}
 
@@ -25,6 +26,7 @@ public class Users implements Serializable {
 		this.userFullName = userFullName;
 		this.userEmail = userEmail;
 		this.userLevelAccess = userLevelAccess;
+		
 	}
 
 	public Integer getUserId() {
@@ -77,6 +79,7 @@ public class Users implements Serializable {
 
 	
 	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,8 +108,10 @@ public class Users implements Serializable {
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", userLogin=" + userLogin + ", userPasswd=" + userPasswd + ", userFullName="
-				+ userFullName + ", userEmail=" + userEmail + ", userLevelAccess=" + userLevelAccess + "]";
+				+ userFullName + ", userEmail=" + userEmail + ", userLevelAccess=" + userLevelAccess
+				+  "]";
 	}
+
 
 	
 }

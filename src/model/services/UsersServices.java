@@ -14,4 +14,11 @@ public class UsersServices {
 		return dao.findAll();
 	}
 	
+	public void saverOrUpdate(Users obj) {
+		if (obj.getUserId()==null) {
+			dao.insert(obj);
+		}else {
+			dao.update(obj);
+		}
+	}
 }

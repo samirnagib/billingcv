@@ -46,22 +46,17 @@ public class UsersListController implements Initializable{
 	
 	@FXML
 	private TableColumn<Users, String> tableColumnuserEmail;
-
-	/* ao exibir os nivel de acesso o sistema deverá converter o contudo do banco 
-	 * que está em integer em string, seguindo essa recomendação:
-	 * 1 - Administrador
-	 * 2 - Operador
-	 * 3 - Viewer
-	 */
+	
 	@FXML  
-	private TableColumn<Users, Integer> tableColumnuserLevelAccess;
+	private TableColumn<Users, String> tableColumnuserLevelAccess;
 	
 	private ObservableList<Users> obsList;
 	
 	@FXML
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogForm("/gui/UsersForm.fxml", parentStage);
+		Users obj = new Users();
+		createDialogForm(obj, "/gui/UsersForm.fxml", parentStage);
 	}
 
 	public void setUsersService(UsersServices service) {
@@ -94,14 +89,21 @@ public class UsersListController implements Initializable{
 		}
 		List<Users> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
+		
 		tableViewUsers.setItems(obsList);
 		
 	}
 	
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Users obj, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			UsersFormController controller = loader.getController();
+			controller.setUsers(obj);
+			controller.setUsersServices(new UsersServices());
+			controller.updateFormData();
+			
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Entre com dos dados do usuário:");

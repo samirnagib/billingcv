@@ -27,4 +27,13 @@ public class Constraints {
                 }
 		    });
 	}
+	
+	public static boolean compareStringFields(String txtfield1, String txtfield2) {
+		if (txtfield1.equals(txtfield2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
