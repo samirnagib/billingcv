@@ -1,5 +1,7 @@
 package gui.util;
 
+import java.util.regex.Pattern;
+
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -17,6 +19,13 @@ public class Utils {
 			return null;
 		}
 
+	}
+	public static boolean validaEmail(String emailAddress) {
+		String regexPattern = "^(.+)@(\\S+)$";
+		
+		return Pattern.compile(regexPattern)
+	      .matcher(emailAddress)
+	      .matches();
 	}
 	
 }

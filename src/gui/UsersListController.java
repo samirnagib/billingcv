@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
 import model.entities.Users;
 import model.services.UsersServices;
 
-public class UsersListController implements Initializable{
+public class UsersListController implements Initializable, DataChangeListener{
 	
 	private UsersServices service;
 	
@@ -102,6 +103,7 @@ public class UsersListController implements Initializable{
 			UsersFormController controller = loader.getController();
 			controller.setUsers(obj);
 			controller.setUsersServices(new UsersServices());
+			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 			
 			
@@ -117,6 +119,12 @@ public class UsersListController implements Initializable{
 		catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
+		
+	}
+
+	@Override
+	public void onDataChanged() {
+		updateTableView();
 		
 	}
 
