@@ -34,6 +34,8 @@
             <TableColumn fx:id="tableColumnuserFullName" prefWidth="75.0" text="Nome Completo" />
             <TableColumn fx:id="tableColumnuserEmail" prefWidth="75.0" text="Email" />
             <TableColumn fx:id="tableColumnuserLevelAccess" prefWidth="75.0" text="Nível de Acesso" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" />
         </columns>
       </TableView>
    </children>

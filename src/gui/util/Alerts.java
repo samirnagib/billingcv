@@ -17,23 +17,11 @@ public class Alerts {
 		alert.show();
 	}
 	
-	public static void showConfirmation(String title, String header, String content) {
+	public static Optional<ButtonType> showConfirmation(String title, String content) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle(title);
-		alert.setHeaderText(header);
+		alert.setHeaderText(null);
 		alert.setContentText(content);
-		alert.show();
-		
-		Optional<ButtonType> option = alert.showAndWait();
-		
-		if (option.get()==null) {
-			alert.setTitle("Clique em OK ou cancelar");
-		} else if (option.get()== ButtonType.OK) {
-			Platform.exit();
-		} else if (option.get()== ButtonType.CANCEL) {
-			System.out.println("Cancelado");
-		}
-		
-		
+		return alert.showAndWait();
 	}
 }

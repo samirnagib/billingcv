@@ -31,6 +31,11 @@ import model.entities.Users;
 import model.exceptions.ValidationException;
 import model.services.UsersServices;
 
+/*
+ * Precisa corrigir o erro dos campos em branco, em conjunto com a combobox.
+ * 
+ */
+
 public class UsersFormController implements Initializable {
 
 	private Users entity;
@@ -88,6 +93,7 @@ public class UsersFormController implements Initializable {
 
 	@FXML
 	private void onbtSaveAction(ActionEvent event) {
+		
 		if (entity == null) {
 			throw new IllegalStateException("Entity was null");
 		}
@@ -95,6 +101,9 @@ public class UsersFormController implements Initializable {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
+		/* if (txtuserLogin.getText() == null || txtuserLogin.getText().trim().equals("")) {
+			exception.addError("login", "O Campo não pode estar vazio");
+		} */
 		try {
 			entity = getFormData();
 			service.saverOrUpdate(entity);
@@ -118,43 +127,17 @@ public class UsersFormController implements Initializable {
 
 	private Users getFormData() {
 		Users obj = new Users();
-		ValidationException exception = new ValidationException("Validation error");
+		
 		
 		obj.setUserId(Utils.tryParseToInt(txtuserId.getText()));
 		
-		if (txtuserLogin.getText() == null || txtuserLogin.getText().trim().equals("")) {
-			exception.addError("login", "O Campo não pode estar vazio");
-		}
-		if (txtuserPasswd1.getText() == null || txtuserPasswd1.getText().trim().equals("") || txtuserPasswd2.getText() == null || txtuserPasswd2.getText().trim().equals("") ) {
-			exception.addError("passwd1", "O Campo não pode estar vazio");
-			exception.addError("passwd2", "O Campo não pode estar vazio");
-		
-		} else {
-
-			if ( validatePasswdEquals(txtuserPasswd1.getText(), txtuserPasswd2.getText()) == false ) {
-				exception.addError("password", "Os campos de Senha e Confirmacção de senha devem ser iguais");
-			}
-
-		}
 	
-		
-		if (txtuserFullName.getText() == null || txtuserFullName.getText().trim().equals("")) {
-			exception.addError("name", "O Campo não pode estar vazio");
-		}
-		if (txtuserEmail.getText() == null || txtuserEmail.getText().trim().equals("")) {
-			exception.addError("email", "O Campo não pode estar vazio");
-		}
-		else {
-			if (Utils.validaEmail(txtuserEmail.getText()) == false) {
-				exception.addError("email2", "Não é um email válido.");
-			}
-		}
 		obj.setUserLogin(txtuserLogin.getText());
 		obj.setUserPasswd(txtuserPasswd1.getText());
 		obj.setUserFullName(txtuserFullName.getText());
 		obj.setUserEmail(txtuserEmail.getText());
 		UserAccessLevel uac = comboBoxUserLevelAccess.getSelectionModel().getSelectedItem();
-		obj.setUserLevelAccess(uac.getIdLevel());
+		obj.setUserLevelAccess(uac.getIdLevel()); 
 
 		return obj;
 		

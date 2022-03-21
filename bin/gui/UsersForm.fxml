@@ -44,7 +44,7 @@
             <Label text="Confirmação da Senha" GridPane.rowIndex="3" />
             <TextField fx:id="txtuserFullName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtuserEmail" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="comboBoxUserLevelAccess" onAction="#oncomboBoxUserLevelAccess" prefHeight="25.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBoxUserLevelAccess" onAction="#oncomboBoxUserLevelAccess" onMouseClicked="#oncomboBoxUserLevelAccess" prefHeight="25.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label fx:id="lbErroruserLogin" textFill="#ff000099" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold Italic" size="12.0" />

@@ -21,4 +21,8 @@ public class UsersServices {
 			dao.update(obj);
 		}
 	}
+	
+	public void remove(Users obj) {
+		dao.deleteById(obj.getUserId());
+	}
 }
