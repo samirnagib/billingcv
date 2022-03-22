@@ -101,9 +101,7 @@ public class UsersFormController implements Initializable {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-		/* if (txtuserLogin.getText() == null || txtuserLogin.getText().trim().equals("")) {
-			exception.addError("login", "O Campo não pode estar vazio");
-		} */
+		
 		try {
 			entity = getFormData();
 			service.saverOrUpdate(entity);
@@ -128,17 +126,51 @@ public class UsersFormController implements Initializable {
 	private Users getFormData() {
 		Users obj = new Users();
 		
+		ValidationException exception = new ValidationException("Validation error");
 		
 		obj.setUserId(Utils.tryParseToInt(txtuserId.getText()));
 		
 	
 		obj.setUserLogin(txtuserLogin.getText());
+		if (txtuserLogin.getText() == null || txtuserLogin.getText().trim().equals("")) {
+			exception.addError("login", "Informe um usuário");
+		} 
+		
 		obj.setUserPasswd(txtuserPasswd1.getText());
-		obj.setUserFullName(txtuserFullName.getText());
-		obj.setUserEmail(txtuserEmail.getText());
-		UserAccessLevel uac = comboBoxUserLevelAccess.getSelectionModel().getSelectedItem();
-		obj.setUserLevelAccess(uac.getIdLevel()); 
+		if (txtuserPasswd1.getText() == null || txtuserPasswd1.getText().trim().equals("") || txtuserPasswd2.getText() == null || txtuserPasswd2.getText().trim().equals("") ) {
+			exception.addError("passwd1", "O Campo senha não pode estar vazio");
+			exception.addError("passwd2", "O Campo confimação pode estar vazio");
+		
+		} else {
 
+			if ( validatePasswdEquals(txtuserPasswd1.getText(), txtuserPasswd2.getText()) == false ) {
+				exception.addError("password", "Senha e Confirmação de senha devem ser iguais");
+			}
+
+		}
+		
+		obj.setUserFullName(txtuserFullName.getText());
+		if (txtuserFullName.getText() == null || txtuserFullName.getText().trim().equals("")) {
+			exception.addError("name", "Informe o nome do usuário");
+		}
+		
+		
+		obj.setUserEmail(txtuserEmail.getText());
+		if (txtuserEmail.getText() == null || txtuserEmail.getText().trim().equals("")) {
+			exception.addError("email", "O email não pode estar vazio");
+		}
+		UserAccessLevel uac = comboBoxUserLevelAccess.getSelectionModel().getSelectedItem();
+		System.out.println("Valor: " + comboBoxUserLevelAccess.getValue());
+		if (comboBoxUserLevelAccess.getValue() == null) {
+			exception.addError("userlv", "Selecione o a função do usuario");
+		} else {
+		
+			obj.setUserLevelAccess(uac.getIdLevel()); 
+		}
+		if (exception.getErrors().size() > 0 ) {
+			throw exception;
+		}
+		
 		return obj;
 		
 	}
@@ -262,6 +294,9 @@ public class UsersFormController implements Initializable {
 		}
 		if (fields.contains("email2")) {
 			lbErroruserEmail.setText(errors.get("email2"));
+		}
+		if (fields.contains("userlv")) {
+			lbErrorUserLevelAccess.setText(errors.get("userlv"));
 		}
 		
 	}

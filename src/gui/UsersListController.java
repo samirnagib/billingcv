@@ -81,8 +81,6 @@ public class UsersListController implements Initializable, DataChangeListener{
 	
 	}
 
-
-
 	private void initializeNodes() {
 		tableColumnuserID.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		tableColumnuserLogin.setCellValueFactory(new PropertyValueFactory<>("userLogin"));
