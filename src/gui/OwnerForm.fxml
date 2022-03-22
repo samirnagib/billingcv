@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="249.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OwnerFormController">
+   <children>
+      <GridPane layoutY="17.0" prefHeight="222.0" prefWidth="672.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="17.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="128.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="281.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="263.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Código" />
+            <Label text="Nome do Responsável:" GridPane.rowIndex="1" />
+            <Label text="Email principal" GridPane.rowIndex="2" />
+            <Label text="Email Alternativo" GridPane.rowIndex="3" />
+            <Label text="Área ou Projeto:" GridPane.rowIndex="4" />
+            <Label text="AR (Centro de Custo):" GridPane.rowIndex="5" />
+            <TextField fx:id="txtidOwner" alignment="CENTER_RIGHT" editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="txtowName" promptText="Digite o nome do responsável" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtowEmail1" promptText="Entre com o email principal do responsável" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtowEmail2" promptText="Entre com o email Alternativo (opcional)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtowProjectArea" promptText="Enrte com a área / projeto associado a este responsável" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtowAR" promptText="DIgite o AR (Centro de Custo)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#btSalvarOnAction" prefHeight="25.0" prefWidth="85.0" text="Salvar" />
+                  <Button fx:id="brCancelar" mnemonicParsing="false" onAction="#btCancelarOnAction" prefHeight="25.0" prefWidth="85.0" text="Cancelar" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="lblErrorowName" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblErrorowEmail1" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

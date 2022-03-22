@@ -151,7 +151,7 @@ public class UsersFormController implements Initializable {
 	@FXML
 	private void oncomboBoxUserLevelAccess() {
 		UserAccessLevel ual = comboBoxUserLevelAccess.getSelectionModel().getSelectedItem();
-		System.out.println(ual.getIdLevel());
+		//System.out.println(ual.getIdLevel());
 	}
 	
 	@FXML

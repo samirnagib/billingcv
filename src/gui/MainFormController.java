@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.OwnerServices;
 import model.services.UsersServices;
 
 public class MainFormController implements Initializable {
@@ -68,9 +69,12 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuOwnerAction() {
+		loadView("/gui/OwnerList.fxml", (OwnerListController controller) -> {
+			controller.setOwnerServices(new OwnerServices());
+			controller.updateTableView();
+		});
 		
-		
-		loadView2("/gui/OwnerList.fxml");
+		//loadView2("/gui/OwnerList.fxml");
 				
 	}
 	
