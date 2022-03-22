@@ -14,7 +14,7 @@ public class DaoFactory {
 	}
 	
 	public static ClientTypeDao createClientTypeDao() {
-		return	new ClientTypeDaoJDBC();
+		return	new ClientTypeDaoJDBC(DB.getConnection());
 	}
 	
 	public static InputBillDao createInputBillDao() {
@@ -22,7 +22,7 @@ public class DaoFactory {
 	}
 
 	public static OwnerDao createOwnerDao() {
-		return new OwnerDaoJDBC();
+		return new OwnerDaoJDBC(DB.getConnection());
 	}
 
 	public static UsersDao createUsersDao() {
