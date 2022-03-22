@@ -63,12 +63,15 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuClientTypeAction() {
-		System.out.println("onMenuClientTypeAction");		
+		System.out.println("onMenuClientTypeAction");
 	}
 	
 	@FXML
 	public void onMenuOwnerAction() {
-		System.out.println("onMenuOwnerAction");		
+		
+		
+		loadView2("/gui/OwnerList.fxml");
+				
 	}
 	
 	@FXML
@@ -139,7 +142,7 @@ public class MainFormController implements Initializable {
 		}
 		
 	}
-/*	
+	
 	private synchronized void loadView2(String absoluteName) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
@@ -153,14 +156,13 @@ public class MainFormController implements Initializable {
 			mainVBox.getChildren().add(mainMenu);
 			mainVBox.getChildren().addAll(newVBox.getChildren());
 			
-			UsersListController controller = loader.getController();
-			controller.setUsersService(new UsersServices());
-			controller.updateTableView();
+			loader.getController();
+			
 		}
 		catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loadind view", e.getMessage(), AlertType.ERROR);
 		}
 		
-	} */
+	} 
 
 }
