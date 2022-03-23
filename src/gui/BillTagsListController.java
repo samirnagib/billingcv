@@ -88,7 +88,7 @@ public class BillTagsListController implements Initializable, DataChangeListener
 		tableColumnidBillTag.setCellValueFactory(new PropertyValueFactory<>("idbillTag"));
 		tableColumnbillTagName.setCellValueFactory(new PropertyValueFactory<>("billtagName"));
 		tableColumnbillPriceTB.setCellValueFactory(new PropertyValueFactory<>("billPriceTB"));
-		
+		Utils.formatTableColumnDouble(tableColumnbillPriceTB, 2);
 		Stage stage = (Stage) LoginController.getMainScene().getWindow();
 		tableViewBillTags.prefHeightProperty().bind(stage.heightProperty());
 		

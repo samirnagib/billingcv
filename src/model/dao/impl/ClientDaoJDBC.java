@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -83,7 +84,33 @@ public class ClientDaoJDBC implements ClientDao {
 
 	@Override
 	public List<Client> findAll() {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner");
+			rs = st.executeQuery();
+			List<Client> list = new ArrayList<>();
+			while (rs.next()) {
+				Client client = instantiateClient(rs);
+				list.add(client);
+			}
+			return list;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
+
+	private Client instantiateClient(ResultSet rs) throws SQLException{
+		Client client = new Client();
+		client.setIdClient(rs.getInt("idClient"));
+		client.setClientName(rs.getString("clientName"));
+		client.setClientHostname(rs.getString("clientHostName"));
+		
+		
 		return null;
 	}
 
