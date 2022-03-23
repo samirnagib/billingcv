@@ -1,27 +1,102 @@
 package model.dao.impl;
 
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import db.DB;
+import db.DbException;
 import model.dao.BillTagsDao;
 import model.entities.BillTags;
 
 public class BillTagsDaoJDBC implements BillTagsDao {
 
+	private Connection conn;
+	
+	public BillTagsDaoJDBC(Connection conn) {
+		this.conn = conn;
+	}
+	
+	
 	@Override
 	public void insert(BillTags obj) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("INSERT INTO billTags ( billtagName,billPriceTB) VALUES ( ?, ? )",Statement.RETURN_GENERATED_KEYS);
+			
+			st.setString(1, obj.getBilltagName());
+			st.setDouble(2, obj.getBillPriceTB());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if (rs.next()) {
+					int id = rs.getInt(1);
+					obj.setIdbillTag(id);
+				}
+				DB.closeResultSet(rs);
+			}
+			else {
+				throw new DbException("Unexpected error! No rows affected!");
+			}
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			
+		}
 	}
 
 	@Override
 	public void update(BillTags obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("UPDATE billTags SET billtagName = ?, billPriceTB = ? WHERE idbillTag = ?");
+			
+			st.setString(1, obj.getBilltagName());
+			st.setDouble(2,obj.getBillPriceTB());
+			st.setInt(3, obj.getIdbillTag());
+			
+			st.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			
+		}
+
 		
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM billTags WHERE idbillTag = ?");
+			
+			st.setInt(1, id);
+			
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			
+		}	
+			
 		
 	}
 
