@@ -102,15 +102,58 @@ public class BillTagsDaoJDBC implements BillTagsDao {
 
 	@Override
 	public BillTags findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT billTags.* FROM billTags WHERE idbillTag = ?");
+			st.setInt(1, id);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				BillTags billTags = instantiateBillTags(rs);
+				
+				return billTags;
+			}
+			return null;
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 	@Override
 	public List<BillTags> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT billTags.* FROM billTags");
+			rs = st.executeQuery();
+			List<BillTags> list = new ArrayList<>();
+			while (rs.next()) {
+				BillTags billtags = instantiateBillTags(rs);
+				list.add(billtags);
+			}
+			return list;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 	
+	private BillTags instantiateBillTags(ResultSet rs) throws SQLException {
+		BillTags billtags = new BillTags();
+		
+		billtags.setIdbillTag(rs.getInt("idbillTag"));
+		billtags.setBilltagName(rs.getString("billtagName"));
+		billtags.setBillPriceTB(rs.getDouble("billPriceTB"));
+		
+		return billtags;
+	}
 
 }

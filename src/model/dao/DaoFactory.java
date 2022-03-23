@@ -6,7 +6,7 @@ import model.dao.impl.*;
 public class DaoFactory {
 
 	public static BillTagsDao createBillTagsDao() {
-		return new BillTagsDaoJDBC();
+		return new BillTagsDaoJDBC(DB.getConnection());
 	}
 	
 	public static ClientDao createClientDao() {
