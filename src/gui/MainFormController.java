@@ -16,6 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import model.services.BillTagsServices;
+import model.services.ClientServices;
 import model.services.ClientTypeServices;
 import model.services.OwnerServices;
 import model.services.UsersServices;
@@ -82,7 +83,10 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuClientsAction() {
-		System.out.println("onMenuClientsAction");		
+		loadView("/gui/ClientList.fxml", (ClientListController controller) -> {
+			controller.setClientServices(new ClientServices());
+			controller.updateTableView();
+		});		
 	}
 	
 	@FXML

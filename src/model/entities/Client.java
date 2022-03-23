@@ -20,6 +20,91 @@ public class Client implements Serializable {
 	}
 
 
+	
+	public Integer getIdClient() {
+		return idClient;
+	}
+
+
+
+	public void setIdClient(Integer idClient) {
+		this.idClient = idClient;
+	}
+
+
+
+	public String getClientName() {
+		return clientName;
+	}
+
+
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+
+
+	public String getClientHostname() {
+		return clientHostname;
+	}
+
+
+
+	public void setClientHostname(String clientHostname) {
+		this.clientHostname = clientHostname;
+	}
+
+
+
+	public Integer getIdType() {
+		return idType;
+	}
+
+
+
+	public void setIdType(Integer idType) {
+		this.idType = idType;
+	}
+
+
+
+	public Integer getIdOwner() {
+		return idOwner;
+	}
+
+
+
+	public void setIdOwner(Integer idOwner) {
+		this.idOwner = idOwner;
+	}
+
+
+
+	public ClientType getClientType() {
+		return clientType;
+	}
+
+
+
+	public void setClientType(ClientType clientType) {
+		this.clientType = clientType;
+	}
+
+
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+
+
 	public Client(Integer idClient, String clientName, String clientHostname, Integer idType, Integer idOwner,
 			ClientType clientType, Owner owner) {
 		this.idClient = idClient;

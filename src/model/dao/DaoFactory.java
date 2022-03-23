@@ -10,7 +10,7 @@ public class DaoFactory {
 	}
 	
 	public static ClientDao createClientDao() {
-		return new ClientDaoJDBC();
+		return new ClientDaoJDBC(DB.getConnection());
 	}
 	
 	public static ClientTypeDao createClientTypeDao() {
