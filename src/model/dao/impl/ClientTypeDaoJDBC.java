@@ -25,7 +25,7 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 	public void insert(ClientType obj) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("INSERT INTO ClientType ( typeName ) VALUES ( ? )", Statement.RETURN_GENERATED_KEYS);
+			st = conn.prepareStatement("INSERT INTO clientType ( typeName ) VALUES ( ? )", Statement.RETURN_GENERATED_KEYS);
 			st.setString(1, obj.getTypeName());
 			
 			int rowsAffected = st.executeUpdate();
@@ -57,10 +57,10 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 	public void update(ClientType obj) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("UPDATE ClientType SET typeName = ? WHERE idType = ?");
+			st = conn.prepareStatement("UPDATE clientType SET typeName = ? WHERE idType = ?");
 			
 			st.setString(1, obj.getTypeName());
-			st.setInt(6, obj.getIdType());
+			st.setInt(2, obj.getIdType());
 			
 			st.executeUpdate();
 			
@@ -79,7 +79,7 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 	public void deleteById(Integer id) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("DELETE FROM ClientType WHERE idType = ?");
+			st = conn.prepareStatement("DELETE FROM clientType WHERE idType = ?");
 			
 			st.setInt(1, id);
 			
@@ -100,7 +100,7 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT ClientType.* FROM ClientType WHERE idType = ?");
+			st = conn.prepareStatement("SELECT ClientType.* FROM clientType WHERE idType = ?");
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
@@ -124,7 +124,7 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT owner.* FROM owner");
+			st = conn.prepareStatement("SELECT clientType.* FROM clientType");
 			rs = st.executeQuery();
 			List<ClientType> list = new ArrayList<>();
 			while (rs.next()) {
