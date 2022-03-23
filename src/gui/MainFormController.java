@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.BillTagsServices;
 import model.services.ClientTypeServices;
 import model.services.OwnerServices;
 import model.services.UsersServices;
@@ -86,7 +87,11 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuBillTagAction() {
-		System.out.println("onMenuBillTagAction");		
+		loadView("/gui/BillTagsList.fxml", (BillTagsListController controller) -> {
+			controller.setBillTagsServices(new BillTagsServices());
+			controller.updateTableView();
+		});	
+		
 	}
 	
 	@FXML

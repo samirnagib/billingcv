@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="560.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="560.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BillTagsListController">
    <children>
       <Label text="Tabela de Preços Armazenamento">
          <font>
@@ -21,16 +21,16 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Novo" />
+          <Button fx:id="btNovo" mnemonicParsing="false" onAction="#onBtNovoAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewBillTags" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="250.0" text="Camada" />
-            <TableColumn prefWidth="120.0" text="Valor por TB" />
-            <TableColumn prefWidth="75.0" />
-            <TableColumn prefWidth="75.0" />
+          <TableColumn fx:id="tableColumnidBillTag" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableColumnbillTagName" prefWidth="250.0" text="Camada" />
+            <TableColumn fx:id="tableColumnbillPriceTB" prefWidth="120.0" text="Valor por TB" />
+            <TableColumn fx:id="tableColumEDIT" prefWidth="75.0" />
+            <TableColumn fx:id="tableColumREMOVE" prefWidth="75.0" />
         </columns>
       </TableView>
    </children>
