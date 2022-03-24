@@ -102,7 +102,8 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuImportClientsAction() {
-		System.out.println("onMenuImportClientsAction");		
+		loadView("/gui/ClientImport.fxml",  x -> {}  );
+				
 	}
 	
 	@FXML
