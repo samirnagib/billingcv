@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -31,8 +33,9 @@ public class ClientDaoJDBC implements ClientDao {
 			
 			st.setString(1, obj.getClientName());
 			st.setString(2,obj.getClientHostname());
-			st.setInt(3, obj.getIdType());
-			st.setInt(4, obj.getIdOwner());
+			st.setInt(3, obj.getClientType().getIdType());
+			st.setInt(4, obj.getOwner().getIdOwner());
+			
 			int rowsAffected = st.executeUpdate();
 			
 			if (rowsAffected > 0) {
@@ -40,7 +43,6 @@ public class ClientDaoJDBC implements ClientDao {
 				if (rs.next()) {
 					int id = rs.getInt(1);
 					obj.setIdClient(id);
-					
 				}
 				DB.closeResultSet(rs);
 			}
@@ -48,17 +50,13 @@ public class ClientDaoJDBC implements ClientDao {
 				throw new DbException("Unexpected error! No rows affected!");
 			}
 			
-			
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(st);
-			
 		}
-		
 	}
-	
 
 	@Override
 	public void update(Client obj) {
@@ -70,8 +68,8 @@ public class ClientDaoJDBC implements ClientDao {
 			
 			st.setString(1, obj.getClientName());
 			st.setString(2, obj.getClientHostname());
-			st.setInt(3, obj.getIdType());
-			st.setInt(4, obj.getIdOwner());
+			st.setInt(3, obj.getClientType().getIdType());
+			st.setInt(4, obj.getOwner().getIdOwner());
 			st.setInt(5, obj.getIdClient());
 			
 			st.executeUpdate();
@@ -117,18 +115,10 @@ public class ClientDaoJDBC implements ClientDao {
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Client client = new Client();
-				ClientType clientType = new ClientType();
-				Owner owner = new Owner();
-				clientType.setIdType(rs.getInt("idType"));
-				clientType.setTypeName(rs.getString("typeName"));
-				owner.setIdOwner(rs.getInt("idOwner"));
-				owner.setOwName(rs.getString("owName"));
-				client.setIdClient(rs.getInt("idClient"));
-				client.setClientName(rs.getString("clientName"));
-				client.setClientHostname(rs.getString("clientHostname"));
-				client.setOwner(owner);
-				client.setClientType(clientType);
+				
+				ClientType clientType = instatiateClientType(rs);
+				Owner owner = instantiateOwner(rs);
+				Client client = instatiateClient(rs,clientType,owner);
 				
 				return client;
 			}
@@ -141,6 +131,30 @@ public class ClientDaoJDBC implements ClientDao {
 			DB.closeResultSet(rs);
 		}
 	
+	}
+
+	private Client instatiateClient(ResultSet rs, ClientType clientType, Owner owner) throws SQLException {
+		Client client = new Client();
+		client.setIdClient(rs.getInt("idClient"));
+		client.setClientName(rs.getString("clientName"));
+		client.setClientHostname(rs.getString("clientHostname"));
+		client.setOwner(owner);
+		client.setClientType(clientType);
+		return client;
+	}
+
+	private Owner instantiateOwner(ResultSet rs) throws SQLException {
+		Owner owner = new Owner();
+		owner.setIdOwner(rs.getInt("idOwner"));
+		owner.setOwName(rs.getString("owName"));
+		return owner;
+	}
+
+	private ClientType instatiateClientType(ResultSet rs) throws SQLException {
+		ClientType clientType = new ClientType();
+		clientType.setIdType(rs.getInt("idType"));
+		clientType.setTypeName(rs.getString("typeName"));
+		return clientType;
 	}
 
 	@Override
@@ -160,7 +174,10 @@ public class ClientDaoJDBC implements ClientDao {
 			st.setString(1, Name +"%");
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Client client = instantiateClient(rs);
+				
+				ClientType clientType = instatiateClientType(rs);
+				Owner owner = instantiateOwner(rs);
+				Client client = instatiateClient(rs,clientType,owner);
 				
 				return client;
 			}
@@ -181,12 +198,32 @@ public class ClientDaoJDBC implements ClientDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner");
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner ORDER BY clientes.clientName");
+			
 			rs = st.executeQuery();
+			
 			List<Client> list = new ArrayList<>();
+			Map<Integer, Owner> mapOwner = new HashMap<>();
+			Map<Integer, ClientType> mapClientType = new HashMap<>();
+			
 			while (rs.next()) {
-				Client client = instantiateClient(rs);
-				list.add(client);
+				
+				Owner ow = mapOwner.get(rs.getInt("idOwner"));
+				if (ow == null) {
+					ow = instantiateOwner(rs);
+					mapOwner.put(rs.getInt("idOwner"), ow);
+				}
+				
+				ClientType cType = mapClientType.get(rs.getInt("idType"));
+				if (cType == null ) {
+					cType = instatiateClientType(rs);
+					mapClientType.put(rs.getInt("idType"), cType);
+				}
+				
+				 
+				Client obj = instatiateClient(rs, cType, ow);
+				list.add(obj);
+				
 			}
 			return list;
 		} catch (SQLException e) {
@@ -198,48 +235,84 @@ public class ClientDaoJDBC implements ClientDao {
 		}
 	}
 
-	private Client instantiateClient(ResultSet rs, ClientType clientType, Owner owner) throws SQLException{
-		Client client = new Client();
-		client.setIdClient(rs.getInt("idClient"));
-		client.setClientName(rs.getString("clientName"));
-		client.setClientHostname(rs.getString("clientHostName"));
-		client.setIdOwner(rs.getInt("idOwner"));
-		client.setIdType(rs.getInt("idType"));
-		client.setOwName(rs.getString("owName"));
-		client.setTypeName(rs.getString("typeName"));
-		client.setClientType(clientType);
-		client.setOwner(owner);
-		return client;
-	}
 	
-	private ClientType instantiateClientType(ResultSet rs) throws SQLException{
-		ClientType clientType = new ClientType();
-		clientType.setIdType(rs.getInt("idType"));
-		clientType.setTypeName((rs.getString("typeName")));
-		return clientType;
-	}
-	
-	private Owner instatiateOwner(ResultSet rs) throws SQLException{
-		Owner owner = new Owner();
-		owner.setIdOwner(rs.getInt("idOwner"));
-		owner.setOwName(rs.getString("owName"));
-		return owner;
-	}
 
 	@Override
 	public List<Client> findByClientType(ClientType clientType) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner WHERE clientType.typeName = ? ORDER BY clientes.clientName");
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner WHERE clientes.idType = ? ORDER BY clientes.clientName");
 			st.setInt(1, clientType.getIdType());
 			rs = st.executeQuery();
-			if (rs.next()) {
-				Client client = instantiateClientType(rs,);
+			
+			List<Client> list = new ArrayList<>();
+			Map<Integer, Owner> mapOwner = new HashMap<>();
+			Map<Integer, ClientType> mapClientType = new HashMap<>();
+			
+			while (rs.next()) {
 				
-				return client;
+				Owner ow = mapOwner.get(rs.getInt("idOwner"));
+				if (ow == null) {
+					ow = instantiateOwner(rs);
+					mapOwner.put(rs.getInt("idOwner"), ow);
+				}
+				
+				ClientType cType = mapClientType.get(rs.getInt("idType"));
+				if (cType == null ) {
+					cType = instatiateClientType(rs);
+					mapClientType.put(rs.getInt("idType"), cType);
+				}
+				
+				 
+				Client obj = instatiateClient(rs, cType, ow);
+				list.add(obj);
+				
 			}
-			return null;
+			return list;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}	
+	
+	}
+
+	@Override
+	public List<Client> findByOwner(Owner owner) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner WHERE clientes.idOwner = ? ORDER BY clientes.clientName");
+			st.setInt(1, owner.getIdOwner());
+			rs = st.executeQuery();
+			
+			List<Client> list = new ArrayList<>();
+			Map<Integer, Owner> mapOwner = new HashMap<>();
+			Map<Integer, ClientType> mapClientType = new HashMap<>();
+			
+			while (rs.next()) {
+				
+				Owner ow = mapOwner.get(rs.getInt("idOwner"));
+				if (ow == null) {
+					ow = instantiateOwner(rs);
+					mapOwner.put(rs.getInt("idOwner"), ow);
+				}
+				
+				ClientType cType = mapClientType.get(rs.getInt("idType"));
+				if (cType == null ) {
+					cType = instatiateClientType(rs);
+					mapClientType.put(rs.getInt("idType"), cType);
+				}
+				
+				 
+				Client obj = instatiateClient(rs, cType, ow);
+				list.add(obj);
+				
+			}
+			return list;
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		}
@@ -247,13 +320,6 @@ public class ClientDaoJDBC implements ClientDao {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
-	
-	}
-
-	@Override
-	public List<Client> findByOwner(Owner owner) {
-		
-		return null;
 	}
 
 }

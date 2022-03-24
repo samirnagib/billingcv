@@ -110,7 +110,7 @@ public class ClientFormController implements Initializable {
 		if (entity.getTypeName().equals(null)) {
 			cbClientType.getSelectionModel().selectFirst();
 		} else {
-			cbClientType.setValue(entity.getTypeName());
+			cbClientType.setValue(entity.getClientType());
 		}
 		
 	}
