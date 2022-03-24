@@ -155,7 +155,7 @@ public class MainFormController implements Initializable {
 		}
 		catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loadind view", e.getMessage(), AlertType.ERROR);
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 		
 	}
