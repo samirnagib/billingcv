@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="551.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ClientListController">
+   <children>
+      <Label alignment="TOP_LEFT" text="Registro de Clientes">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button fx:id="btNovo" mnemonicParsing="false" onAction="#btNovoOnAction" text="Novo" />
+        </items>
+      </ToolBar>
+      <TableView fx:id="tableViewClient" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="tableColumnidClient" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableColumnclientName" prefWidth="200.0" text="Cliente" />
+            <TableColumn fx:id="tableColumnclientHostname" prefWidth="150.0" text="Hostname" />
+            <TableColumn fx:id="tableColumntypeName" prefWidth="100.0" text="Tipo de Cliente" />
+            <TableColumn fx:id="tableColumnowName" prefWidth="200.0" text="Nome do Responsável" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="70.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="70.0" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>

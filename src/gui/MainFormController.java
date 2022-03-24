@@ -86,7 +86,9 @@ public class MainFormController implements Initializable {
 		loadView("/gui/ClientList.fxml", (ClientListController controller) -> {
 			controller.setClientServices(new ClientServices());
 			controller.updateTableView();
-		});		
+		});
+		//           /gui/ClientList.fxml
+		// loadView("/gui/ClientList.fxml", x -> {} );
 	}
 	
 	@FXML
@@ -153,6 +155,7 @@ public class MainFormController implements Initializable {
 		}
 		catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loadind view", e.getMessage(), AlertType.ERROR);
+			//e.printStackTrace();
 		}
 		
 	}
