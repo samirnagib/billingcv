@@ -3,9 +3,13 @@ package gui;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
+import db.DbException;
 import gui.listeners.DataChangeListener;
+import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -13,8 +17,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -22,6 +28,7 @@ import javafx.util.Callback;
 import model.entities.Client;
 import model.entities.ClientType;
 import model.entities.Owner;
+import model.exceptions.ValidationException;
 import model.services.ClientServices;
 import model.services.ClientTypeServices;
 import model.services.OwnerServices;
@@ -56,6 +63,13 @@ public class ClientFormController implements Initializable {
 	@FXML 
 	private Button btCancelar;
 	
+	@FXML
+	private Label lbError1;
+	
+	@FXML
+	private Label lbError2;
+	
+	
 	private ObservableList<ClientType> obsListTYPE;
 	
 	private ObservableList<Owner> obsListOWNER;
@@ -76,8 +90,24 @@ public class ClientFormController implements Initializable {
 	}
 
 	@FXML
-	public void onBtSaveAction() {
-		System.out.println("onBtSaveAction");
+	public void onBtSaveAction(ActionEvent event) {
+		if (entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		if (service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		try {
+			entity = getFormData();
+			service.saverOrUpdate(entity);
+			notifyDataChangeListeners();
+			Utils.currentStage(event).close();
+		} catch (ValidationException e) {
+			setErrorMessages(e.getErrors());
+		} catch (DbException e) {
+			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
+		}
+		
 	}
 	
 	@FXML
@@ -85,7 +115,11 @@ public class ClientFormController implements Initializable {
 		Utils.currentStage(event).close();
 	}
 	
-	
+	private void notifyDataChangeListeners() {
+		for (DataChangeListener listener : dataChangeListeners) {
+			listener.onDataChanged();
+		}
+	}	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -99,6 +133,28 @@ public class ClientFormController implements Initializable {
 		
 		initializeComboBoxClientType();
 		initializeComboBoxOwner();
+	}
+	
+	private Client getFormData() {
+		Client obj = new Client();
+		ValidationException exception = new ValidationException("Validation error");
+		
+		obj.setIdClient(Utils.tryParseToInt(txtidClient.getText()));
+		
+		if(txtclientName.getText() == null || txtclientName.getText().trim().equals("")) {
+			exception.addError("name", "Field can't be empty");
+		}
+		obj.setClientName(txtclientName.getText());
+		obj.setClientHostname(txtclientHostname.getText());
+		obj.setClientType(cbClientType.getValue());
+		obj.setOwner(cbOwner.getValue());
+		
+		if (exception.getErrors().size() > 0) {
+			throw exception;
+		}
+		
+		
+		return obj;
 	}
 	
 	public void updateFormData() {
@@ -169,5 +225,12 @@ public class ClientFormController implements Initializable {
 		cbOwner.setButtonCell(factory.call(null));
 	}
 
+	private void setErrorMessages(Map<String, String> errors) {
+		Set<String> fields = errors.keySet();
+		
+		if (fields.contains("name")) {
+			lbError1.setText(errors.get("name"));
+		}
+	}
 	
 }

@@ -55,12 +55,12 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </padding>
             </HBox>
-            <Label textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="lbError1" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold Italic" size="10.0" />
                </font>
             </Label>
-            <Label textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="lbError2" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold Italic" size="10.0" />
                </font>
