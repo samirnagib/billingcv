@@ -11,6 +11,8 @@ import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
@@ -28,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.entities.Client;
 import model.services.ClientServices;
 import model.services.ClientTypeServices;
@@ -73,11 +77,13 @@ public class ClientListController implements Initializable, DataChangeListener {
 	
 	@FXML
 	private void btNovoOnAction(ActionEvent event) {
-//		Stage parentStage = Utils.currentStage(event);
-//		Client obj = new Client();
-//		createDialogForm(obj, "/gui/ClientForm.fxml", parentStage);
-		System.out.println("btNovoOnAction");
+		Stage parentStage = Utils.currentStage(event);
+		Client obj = new Client();
+		createDialogForm(obj, "/gui/ClientForm.fxml", parentStage);
+		//System.out.println("btNovoOnAction");
 	}
+	
+	
 	
 	
 	@Override
@@ -89,8 +95,7 @@ public class ClientListController implements Initializable, DataChangeListener {
 		tableColumnidClient.setCellValueFactory(new PropertyValueFactory<>("idClient"));
 		tableColumnclientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
 		tableColumnclientHostname.setCellValueFactory(new PropertyValueFactory<>("clientHostname"));
-		tableColumntypeName.setCellValueFactory(new PropertyValueFactory<>("typeName"));
-		tableColumnowName.setCellValueFactory(new PropertyValueFactory<>("owName"));
+		
 		
 		Stage stage = (Stage) LoginController.getMainScene().getWindow();
 		tableViewClient.prefHeightProperty().bind(stage.heightProperty());
@@ -103,6 +108,7 @@ public class ClientListController implements Initializable, DataChangeListener {
 		List<Client> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewClient.setItems(obsList);
+		
 		initEditButtons();
 		initRemoveButtons(); 
 	}
@@ -156,10 +162,14 @@ public class ClientListController implements Initializable, DataChangeListener {
 				setGraphic(button);
 				button.setOnAction(
 						event -> createDialogForm(obj, "/gui/ClientForm.fxml", Utils.currentStage(event)));
-						//System.out.println("tableColumnEDIT");
+						
 			}
 		});
 	}
+	
+		
+		
+	
 	
 	
 	private void initRemoveButtons() {

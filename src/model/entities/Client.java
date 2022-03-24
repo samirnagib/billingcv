@@ -13,9 +13,7 @@ public class Client implements Serializable {
 	private Integer idOwner;
 	
 	// Campos para as tabelas externas
-	private String typeName;
-	private String owName;
-	
+		
 	private ClientType clientType;
 	private Owner owner;
 	
@@ -25,14 +23,12 @@ public class Client implements Serializable {
 
 
 	public Client(Integer idClient, String clientName, String clientHostname, Integer idType, Integer idOwner,
-			String typeName, String owName, ClientType clientType, Owner owner ) {
+			ClientType clientType, Owner owner ) {
 		this.idClient = idClient;
 		this.clientName = clientName;
 		this.clientHostname = clientHostname;
 		this.idType = idType;
 		this.idOwner = idOwner;
-		this.typeName = typeName;
-		this.owName = owName;
 		this.clientType = clientType;
 		this.owner = owner;
 	}
@@ -88,26 +84,6 @@ public class Client implements Serializable {
 	}
 
 
-	public String getTypeName() {
-		return typeName;
-	}
-
-
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
-
-
-	public String getOwName() {
-		return owName;
-	}
-
-
-	public void setOwName(String owName) {
-		this.owName = owName;
-	}
-
-
 	public ClientType getClientType() {
 		return clientType;
 	}
@@ -158,8 +134,7 @@ public class Client implements Serializable {
 	@Override
 	public String toString() {
 		return "Client [idClient=" + idClient + ", clientName=" + clientName + ", clientHostname=" + clientHostname
-				+ ", idType=" + idType + ", idOwner=" + idOwner + ", typeName=" + typeName + ", owName=" + owName
-				+ ", clientType=" + clientType + ", owner=" + owner + "]";
+				+ ", idType=" + idType + ", idOwner=" + idOwner + ",  clientType=" + clientType + ", owner=" + owner + "]";
 	}
 
 

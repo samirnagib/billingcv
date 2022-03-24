@@ -7,8 +7,10 @@ import java.util.ResourceBundle;
 
 import gui.listeners.DataChangeListener;
 import gui.util.Constraints;
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -79,8 +81,8 @@ public class ClientFormController implements Initializable {
 	}
 	
 	@FXML
-	public void onBtCancelAction() {
-		System.out.println("onBtCancelAction");
+	public void onBtCancelAction(ActionEvent event) {
+		Utils.currentStage(event).close();
 	}
 	
 	
@@ -107,11 +109,17 @@ public class ClientFormController implements Initializable {
 		txtidClient.setText(String.valueOf(entity.getIdClient()));
 		txtclientName.setText(entity.getClientName());
 		txtclientHostname.setText(entity.getClientHostname());
-		if (entity.getTypeName().equals(null)) {
+		if (entity.getClientType() == null ) {
 			cbClientType.getSelectionModel().selectFirst();
 		} else {
 			cbClientType.setValue(entity.getClientType());
 		}
+		if (entity.getOwner() == null) {
+			cbOwner.getSelectionModel().selectFirst();
+		} else {
+			cbOwner.setValue(entity.getOwner());
+		}
+		
 		
 	}
 

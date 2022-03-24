@@ -146,14 +146,14 @@ public class ClientDaoJDBC implements ClientDao {
 	private Owner instantiateOwner(ResultSet rs) throws SQLException {
 		Owner owner = new Owner();
 		owner.setIdOwner(rs.getInt("idOwner"));
-		owner.setOwName(rs.getString("owName"));
+		owner.setOwName(rs.getString("resp"));
 		return owner;
 	}
 
 	private ClientType instatiateClientType(ResultSet rs) throws SQLException {
 		ClientType clientType = new ClientType();
 		clientType.setIdType(rs.getInt("idType"));
-		clientType.setTypeName(rs.getString("typeName"));
+		clientType.setTypeName(rs.getString("ctName"));
 		return clientType;
 	}
 
@@ -198,7 +198,7 @@ public class ClientDaoJDBC implements ClientDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner ORDER BY clientes.clientName");
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName as ctName, owner.owName as resp FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner ORDER BY clientes.clientName");
 			
 			rs = st.executeQuery();
 			

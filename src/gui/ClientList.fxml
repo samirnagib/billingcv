@@ -29,8 +29,6 @@
           <TableColumn fx:id="tableColumnidClient" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="tableColumnclientName" prefWidth="200.0" text="Cliente" />
             <TableColumn fx:id="tableColumnclientHostname" prefWidth="150.0" text="Hostname" />
-            <TableColumn fx:id="tableColumntypeName" prefWidth="100.0" text="Tipo de Cliente" />
-            <TableColumn fx:id="tableColumnowName" prefWidth="200.0" text="Nome do Responsável" />
             <TableColumn fx:id="tableColumnEDIT" prefWidth="70.0" />
             <TableColumn fx:id="tableColumnREMOVE" prefWidth="70.0" />
         </columns>
