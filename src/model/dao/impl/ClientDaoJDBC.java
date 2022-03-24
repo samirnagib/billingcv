@@ -12,6 +12,8 @@ import db.DB;
 import db.DbException;
 import model.dao.ClientDao;
 import model.entities.Client;
+import model.entities.ClientType;
+import model.entities.Owner;
 
 public class ClientDaoJDBC implements ClientDao {
 	
@@ -115,7 +117,18 @@ public class ClientDaoJDBC implements ClientDao {
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Client client = instantiateClient(rs);
+				Client client = new Client();
+				ClientType clientType = new ClientType();
+				Owner owner = new Owner();
+				clientType.setIdType(rs.getInt("idType"));
+				clientType.setTypeName(rs.getString("typeName"));
+				owner.setIdOwner(rs.getInt("idOwner"));
+				owner.setOwName(rs.getString("owName"));
+				client.setIdClient(rs.getInt("idClient"));
+				client.setClientName(rs.getString("clientName"));
+				client.setClientHostname(rs.getString("clientHostname"));
+				client.setOwner(owner);
+				client.setClientType(clientType);
 				
 				return client;
 			}
@@ -185,7 +198,7 @@ public class ClientDaoJDBC implements ClientDao {
 		}
 	}
 
-	private Client instantiateClient(ResultSet rs) throws SQLException{
+	private Client instantiateClient(ResultSet rs, ClientType clientType, Owner owner) throws SQLException{
 		Client client = new Client();
 		client.setIdClient(rs.getInt("idClient"));
 		client.setClientName(rs.getString("clientName"));
@@ -194,8 +207,53 @@ public class ClientDaoJDBC implements ClientDao {
 		client.setIdType(rs.getInt("idType"));
 		client.setOwName(rs.getString("owName"));
 		client.setTypeName(rs.getString("typeName"));
-		
+		client.setClientType(clientType);
+		client.setOwner(owner);
 		return client;
+	}
+	
+	private ClientType instantiateClientType(ResultSet rs) throws SQLException{
+		ClientType clientType = new ClientType();
+		clientType.setIdType(rs.getInt("idType"));
+		clientType.setTypeName((rs.getString("typeName")));
+		return clientType;
+	}
+	
+	private Owner instatiateOwner(ResultSet rs) throws SQLException{
+		Owner owner = new Owner();
+		owner.setIdOwner(rs.getInt("idOwner"));
+		owner.setOwName(rs.getString("owName"));
+		return owner;
+	}
+
+	@Override
+	public List<Client> findByClientType(ClientType clientType) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner WHERE clientType.typeName = ? ORDER BY clientes.clientName");
+			st.setInt(1, clientType.getIdType());
+			rs = st.executeQuery();
+			if (rs.next()) {
+				Client client = instantiateClientType(rs,);
+				
+				return client;
+			}
+			return null;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	
+	}
+
+	@Override
+	public List<Client> findByOwner(Owner owner) {
+		
+		return null;
 	}
 
 }

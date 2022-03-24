@@ -135,8 +135,8 @@ public class BillTagsFormController implements Initializable {
 		
 		txtidbillTag.setText(String.valueOf(entity.getIdbillTag()));
 		txtbilltagName.setText(entity.getBilltagName());
-		txtbillPriceTB.setText(String.valueOf(entity.getBillPriceTB()));
-		
+		// txtbillPriceTB.setText(String.valueOf(entity.getBillPriceTB()));
+		txtbillPriceTB.setText(String.format("%.2f", entity.getBillPriceTB()));
 	}
 	
 	private void setErrorMessages(Map<String, String> error ) {

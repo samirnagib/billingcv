@@ -3,6 +3,8 @@ package model.dao;
 import java.util.List;
 
 import model.entities.Client;
+import model.entities.ClientType;
+import model.entities.Owner;
 
 public interface ClientDao {
 
@@ -12,6 +14,8 @@ public interface ClientDao {
 	Client findById(Integer id);
 	Client findByName(String name);
 	List<Client> findAll();
+	List<Client> findByClientType(ClientType clientType);
+	List<Client> findByOwner(Owner owner);
 	
 	
 }

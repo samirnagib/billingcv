@@ -16,13 +16,16 @@ public class Client implements Serializable {
 	private String typeName;
 	private String owName;
 	
+	private ClientType clientType;
+	private Owner owner;
+	
 	
 	public Client() {
 	}
 
 
 	public Client(Integer idClient, String clientName, String clientHostname, Integer idType, Integer idOwner,
-			String typeName, String owName) {
+			String typeName, String owName, ClientType clientType, Owner owner ) {
 		this.idClient = idClient;
 		this.clientName = clientName;
 		this.clientHostname = clientHostname;
@@ -30,6 +33,8 @@ public class Client implements Serializable {
 		this.idOwner = idOwner;
 		this.typeName = typeName;
 		this.owName = owName;
+		this.clientType = clientType;
+		this.owner = owner;
 	}
 
 
@@ -103,6 +108,26 @@ public class Client implements Serializable {
 	}
 
 
+	public ClientType getClientType() {
+		return clientType;
+	}
+
+
+	public void setClientType(ClientType clientType) {
+		this.clientType = clientType;
+	}
+
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,7 +158,8 @@ public class Client implements Serializable {
 	@Override
 	public String toString() {
 		return "Client [idClient=" + idClient + ", clientName=" + clientName + ", clientHostname=" + clientHostname
-				+ ", idType=" + idType + ", idOwner=" + idOwner + ", typeName=" + typeName + ", owName=" + owName + "]";
+				+ ", idType=" + idType + ", idOwner=" + idOwner + ", typeName=" + typeName + ", owName=" + owName
+				+ ", clientType=" + clientType + ", owner=" + owner + "]";
 	}
 
 
