@@ -146,14 +146,14 @@ public class ClientDaoJDBC implements ClientDao {
 	private Owner instantiateOwner(ResultSet rs) throws SQLException {
 		Owner owner = new Owner();
 		owner.setIdOwner(rs.getInt("idOwner"));
-		owner.setOwName(rs.getString("resp"));
+		owner.setOwName(rs.getString("owName"));
 		return owner;
 	}
 
 	private ClientType instatiateClientType(ResultSet rs) throws SQLException {
 		ClientType clientType = new ClientType();
 		clientType.setIdType(rs.getInt("idType"));
-		clientType.setTypeName(rs.getString("ctName"));
+		clientType.setTypeName(rs.getString("typeName"));
 		return clientType;
 	}
 

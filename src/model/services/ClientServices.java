@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.dao.ClientDao;
 import model.dao.DaoFactory;
+import model.dao.impl.ClientDaoJDBC;
 import model.entities.Client;
 
 public class ClientServices {
@@ -25,4 +26,14 @@ public class ClientServices {
 	public void remove(Client obj) {
 		dao.deleteById(obj.getIdClient());
 	}
+	
+	public boolean searchByName(Client obj) {
+		String search;
+		search = obj.getClientName();
+		if ( dao.findByName(search)) {
+			return true;
+		}
+		return false;
+	}
+	
 }

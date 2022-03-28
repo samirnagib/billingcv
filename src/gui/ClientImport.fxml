@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="173.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ClientImportController">
    <children>
@@ -28,6 +29,7 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <VBox.margin>
             <Insets />
@@ -39,6 +41,12 @@
             <Label text="Arquivo:" />
             <TextField fx:id="txtPath" GridPane.columnIndex="1" />
             <ProgressBar fx:id="pbProgresso" prefHeight="18.0" prefWidth="496.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Mensagem:" GridPane.rowIndex="2" />
+            <Label fx:id="lblMessage" textFill="#1000f7" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Italic" size="11.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>

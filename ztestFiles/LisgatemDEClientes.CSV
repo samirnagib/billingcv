@@ -1,0 +1,92 @@
+Client;Host Name;Tipo;Responsavel pelo Servidor;Email principal;Email Alternativo;Área ou Projeto;AR da Área ou Projeto
+A_ISILON;10.134.160.14;Apliance; INFRA ESSENTIALS;supso@g.globo;;Gerenciade Servidores;0
+CLHAORASR001;CLHAORASR001;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHAORASR001;10.214.2.7;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr002;CLHAORASR002;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr002;10.214.2.5;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr010;10.118.37.68;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr099;CLHAORASR099;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr099;10.214.2.99;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr001;10.114.17.74;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR002;CLHASQLSR002;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR002;10.214.3.8;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr003;CLHASQLSR003;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr003;10.214.3.9;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr004;CLHASQLSR004;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr004;10.214.3.10;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr005;10.118.32.8;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR006;CLHASQLSR006;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR006;10.214.3.20;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR007;CLHASQLSR007;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR007;10.214.3.21;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR008;CLHASQLSR008;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHASQLSR008;CLHASQLSR008.corp.tvglobo.com.br;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPAORASR003;CLPAORASR003;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clpaorasr003;clpaorasr003.corp.tvglobo.com.br;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clpaorasr005;clpaorasr005.corp.tvglobo.com.br;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clpaorasr006;CLPAORASR006;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clpaorasr006;10.116.2.15;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clpaorasr010;10.116.2.20;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLCL001;10.116.3.26;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clpasqlsr001;CLPASQLSR001;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR002;CLPASQLSR002;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR002;CLPASQLSR002.corp.tvglobo.com.br;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR002_AGClient;CLPASQLSR002_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR003;CLPASQLSR003;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR003;CLPASQLSR003.corp.tvglobo.com.br;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR004;CLPASQLSR004;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR004_AGClient;CLPASQLSR004_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR006_AGClient;CLPASQLSR006_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+cltaorasr010;10.118.36.68;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CMPASQLSR008_AGClient;CMPASQLSR008_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jb-aix-ora-h01;10.19.150.198;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jb-aix-ora-p02;10.53.100.1;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr011.corp.tvglobo.com.br;10.19.150.70;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr012.corp.tvglobo.com.br;10.19.150.71;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr014.corp.tvglobo.com.br;10.19.150.73;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr015;10.19.150.112;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr016;jbtaorasr004;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr017;JBHAORASR017;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr017;10.214.2.4;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr019;JBHAORASR019;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr019.corp.tvglobo.com.br;10.19.150.146;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr020;10.19.145.64;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr020;JBHAORASR020;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr021;jbhaorasr021;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbhaorasr023;JBHAORASR023;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jboraa01.corp.tvglobo.com.br;10.19.145.20;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBORAP02;JBORAP02;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBORAP03;JBORAP03;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBORAP04;10.19.197.70;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBORAP04;jborap04;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBORAP05;JBORAP05;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBPAETLEXPLORA;jbpaetlexplora;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JBPAORASR004;jbpaorasr004.corp.tvglobo.com.br;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbrepora;JBREPORA;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbsaorasr007;JBSAORASR007;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr004;jbtaorasr004;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr004;10.118.2.4;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr005;jbtaorasr005;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr005;10.118.2.5;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr006;jbtaorasr006;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr006;10.118.2.6;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr009;jbtaorasr009;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+jbtaorasr009;10.118.2.7;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+oracle-1;10.62.2.10;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+OracleLinux 7 OFICIAL 20200318;OracleLinux 7 OFICIAL 20200318;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJLNXORAD20;RJLNXORAD20;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJLNXORADMZD01;RJLNXORADMZD01;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJLNXORADMZH01;RJLNXORADMZH01;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJLNXORADMZP01;RJLNXORADMZP01;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJLNXORADMZP02;RJLNXORADMZP02;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJLNXORAP19;rjlnxorap19;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJPANORAMA01;IONPASEGFW002;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJPANORAMA01;RJPANORAMA01;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJSTORAGEHP01B;SP0001690168;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJSTORAGEHP02A;SP0001690152;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJSTORAGEHP02A_old;SP0001690152;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SP-WNET-FS-P02;sp-wnet-fs-p02.globosat.net.br;Servidor Virtual; INFRA ESSENTIALS;supso@g.globo;;;0
+sp-wnet-fs-p02;10.2.1.40;Servidor Virtual; INFRA ESSENTIALS;supso@g.globo;;;0
+SRV-FORACESSO;srv-foracesso;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SRVVMPAMAMDB01_AGClient;SRVVMPAMAMDB01_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SRVVMPAMAMVDB01_VANTAGE_AGClient;SRVVMPAMAMVDB01_VANTAGE_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0

@@ -18,12 +18,11 @@ public class Teste {
 		ClientDao clientDAO = DaoFactory.createClientDao();
 		
 		System.out.println("Teste FindAll");
-		Client client;
-		List<Client> list = new ArrayList<Client>();
-		list = clientDAO.findAll();
-		for (Client obj : list ) {
-			System.out.println("-------------------------------------------------------------------------------------");
-			System.out.println(obj);
+		Client client = clientDAO.findByName("SQLPROD02");
+		
+			
+		System.out.println(client);
+		
 		}
 		
 		
@@ -32,4 +31,4 @@ public class Teste {
 		
 	}
 
-}
+

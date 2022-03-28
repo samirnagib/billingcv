@@ -1,5 +1,6 @@
 package gui.util;
 
+import java.io.File;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -7,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class Utils {
@@ -57,5 +59,19 @@ public class Utils {
 			return cell;
 		});
 	}
+	
+	public static void configureFileChooserImportFiles(final FileChooser fileChooser, String title ) {      
+	            fileChooser.setTitle(title);
+	            fileChooser.setInitialDirectory(
+	                new File(System.getProperty("user.home"))
+	            );                 
+	            fileChooser.getExtensionFilters().addAll(
+	                
+	                new FileChooser.ExtensionFilter("Arquivo CSV", "*.csv"),
+	                new FileChooser.ExtensionFilter("Arquivo de Texto", "*.txt"),
+	                new FileChooser.ExtensionFilter("Todos os Arquivos", "*.*")
+	            );
+	    }
+
 	
 }
