@@ -1,1 +1,10 @@
 Client;Host Name;Tipo;Responsavel pelo Servidor;Email principal;Email Alternativo;Área ou Projeto;AR da Área ou Projeto
+A_ISILON;10.134.160.14;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+B_ISILON;10.134.160.15;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+C_ISILON;10.134.160.16;Apliance File Server;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+D_ISILON;10.134.160.17;Apliance;INFRA OPERACAO;supso2@g.globo;;Gerencia de Operacao;0
+E_ISILON;10.134.160.18;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+F_ISILON;10.134.160.19;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+G_ISILON;10.134.160.20;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+H_ISILON;10.134.160.21;Apliance File Server;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
+sp-wnet-fs-p02;10.2.1.40;Servidor Virtual;INFRA ESSENTIALS - SP;supso@g.globo;fperes@g.globo;Globosat Filial;171

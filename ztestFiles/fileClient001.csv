@@ -1,5 +1,5 @@
 Client;Host Name;Tipo;Responsavel pelo Servidor;Email principal;Email Alternativo;Área ou Projeto;AR da Área ou Projeto
-A_ISILON;10.134.160.14;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerenciade Servidores;0
+A_ISILON;10.134.160.14;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
 CLHAORASR001;CLHAORASR001;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 CLHAORASR001;10.214.2.7;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 clhaorasr002;CLHAORASR002;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0

@@ -2,15 +2,22 @@ package gui;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import gui.util.Alerts;
 import gui.util.Utils;
@@ -46,18 +53,23 @@ public class ClientImportController implements Initializable  {
 	private Button btImportar;
 	
 	@FXML
+	private Button btImportarExcel;
+	
+	
+	@FXML
 	private Button btFechar;
 	
 	@FXML
 	private TextField txtPath;
-	
-	@FXML
-	private ProgressBar pbProgresso;
-	
+			
 	@FXML
 	private Label lblMessage;
 	
 	private File file;
+	
+	//matrix do excel
+	//private String excelFile[][] = new String[][];
+	
 	
 	
 	private String campo[] = new String[8];
@@ -89,10 +101,7 @@ public class ClientImportController implements Initializable  {
 		this.clientService = clientService;
 		this.typeServices = typeServices;
 		this.respServices = respServices;
-		
 	}
-	
-	
 	
 	
 	@FXML
@@ -104,19 +113,21 @@ public class ClientImportController implements Initializable  {
 		txtPath.setText(file.getAbsolutePath());
 	}
 	
+	@SuppressWarnings("null")
 	@FXML
 	private void btImportarOnAction(ActionEvent event) throws FileNotFoundException, IOException {
 			if (txtPath.getText() == null || txtPath.getText().trim().equals("")) {
 				Alerts.showAlert("Aviso", null, "Selecione o arquivo a ser importado", AlertType.ERROR);
 			} else {
-				long lines = 0;
-				long lAtual = 0;
+				
 				String path = txtPath.getText();
+				
+				
 				try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-					String lineCSV = br.readLine();
+					 String lineCSV = br.readLine();
 					
 					 while (lineCSV != null ) {
-							 lblMessage.setText("Processando a linha " + lAtual + " de " +lines );
+						 	
 							 campo = lineCSV.split(";");
 							 
 							 if ( !campo[0].equals("Client") ) {
@@ -128,27 +139,46 @@ public class ClientImportController implements Initializable  {
 								 owEmail2  = campo[5];
 								 owProjectArea = campo[6];
 								 owAR  = campo[7];
+								 System.out.println("Cliente....: " + clientName);
+								 System.out.println("Hostname...: " + clientHostname);
+								 System.out.println("Tipo.......: " + typeName);
+								 System.out.println("Responsavel: " + owName);
+								 System.out.println("Email 1....: " + owEmail1);
+								 System.out.println("Email 2....: " + owEmail2);
+								 System.out.println("Aera ......: " + owProjectArea);
+								 System.out.println("AR.........: " + owAR);
+								 
 								 ClientType tserver = new ClientType();
 								 Owner tresp = new Owner();
-								 
-								 // Client server = new Client();
+								 Client tClient = new Client();
+								 tserver = ctDAO.findByName(typeName);
+								 if (tserver == null ) {
+									 ClientType tserver2 = new ClientType(null, typeName);
+									 
+									 System.out.println(typeName + " after set " + tserver2);
+									 ctDAO.insert(tserver2);
+								 }
+								 tresp = oDao.findByName(owName);
+								 if (tresp == null) {
+									 Owner tresp2 = new Owner(null, owName, owEmail1, owEmail2, owProjectArea, owAR);
+									 oDao.insert(tresp2);
+								 }
 								 tserver = ctDAO.findByName(typeName);
 								 tresp = oDao.findByName(owName);
-								 
-								 Client tClient = new Client (null, clientName, clientHostname, tserver.getIdType(), tresp.getIdOwner(), tserver, tresp);
-//								 
-//								 System.out.println(tserver);
-//								 System.out.println(tresp);
-//								 System.out.println(tClient);
-//								 
-								 //client.add(new Client(null, clientName, clientHostname, null, null, null, null));
+								 System.out.println(tserver);
+								 System.out.println(tresp);
+//								 System.out.println(tClient); 
+								 tClient = new Client(null, clientName, clientHostname, tserver.getIdType(), tresp.getIdOwner(), tserver, tresp);
+								 System.out.println(tClient);
 								 ct.add(new ClientType(null, typeName));
 								 resp.add(new Owner(null, owName, owEmail1, owEmail2, owProjectArea, owAR));
 								 client.add(tClient);
+							 
+							 
+							 
 							 }						 
 							 
-							 lAtual++;
-							 //System.out.println("Processando a linha " + lAtual );
+							 
 							 lineCSV = br.readLine();
 						
 					 }
@@ -158,7 +188,7 @@ public class ClientImportController implements Initializable  {
 					  * 2º pesquisa na tabela de Tipo de Servidor, se o tipo existe, caso positivo pula, em negativo cadastra;
 					  * 3º pesquisa na tablea de Clientes, se o servidor existe, caso positivo pula, em negativo cadastra
 					  */
-/*					
+					
 					 
 					 // tabela responsavel
 					 
@@ -173,7 +203,7 @@ public class ClientImportController implements Initializable  {
 						 } else {
 							 lblMessage.setText("O Responsável " + search + " não existe na base de dados, cadastrando." );
 							 System.out.println("O Responsável " + search + " não existe na base de dados, cadastrando." );
-							 oDao.insert(item);
+							 //oDao.insert(item);
 						 }
 					 }
 					
@@ -181,18 +211,18 @@ public class ClientImportController implements Initializable  {
 					 					 
 					 for(ClientType item2 : ct) {
 						 
-						 String search2 = item2.getTypeName();
-						 if (ctDAO.searchByName(search2)) {
+						 String search = item2.getTypeName();
+						 if (ctDAO.searchByName(search)) {
 							 lblMessage.setText("O Tipo de servidor " + search + " existe na base de dados" );
 							 System.out.println("O Tipo de servidor " + search + " existe na base de dados" );
 						 } else {
 							 lblMessage.setText("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
 							 System.out.println("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
-							 ctDAO.insert(item2);
+							 //ctDAO.insert(item2);
 						 }
 						 
 					 }
-*/					 
+					 //*/
 					// tabela Clientes
 					
 					 for(Client item : client) {
@@ -219,15 +249,55 @@ public class ClientImportController implements Initializable  {
 				lblMessage.setText("Importação concluida." );
 			}
 		}
-				
-				
-				
 			
-		
-		
-		
-		
 
+
+	}
+	
+	
+
+	@FXML
+	private void btImportarExcelOnAction() {
+		if (txtPath.getText() == null || txtPath.getText().trim().equals("")) {
+			Alerts.showAlert("Aviso", null, "Selecione o arquivo a ser importado", AlertType.ERROR);
+		} else {
+			
+			String path = txtPath.getText();
+			
+			
+			try (FileInputStream fis = new FileInputStream(file)) {
+				XSSFWorkbook wb = new XSSFWorkbook(fis);   
+				XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
+				Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
+				while (itr.hasNext())                 
+				{  
+					Row row = itr.next();  
+					Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column  
+					while (cellIterator.hasNext())   
+					{  
+						Cell cell = cellIterator.next();  
+						switch (cell.getCellType())               
+						{  
+						case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
+							System.out.print(cell.getStringCellValue() + "\t\t\t");  
+							break;  
+						case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type  
+							System.out.print(cell.getNumericCellValue() + "\t\t\t");  
+							break;  
+						default:  
+						}  
+					}  
+					System.out.println("");  
+				}  
+			}  
+
+			
+			catch(Exception e)  {
+				e.printStackTrace();
+			}
+		
+		}  
+		
 	}
 	
 	@FXML

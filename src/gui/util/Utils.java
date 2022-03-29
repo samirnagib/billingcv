@@ -1,6 +1,9 @@
 package gui.util;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.LineNumberReader;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -68,10 +71,12 @@ public class Utils {
 	            fileChooser.getExtensionFilters().addAll(
 	                
 	                new FileChooser.ExtensionFilter("Arquivo CSV", "*.csv"),
+	                new FileChooser.ExtensionFilter("Arquivo do MS Excel", "*.xlsx"),
 	                new FileChooser.ExtensionFilter("Arquivo de Texto", "*.txt"),
 	                new FileChooser.ExtensionFilter("Todos os Arquivos", "*.*")
 	            );
 	    }
 
+	  
 	
 }
