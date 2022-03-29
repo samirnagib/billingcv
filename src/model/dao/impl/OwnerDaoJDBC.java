@@ -204,18 +204,18 @@ public class OwnerDaoJDBC implements OwnerDao {
 
 
 	@Override
-	public boolean searchByName(String owName) {
+	public boolean searchByName(String ownerName) {
 		
 		String search;
 		String compare;
-		Owner oName = new Owner();
+		Owner owner = new Owner();
 		
-		search = owName;
-		oName = findByName(search);
+		search = ownerName;
+		owner = findByName(search);
 		
-		if (oName != null) {
+		if (owner != null) {
 			
-			compare = oName.getOwName();
+			compare = owner.getOwName();
 					
 			if ( search.equalsIgnoreCase(compare)) {
 				return true;

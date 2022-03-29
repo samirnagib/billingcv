@@ -1,5 +1,5 @@
 Client;Host Name;Tipo;Responsavel pelo Servidor;Email principal;Email Alternativo;Área ou Projeto;AR da Área ou Projeto
-A_ISILON;10.134.160.14;Apliance; INFRA ESSENTIALS;supso@g.globo;;Gerenciade Servidores;0
+A_ISILON;10.134.160.14;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerenciade Servidores;0
 CLHAORASR001;CLHAORASR001;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 CLHAORASR001;10.214.2.7;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 clhaorasr002;CLHAORASR002;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
@@ -9,10 +9,10 @@ clhaorasr099;CLHAORASR099;Banco de Dados Oracle;DB Producação;dbproducao@g.globo
 clhaorasr099;10.214.2.99;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 clhasqlsr001;10.114.17.74;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 JSTORAGEHP01B;SP0001690168;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
-RJSTORAGEHP02A;SP0001690152;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
-RJSTORAGEHP02A_old;SP0001690152;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
-SP-WNET-FS-P02;sp-wnet-fs-p02.globosat.net.br;Servidor Virtual; INFRA ESSENTIALS;supso@g.globo;;;0
-sp-wnet-fs-p02;10.2.1.40;Servidor Virtual; INFRA ESSENTIALS;supso@g.globo;;;0
+RJSTORAGEHP02A;SP0001690152;Banco de Dados Oracle;Suporte Banco de Dados;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+RJSTORAGEHP02A_old;SP0001690152;Banco de Dados Oracle;Suporte Banco de Dados;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SP-WNET-FS-P02;sp-wnet-fs-p02.globosat.net.br;Servidor Virtual;INFRA ESSENTIALS;supso@g.globo;;;0
+sp-wnet-fs-p02;10.2.1.40;Servidor Virtual;INFRA ESSENTIALS;supso@g.globo;;;0
 SRV-FORACESSO;srv-foracesso;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 SRVVMPAMAMDB01_AGClient;SRVVMPAMAMDB01_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
 SRVVMPAMAMVDB01_VANTAGE_AGClient;SRVVMPAMAMVDB01_VANTAGE_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0

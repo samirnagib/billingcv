@@ -36,6 +36,12 @@ public class ClientDaoJDBC implements ClientDao {
 			st.setInt(3, obj.getClientType().getIdType());
 			st.setInt(4, obj.getOwner().getIdOwner());
 			
+			// teste
+			System.out.println(obj.getClientName());
+			System.out.println(obj.getClientHostname());
+			System.out.println(obj.getClientType().getIdType());
+			System.out.println(obj.getOwner().getIdOwner());
+			
 			int rowsAffected = st.executeUpdate();
 			
 			if (rowsAffected > 0) {
@@ -198,7 +204,7 @@ public class ClientDaoJDBC implements ClientDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName as ctName, owner.owName as resp FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner ORDER BY clientes.clientName");
+			st = conn.prepareStatement("SELECT clientes.*, clientType.typeName, owner.owName FROM clientes INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner ORDER BY clientes.clientName");
 			
 			rs = st.executeQuery();
 			
