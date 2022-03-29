@@ -11,6 +11,8 @@ public interface ClientTypeDao {
 	void deleteById(Integer id);
 	ClientType findById(Integer id);
 	List<ClientType> findAll();
+	ClientType findByName(String clientTypeName);
+	boolean searchByName(String clientTypeName);
 	
 	
 }

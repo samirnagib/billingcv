@@ -25,4 +25,10 @@ public class ClientTypeServices {
 	public void remove(ClientType obj) {
 		dao.deleteById(obj.getIdType());
 	}
+	
+public boolean searchByName(String clientTypeName) {
+		
+		return searchByName(clientTypeName);
+	}
+	
 }

@@ -27,13 +27,9 @@ public class ClientServices {
 		dao.deleteById(obj.getIdClient());
 	}
 	
-	public boolean searchByName(Client obj) {
-		String search;
-		search = obj.getClientName();
-		if ( dao.findByName(search)) {
-			return true;
-		}
-		return false;
+	public boolean searchByName(String clientName) {
+		
+		return searchByName(clientName);
 	}
 	
 }

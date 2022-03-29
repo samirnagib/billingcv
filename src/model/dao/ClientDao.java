@@ -16,6 +16,7 @@ public interface ClientDao {
 	List<Client> findAll();
 	List<Client> findByClientType(ClientType clientType);
 	List<Client> findByOwner(Owner owner);
+	boolean searchByName(String clientName);
 	
 	
 }

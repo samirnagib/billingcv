@@ -130,6 +130,9 @@ public class ClientImportController implements Initializable  {
 						
 					 }
 					
+					 for(ClientType item2 : ct) {
+						 System.out.println("Typo: " + item2.getTypeName());
+					 }
 					 
 					 
 					 System.out.println("Resultado");

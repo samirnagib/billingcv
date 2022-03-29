@@ -322,4 +322,26 @@ public class ClientDaoJDBC implements ClientDao {
 		}
 	}
 
+	@Override
+	public boolean searchByName(String clientName) {
+		
+			String search;
+			String compare;
+			Client client = new Client();
+			
+			search = clientName;
+			client = findByName(clientName);
+			
+			if (client != null) {
+				
+				compare = client.getClientName();
+						
+				if ( search.equalsIgnoreCase(compare)) {
+					return true;
+				}
+			}
+			return false;
+		
+	}
+
 }

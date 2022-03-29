@@ -11,7 +11,9 @@ import java.util.List;
 import db.DB;
 import db.DbException;
 import model.dao.ClientTypeDao;
+import model.entities.Client;
 import model.entities.ClientType;
+import model.entities.Owner;
 
 public class ClientTypeDaoJDBC implements ClientTypeDao {
 
@@ -148,6 +150,63 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 		ClientType.setTypeName(rs.getString("typeName"));
 		
 		return ClientType;
+	}
+
+	@Override
+	public ClientType findByName(String clientTypeName ) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+	
+		String query = "SELECT clientType.* FROM clientType  WHERE clientType.typeName LIKE ? ESCAPE '!'";
+		
+		try {
+			clientTypeName = clientTypeName
+				    .replace("!", "!!")
+				    .replace("%", "!%")
+				    .replace("_", "!_")
+				    .replace("[", "![");
+			st = conn.prepareStatement( query );
+			st.setString(1, clientTypeName +"%");
+			rs = st.executeQuery();
+			if (rs.next()) {
+				
+				ClientType clientType = instantiateClientType(rs);
+				
+				
+				return clientType;
+			}
+			return null;
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+		
+	}
+
+	@Override
+	public boolean searchByName(String clientTypeName) {
+		
+		String search;
+		String compare;
+		ClientType clientType = new ClientType();
+		
+		search = clientTypeName;
+		clientType = findByName(clientTypeName);
+		
+		if (clientType != null) {
+			
+			compare = clientType.getTypeName();
+					
+			if ( search.equalsIgnoreCase(compare)) {
+				return true;
+			}
+		}
+		return false;
+	
 	}
 	
 

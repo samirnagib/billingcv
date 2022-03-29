@@ -11,6 +11,7 @@ public interface OwnerDao {
 	void deleteById(Integer id);
 	Owner findById(Integer id);
 	Owner findByName(String Name);
+	boolean searchByName(String owName);
 	List<Owner> findAll();
 
 }
