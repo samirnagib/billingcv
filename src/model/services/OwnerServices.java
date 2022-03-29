@@ -25,4 +25,10 @@ public class OwnerServices {
 	public void remove(Owner obj) {
 		dao.deleteById(obj.getIdOwner());
 	}
+	
+	public boolean searchByName(String onwerName) {
+		
+		return searchByName(onwerName);
+	}
+	
 }

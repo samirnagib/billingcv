@@ -7,6 +7,7 @@ import gui.util.Utils;
 import model.dao.ClientDao;
 import model.dao.ClientTypeDao;
 import model.dao.DaoFactory;
+import model.dao.OwnerDao;
 import model.dao.UsersDao;
 import model.dao.impl.ClientDaoJDBC;
 import model.entities.Client;
@@ -18,11 +19,12 @@ public class Teste {
 		
 		ClientDao clientDAO = DaoFactory.createClientDao();
 		ClientTypeDao ctDAO = DaoFactory.createClientTypeDao();
+		OwnerDao oDao = DaoFactory.createOwnerDao();
 		
 		
 		System.out.println("Teste Search by name");
 		
-		if ( ctDAO.searchByName("Servidor Físico")) {
+		if ( oDao.searchByName("Pole da Silva Sauro")) {
 			System.out.println("Achou");
 		} else {
 			System.out.println("nao achou");

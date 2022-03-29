@@ -11,6 +11,7 @@ import java.util.List;
 import db.DB;
 import db.DbException;
 import model.dao.OwnerDao;
+import model.entities.ClientType;
 import model.entities.Owner;
 
 
@@ -199,6 +200,28 @@ public class OwnerDaoJDBC implements OwnerDao {
 		owner.setOwProjectArea(rs.getString("owProjectArea"));
 		owner.setOwAR(rs.getString("owAR"));
 		return owner;
+	}
+
+
+	@Override
+	public boolean searchByName(String owName) {
+		
+		String search;
+		String compare;
+		Owner oName = new Owner();
+		
+		search = owName;
+		oName = findByName(search);
+		
+		if (oName != null) {
+			
+			compare = oName.getOwName();
+					
+			if ( search.equalsIgnoreCase(compare)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	
