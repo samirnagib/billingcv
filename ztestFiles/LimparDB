@@ -1,0 +1,8 @@
+delete from clientes where idClient > 0;
+delete from clientType where idType > 1;
+delete from owner where idOwner > 1;
+
+ALTER TABLE clientType AUTO_INCREMENT = 2 ;
+ALTER TABLE owner AUTO_INCREMENT = 2 ;
+ALTER TABLE clientes AUTO_INCREMENT = 1 ;
+

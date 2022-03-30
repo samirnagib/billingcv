@@ -108,7 +108,7 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuImportCVFileAction() {
-		System.out.println("onMenuImportCVFileAction");		
+		loadView("/gui/ImportCommvaultFile.fxml", x -> {} );		
 	}
 	
 	@FXML

@@ -1,0 +1,114 @@
+Client;Host Name;Tipo;Responsavel pelo Servidor;Email principal;Email Alternativo;Área ou Projeto;AR da Área ou Projeto
+A_ISILON;10.134.160.14;Apliance;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+CLHAORASR001;CLHAORASR001;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLHAORASR001;10.214.2.7;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr002;CLHAORASR002;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr002;10.214.2.5;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr010;10.118.37.68;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr099;CLHAORASR099;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhaorasr099;10.214.2.99;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+clhasqlsr001;10.114.17.74;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+JSTORAGEHP01B;SP0001690168;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Banco de Dados;0
+RJSTORAGEHP02A;SP0001690152;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Banco de Dados;0
+RJSTORAGEHP02A_old;SP0001690152;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Banco de Dados;0
+SP-WNET-FS-P02;sp-wnet-fs-p02.globosat.net.br;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+sp-wnet-fs-p02;10.2.1.40;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+SRV-FORACESSO;srv-foracesso;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SRVVMPAMAMDB01_AGClient;SRVVMPAMAMDB01_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SRVVMPAMAMVDB01_VANTAGE_AGClient;SRVVMPAMAMVDB01_VANTAGE_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACILNXLAB01;acilnxlab01.globosat.net.br;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CONT-CLT-MN;WIN-4GKB4466MHU;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CONT-SUP-1;ACV-CONT-SUP-1.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-CORE1;ACV-CTRL-CORE1.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-CORE2;ACV-CTRL-CORE2.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-CORE3;ACV-CTRL-CORE3.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-DSB;ACV-CTRL-DSB;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-GWEB;ACV-CTRL-GWEB.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-ING;ACV-CTRL-ING.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+acv-ctrl-kpi;10.228.136.75;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ACV-CTRL-WEB;ACV-CTRL-WEB.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+AD1-VFX;AD1-VFX.vfx.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+AD2-CPP;AD2-CPP.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ADBY-VFX;ADBY-VFX.vfx.eng.cpp;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+ANSIBLE;ANSIBLE;Servidor Virtual;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+PVWSRV0000236;PVWSRV0000236.globosat.net.br;Cluster HyperV;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+PVWSRV0000239;PVWSRV0000239.globosat.net.br;Cluster HyperV;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+PVWSRV0000263;PVWSRV0000263.globosat.net.br;Cluster HyperV;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+rj2k8vcb01;10.1.0.24;Servidor Físico;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+RJ2K8VMREP01;rj2k8vmrep01.globosat.net.br;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+rj2k8vmrep01;10.1.0.150;Servidor Virtual;Infra Essentials;supso@g.globo;;Gerencia de Servidores;0
+clpabkpsr001;10.118.0.4;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+clpabkpsr004;CLPABKPSR004;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+clpabkpsr004;10.118.0.7;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+CLPABKPSR005;CLPABKPSR005;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+clpabkpsr005;10.116.0.4;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+clpabkpsr006;CLPABKPSR006;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+clpabkpsr006;10.214.0.4;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+CLPABKPSR007;CLPABKPSR007;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+clpabkpsr008;CLPABKPSR008;Azure Cloud;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+STP_AZU_DEV_CLPABKPSR004_GERAL_IndexServer;STP_AZU_DEV_CLPABKPSR004_GERAL_IndexServer;Serviço Commvault;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+STP_AZU_DEV_CLPABKPSR004_VM_IndexServer;STP_AZU_DEV_CLPABKPSR004_VM_IndexServer;Serviço Commvault;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+STP_AZU_HLM_CLPABKPSR006_GERAL_IndexServer;STP_AZU_HLM_CLPABKPSR006_GERAL_IndexServer;Serviço Commvault;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+STP_AZU_PRD_CLPABKPSR005_COLD_IndexServer;STP_AZU_PRD_CLPABKPSR005_COLD_IndexServer;Serviço Commvault;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay21lb30;10.134.160.30;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay21lb32;10.134.160.32;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb03;10.134.160.4;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb05;10.134.160.5;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb07;10.134.160.6;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb09;10.134.160.7;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb11;10.134.160.8;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb13;10.134.160.9;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb15;10.134.160.10;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb17;10.134.160.11;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb19;10.134.160.12;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb21;10.134.160.13;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb23;10.134.160.22;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22lb25;10.134.160.20;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+cmay22wb02;10.134.160.3;Servidor Físico;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+STP_DEDUP_CMAY22WB02_IndexServer;STP_DEDUP_CMAY22WB02_IndexServer;Serviço Commvault;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+STP_NO_DEDUP_CMAY22TL29_IndexServer;STP_NO_DEDUP_CMAY22TL29_IndexServer;Serviço Commvault;Gabriel Branco;backoffice.backup@g.globo;gabriel@g.globo;Backoffice Backup;0
+SQLPROD01;10.1.1.114;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SQLPROD02;10.1.1.115;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SQLPROD03;10.1.1.116;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SQLPROD04;10.1.1.117;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SQLPROD11;10.1.1.128;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SQLPROD12;10.1.1.129;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SQLPROD13;10.1.1.112;Banco de dados SQL Server;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+brho11glo1014;10.37.25.156;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+brho11glo1029;10.37.25.196;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+brho11glo102c;10.37.24.73;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+brho11glo102e;10.37.24.155;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+brho11glo1042;10.37.25.176;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR002_AGClient;CLPASQLSR002_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR004_AGClient;CLPASQLSR004_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CLPASQLSR006_AGClient;CLPASQLSR006_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CMPASQLSR008_AGClient;CMPASQLSR008_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SRVVMPAMAMDB01_AGClient;SRVVMPAMAMDB01_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+SRVVMPAMAMVDB01_VANTAGE_AGClient;SRVVMPAMAMVDB01_VANTAGE_AGClient;SQL Server Always ON;DB Producação;dbproducao@g.globo;;Gerencia de Banco de Dados;0
+CTXAPPAH01;CTXAPPAH01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPAP01;CTXAPPAP01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPAP02;CTXAPPAP02;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPAP03;CTXAPPAP03;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPAP04;CTXAPPAP04;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPAP05;CTXAPPAP05;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPAP06;CTXAPPAP06;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPBH01;CTXAPPBH01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPBP01;CTXAPPBP01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPBP02;CTXAPPBP02;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPBP03;CTXAPPBP03;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPCH01;CTXAPPCH01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPCP01;CTXAPPCP01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPCP02;CTXAPPCP02;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPCP03;CTXAPPCP03;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPCP04;CTXAPPCP04;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPDP01;CTXAPPDP01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPDP02;CTXAPPDP02;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+CTXAPPDP03;CTXAPPDP03;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+RJSTORAGEHP01B;SP0001690168;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+RJSTORAGEHP02A;SP0001690152;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+RJSTORAGEHP02A_old;SP0001690152;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+RJW10TRUSTD01;RJW10TRUSTD01;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+RJW7MW01;RJW7MW01.globosat.net.br;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+RJW8SHPMTOOL01;RJW8SHPMTOOL01.globosat.net.br;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+SP-WNET-FS-P02;sp-wnet-fs-p02.globosat.net.br;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0
+sp-wnet-fs-p02;10.2.1.40;Servidor Virtual;Infra Essentials;supso@g.globo;;Infra Básica e Cloud;0

@@ -17,8 +17,6 @@
         <items>
           <Button fx:id="btAbrir" mnemonicParsing="false" onAction="#btAbrirOnAction" prefHeight="25.0" prefWidth="65.0" text="Abrir" />
             <Button fx:id="btImportar" mnemonicParsing="false" onAction="#btImportarOnAction" text="Importar" />
-            <Button fx:id="btImportarExcel" mnemonicParsing="false" onAction="#btImportarExcelOnAction" text="Importar do Excel" />
-            <Button fx:id="btFechar" mnemonicParsing="false" onAction="#btFecharOnAction" prefHeight="25.0" prefWidth="63.0" text="Fechar" />
         </items>
       </ToolBar>
       <GridPane>

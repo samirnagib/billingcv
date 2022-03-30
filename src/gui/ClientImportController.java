@@ -2,33 +2,22 @@ package gui;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -51,15 +40,8 @@ public class ClientImportController implements Initializable  {
 	
 	@FXML
 	private Button btImportar;
-	
-	@FXML
-	private Button btImportarExcel;
-	
-	
-	@FXML
-	private Button btFechar;
-	
-	@FXML
+		
+		@FXML
 	private TextField txtPath;
 			
 	@FXML
@@ -139,14 +121,14 @@ public class ClientImportController implements Initializable  {
 								 owEmail2  = campo[5];
 								 owProjectArea = campo[6];
 								 owAR  = campo[7];
-								 System.out.println("Cliente....: " + clientName);
-								 System.out.println("Hostname...: " + clientHostname);
-								 System.out.println("Tipo.......: " + typeName);
-								 System.out.println("Responsavel: " + owName);
-								 System.out.println("Email 1....: " + owEmail1);
-								 System.out.println("Email 2....: " + owEmail2);
-								 System.out.println("Aera ......: " + owProjectArea);
-								 System.out.println("AR.........: " + owAR);
+//								 System.out.println("Cliente....: " + clientName);
+//								 System.out.println("Hostname...: " + clientHostname);
+//								 System.out.println("Tipo.......: " + typeName);
+//								 System.out.println("Responsavel: " + owName);
+//								 System.out.println("Email 1....: " + owEmail1);
+//								 System.out.println("Email 2....: " + owEmail2);
+//								 System.out.println("Aera ......: " + owProjectArea);
+//								 System.out.println("AR.........: " + owAR);
 								 
 								 ClientType tserver = new ClientType();
 								 Owner tresp = new Owner();
@@ -154,8 +136,6 @@ public class ClientImportController implements Initializable  {
 								 tserver = ctDAO.findByName(typeName);
 								 if (tserver == null ) {
 									 ClientType tserver2 = new ClientType(null, typeName);
-									 
-									 System.out.println(typeName + " after set " + tserver2);
 									 ctDAO.insert(tserver2);
 								 }
 								 tresp = oDao.findByName(owName);
@@ -165,22 +145,16 @@ public class ClientImportController implements Initializable  {
 								 }
 								 tserver = ctDAO.findByName(typeName);
 								 tresp = oDao.findByName(owName);
-								 System.out.println(tserver);
-								 System.out.println(tresp);
+//								 System.out.println(tserver);
+//								 System.out.println(tresp);
 //								 System.out.println(tClient); 
 								 tClient = new Client(null, clientName, clientHostname, tserver.getIdType(), tresp.getIdOwner(), tserver, tresp);
-								 System.out.println(tClient);
+								// System.out.println(tClient);
 								 ct.add(new ClientType(null, typeName));
 								 resp.add(new Owner(null, owName, owEmail1, owEmail2, owProjectArea, owAR));
 								 client.add(tClient);
-							 
-							 
-							 
 							 }						 
-							 
-							 
 							 lineCSV = br.readLine();
-						
 					 }
 					 
 					 /*  Sequencia de importação no banco :
@@ -199,10 +173,10 @@ public class ClientImportController implements Initializable  {
 						 //System.out.println(oDao.searchByName(search));
 						 if ( oDao.searchByName(search) ) {
 							 lblMessage.setText("O Responsável " + search + " existe na base de dados" );
-							 System.out.println("O Responsável " + search + " existe na base de dados" );
+							 //System.out.println("O Responsável " + search + " existe na base de dados" );
 						 } else {
 							 lblMessage.setText("O Responsável " + search + " não existe na base de dados, cadastrando." );
-							 System.out.println("O Responsável " + search + " não existe na base de dados, cadastrando." );
+							 //System.out.println("O Responsável " + search + " não existe na base de dados, cadastrando." );
 							 //oDao.insert(item);
 						 }
 					 }
@@ -214,10 +188,10 @@ public class ClientImportController implements Initializable  {
 						 String search = item2.getTypeName();
 						 if (ctDAO.searchByName(search)) {
 							 lblMessage.setText("O Tipo de servidor " + search + " existe na base de dados" );
-							 System.out.println("O Tipo de servidor " + search + " existe na base de dados" );
+							 //System.out.println("O Tipo de servidor " + search + " existe na base de dados" );
 						 } else {
 							 lblMessage.setText("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
-							 System.out.println("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
+							 //System.out.println("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
 							 //ctDAO.insert(item2);
 						 }
 						 
@@ -230,18 +204,19 @@ public class ClientImportController implements Initializable  {
 						String search = item.getClientName();
 						
 						if (clientDAO.searchByName(search)) {
+							Client temp = new Client(clientDAO.findByName(search).getIdClient(),item.getClientName(),item.getClientHostname(),item.getIdType(),item.getIdOwner(),item.getClientType(),item.getOwner());
 							 lblMessage.setText("O servidor " + search + " existe na base de dados" );
-							 System.out.println("O servidor " + search + " existe na base de dados" );
+//							 System.out.println("O servidor " + search + " existe na base de dados" );
+//							 System.out.println(temp);
+							 clientDAO.update(temp);
 						}else {
 							lblMessage.setText("O servidor " + search + " não existe na base de dados, cadastrando." );
-							System.out.println("O servidor " + search + " não existe na base de dados, cadastrando." );
-							System.out.println(item);
+//							System.out.println("O servidor " + search + " não existe na base de dados, cadastrando." );
+//							System.out.println(item);
 							clientDAO.insert(item);
 						}
 						
 					 }
-					
-				
 					 
 				}catch (IOException e) {
 					System.out.println("Error reading file: " + e.getMessage());
@@ -249,60 +224,7 @@ public class ClientImportController implements Initializable  {
 				lblMessage.setText("Importação concluida." );
 			}
 		}
-			
 
-
-	}
-	
-	
-
-	@FXML
-	private void btImportarExcelOnAction() {
-		if (txtPath.getText() == null || txtPath.getText().trim().equals("")) {
-			Alerts.showAlert("Aviso", null, "Selecione o arquivo a ser importado", AlertType.ERROR);
-		} else {
-			
-			String path = txtPath.getText();
-			
-			
-			try (FileInputStream fis = new FileInputStream(file)) {
-				XSSFWorkbook wb = new XSSFWorkbook(fis);   
-				XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
-				Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
-				while (itr.hasNext())                 
-				{  
-					Row row = itr.next();  
-					Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column  
-					while (cellIterator.hasNext())   
-					{  
-						Cell cell = cellIterator.next();  
-						switch (cell.getCellType())               
-						{  
-						case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
-							System.out.print(cell.getStringCellValue() + "\t\t\t");  
-							break;  
-						case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type  
-							System.out.print(cell.getNumericCellValue() + "\t\t\t");  
-							break;  
-						default:  
-						}  
-					}  
-					System.out.println("");  
-				}  
-			}  
-
-			
-			catch(Exception e)  {
-				e.printStackTrace();
-			}
-		
-		}  
-		
-	}
-	
-	@FXML
-	private void btFecharOnAction() {
-		System.out.println("btFecharOnAction");
 	}
 	
 	
