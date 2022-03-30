@@ -41,7 +41,8 @@ public class ClientImportController implements Initializable  {
 	@FXML
 	private Button btImportar;
 		
-		@FXML
+	
+	@FXML
 	private TextField txtPath;
 			
 	@FXML
