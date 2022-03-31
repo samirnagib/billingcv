@@ -1,0 +1,2 @@
+dburl=jdbc:mysql://10.86.1.9:3306/cvbill_hlm?allowPublicKeyRetrieval=true&useSSL=false
+useSSL=false

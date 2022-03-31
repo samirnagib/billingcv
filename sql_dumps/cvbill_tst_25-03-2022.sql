@@ -29,7 +29,7 @@ CREATE TABLE `billTags` (
   `billtagName` varchar(200) NOT NULL,
   `billPriceTB` double DEFAULT NULL,
   PRIMARY KEY (`idbillTag`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
