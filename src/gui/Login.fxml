@@ -15,11 +15,11 @@
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font></Label>
-      <Button fx:id="btOK" layoutX="433.0" layoutY="188.0" mnemonicParsing="false" onAction="#onBtOKAction" prefHeight="25.0" prefWidth="71.0" text="OK" />
+      <Button fx:id="btOK" layoutX="433.0" layoutY="188.0" mnemonicParsing="false" onAction="#onBtOKAction" onKeyPressed="#btOKOnKeyPressed" prefHeight="25.0" prefWidth="71.0" text="OK" />
       <Button fx:id="btCancel" layoutX="515.0" layoutY="188.0" mnemonicParsing="false" onAction="#onBtCancelAction" prefHeight="25.0" prefWidth="71.0" text="Cancelar" />
       <Label layoutX="25.0" layoutY="64.0" text="Usuário ou email:" />
       <Label layoutX="82.0" layoutY="106.0" text="Senha:" />
-      <TextField fx:id="txtUser" layoutX="136.0" layoutY="60.0" prefHeight="25.0" prefWidth="437.0" promptText="Entre com o usuário ou email" />
-      <PasswordField fx:id="txtSenha" layoutX="136.0" layoutY="102.0" prefHeight="25.0" prefWidth="437.0" />
+      <TextField fx:id="txtUser" layoutX="136.0" layoutY="60.0" onKeyPressed="#txtUserOnKeyPressed" prefHeight="25.0" prefWidth="437.0" promptText="Entre com o usuário ou email" />
+      <PasswordField fx:id="txtSenha" layoutX="136.0" layoutY="102.0" onKeyPressed="#txtSenhaOnKeyPressed" prefHeight="25.0" prefWidth="437.0" />
    </children>
 </AnchorPane>

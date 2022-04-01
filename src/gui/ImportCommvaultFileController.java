@@ -5,6 +5,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gui.util.Alerts;
+import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -71,6 +74,7 @@ public class ImportCommvaultFileController implements Initializable {
 	//variavel auxiliar para formação da competencia
 	private String cptMES;
 	private String cptANO;
+	private String path;
 	
 	//Parametros para ComboBox
 	private String Meses[] = {"JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ" };
@@ -80,7 +84,6 @@ public class ImportCommvaultFileController implements Initializable {
 	
 	@FXML
 	private void btAbrirOnAction() {
-		System.out.println("btAbrirOnAction");
 		Stage stage = new Stage ();
 		FileChooser fileChooser = new FileChooser();
 		Utils.configureFileChooserImportFiles(fileChooser, "Importar arquivo de CLientes");
@@ -91,6 +94,13 @@ public class ImportCommvaultFileController implements Initializable {
 	@FXML
 	private void btImportarOnAction () {
 		System.out.println("btImportarOnAction");
+		if (txtAno.getText()==null || txtAno.getText().trim().equals("")) {
+			Alerts.showAlert("Mensagem de Erro", null, "O Campo Ano não pode estar vazio", AlertType.ERROR);
+			txtAno.requestFocus();
+		}
+		cptANO = txtAno.getText();
+		ib_ano_mes = cptMES + " " + cptANO;
+		lbMessages.setText(ib_ano_mes);
 	
 	
 	
@@ -120,12 +130,10 @@ public class ImportCommvaultFileController implements Initializable {
 		}
 	}
 	
-	@FXML
-	private void cbMesesOnSelect() {
-		
+	private void initializenodes() {
+		Constraints.setTextFieldInteger(txtAno);
 	}
-	
-	
+		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		obsList = FXCollections.observableArrayList(Meses);

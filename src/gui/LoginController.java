@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
@@ -101,7 +103,26 @@ public class LoginController implements Initializable {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@FXML
+	private void txtUserOnKeyPressed(KeyEvent e) {
+		if(e.getCode().equals(KeyCode.ENTER)) {
+	        txtSenha.requestFocus();
+		}
+	}
 
-
+	@FXML
+	private void txtSenhaOnKeyPressed(KeyEvent e) {
+		if(e.getCode().equals(KeyCode.ENTER)) {
+	        btOK.requestFocus();
+		}
+	}
+	
+	@FXML
+	private void btOKOnKeyPressed(KeyEvent e) {
+		if(e.getCode().equals(KeyCode.ENTER)) {
+	        btOK.fire();
+		}
+	}
 
 }
