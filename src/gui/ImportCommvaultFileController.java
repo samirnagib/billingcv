@@ -1,16 +1,23 @@
 package gui;
 
+import java.awt.Event;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import gui.util.Utils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -59,12 +66,20 @@ public class ImportCommvaultFileController implements Initializable {
 	private String clientHostname;
 	private Integer idType;
 	private Integer idOwner;
-
+ 
 	
+	//variavel auxiliar para formação da competencia
+	private String cptMES;
+	private String cptANO;
+	
+	//Parametros para ComboBox
+	private String Meses[] = {"JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ" };
+	
+	private ObservableList<String> obsList;
 	
 	
 	@FXML
-	private void btAbrirOnAction () {
+	private void btAbrirOnAction() {
 		System.out.println("btAbrirOnAction");
 		Stage stage = new Stage ();
 		FileChooser fileChooser = new FileChooser();
@@ -76,15 +91,45 @@ public class ImportCommvaultFileController implements Initializable {
 	@FXML
 	private void btImportarOnAction () {
 		System.out.println("btImportarOnAction");
+	
+	
+	
 	}
 	
+	@FXML
+	private void cbMesesOnAction () {
+		cptMES = cbMeses.getSelectionModel().getSelectedItem();
+		System.out.println(cptMES);
+		lbMessages.setText(cptMES);
+		txtAno.requestFocus();
+		
+	}
 	
+	@FXML
+	private void txtAnoOnEnter(KeyEvent e) {
+		if(e.getCode().equals(KeyCode.ENTER)) {
+	        System.out.println("enter");
+	        btAbrir.requestFocus();
+		}
+	}
+		
+	@FXML
+	private void btAbrirOnEnter(KeyEvent e) {
+		if(e.getCode().equals(KeyCode.ENTER)) {
+	        btAbrir.fire();
+		}
+	}
 	
+	@FXML
+	private void cbMesesOnSelect() {
+		
+	}
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		obsList = FXCollections.observableArrayList(Meses);
+		cbMeses.setItems(obsList);
 		
 	}
 

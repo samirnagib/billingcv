@@ -40,8 +40,8 @@
             <Label text="Mês de Referencia:" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                <children>
-                  <ComboBox fx:id="cbMeses" prefHeight="25.0" prefWidth="261.0" />
-                  <TextField fx:id="txtAno" promptText="Digite o Ano" />
+                  <ComboBox fx:id="cbMeses" onAction="#cbMesesOnAction" prefHeight="25.0" prefWidth="261.0" />
+                  <TextField fx:id="txtAno" onKeyPressed="#txtAnoOnEnter" promptText="Digite o Ano" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -56,7 +56,7 @@
             <Label fx:id="lbMessages" textFill="#1500b5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="btAbrir" mnemonicParsing="false" onAction="#btAbrirOnAction" prefHeight="25.0" prefWidth="75.0" text="Abrir" />
+                  <Button fx:id="btAbrir" mnemonicParsing="false" onAction="#btAbrirOnAction" onKeyPressed="#btAbrirOnEnter" prefHeight="25.0" prefWidth="75.0" text="Abrir" />
                   <Button fx:id="btImportar" mnemonicParsing="false" onAction="#btImportarOnAction" prefHeight="25.0" prefWidth="75.0" text="Importar" />
                </children>
                <padding>
