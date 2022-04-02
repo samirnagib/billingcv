@@ -1,0 +1,5 @@
+"Billing Tag","Client","Agent","Instance","Backupset","Subclient","Storage Policy","Copy","Media Size"
+"DCCM - OnPremisses","RJ2K12SQLH01","Virtual Server in RJ2K12VCENTER01","VMware","defaultBackupSet","GSATRJ_VM_DT_SHAREPOINT","#STP_DATACENTER_VM_01","Primary","0.274"
+"AWS - Glacier","RJ2K12SQLH01","Windows File System","DefaultInstanceName","defaultBackupSet","default","STP_GSATRJ_FS_DB","2.AWS","0"
+"DCCM - OnPremisses","RJ2K12SQLH01","Windows File System","DefaultInstanceName","defaultBackupSet","default","#STP_DATACENTER_FS_02","1.Primary","0.073"
+"DCCM - OnPremisses","RJ2K12SQLH01","SQL Server","RJ2K12SQLH01\HOMOLOG01","defaultBackupSet","HOMOLOG01/FULL","#STP_DATACENTER_DB_01","1.Primary","0"

@@ -25,4 +25,8 @@ public class BillTagsServices {
 	public void remove(BillTags obj) {
 		dao.deleteById(obj.getIdbillTag());
 	}
+	
+	public BillTags findByName(String Name) {
+		return dao.findByName(Name);
+	}
 }

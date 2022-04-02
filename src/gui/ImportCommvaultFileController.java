@@ -1,9 +1,19 @@
 package gui;
 
 import java.awt.Event;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
+import com.sun.javafx.binding.StringFormatter;
 
 import gui.util.Alerts;
 import gui.util.Constraints;
@@ -23,9 +33,24 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.converter.FormatStringConverter;
+import model.dao.BillTagsDao;
+import model.dao.ClientDao;
+import model.dao.ClientTypeDao;
+import model.dao.DaoFactory;
+import model.dao.InputBillDao;
+import model.dao.OwnerDao;
+import model.entities.BillTags;
+import model.entities.Client;
+import model.entities.InputBillCSV;
+import model.services.BillTagsServices;
+import model.services.ClientServices;
+import model.services.OwnerServices;
 
 public class ImportCommvaultFileController implements Initializable {
 
+	
+	
 	@FXML
 	private ComboBox<String> cbMeses;
 	
@@ -57,8 +82,8 @@ public class ImportCommvaultFileController implements Initializable {
 	private String cv_subclient;
 	private String cv_storagepolicy;
 	private String cv_copyname;
-	private double cv_mediasize;
-	private double ib_taxcalculated;
+	private String cv_mediasize;
+	private String ib_taxcalculated;
 
 	private Integer idbillTag;
 	private String billtagName;
@@ -81,6 +106,30 @@ public class ImportCommvaultFileController implements Initializable {
 	
 	private ObservableList<String> obsList;
 	
+	//Informar a quantidade de servidores novos encontrados;
+	
+	List<String> newserver = new ArrayList<>();
+	List<InputBillCSV> ibcsv = new ArrayList<>();
+	
+	// conexão com banco de dados
+	
+	BillTagsDao btDao = DaoFactory.createBillTagsDao();
+	ClientDao clDao = DaoFactory.createClientDao();
+	InputBillDao ibDao = DaoFactory.createInputBillDao();
+
+	private ClientServices clientService;
+	private BillTagsServices btServices;
+	private OwnerServices ownerService;
+	
+	public void setServices(ClientServices clientService, BillTagsServices btServices, OwnerServices ownerService) {
+		this.clientService = clientService;
+		this.btServices = btServices;
+		this.ownerService = ownerService;
+	}
+	
+	
+	
+	
 	
 	@FXML
 	private void btAbrirOnAction() {
@@ -89,11 +138,12 @@ public class ImportCommvaultFileController implements Initializable {
 		Utils.configureFileChooserImportFiles(fileChooser, "Importar arquivo de CLientes");
 		file = fileChooser.showOpenDialog(stage);
 		lbPath.setText(file.getAbsolutePath());
+		path = file.getAbsolutePath();
 	}
 	
 	@FXML
-	private void btImportarOnAction () {
-		System.out.println("btImportarOnAction");
+	private void btImportarOnAction (ActionEvent event) {
+		// System.out.println("btImportarOnAction");
 		if (txtAno.getText()==null || txtAno.getText().trim().equals("")) {
 			Alerts.showAlert("Mensagem de Erro", null, "O Campo Ano não pode estar vazio", AlertType.ERROR);
 			txtAno.requestFocus();
@@ -101,6 +151,63 @@ public class ImportCommvaultFileController implements Initializable {
 		cptANO = txtAno.getText();
 		ib_ano_mes = cptMES + " " + cptANO;
 		lbMessages.setText(ib_ano_mes);
+		if (path == null || path.trim().equals("")) {
+			Alerts.showAlert("Mensagem de Erro", null, "Selecione um arquivo antes de prosseguir", AlertType.ERROR);
+			btAbrir.requestFocus();
+		} else {
+			try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsoluteFile()))) {
+				 String lineCSV = br.readLine();
+				 int line = 1;
+				 while (lineCSV != null ) {
+					 
+					 	
+					 	Locale.setDefault(Locale.US);
+						 String[] field = lineCSV.split(",");
+//						 System.out.println(field);
+						 String stline = field[1];
+						 if ( line > 1 ) {
+							 String Competencia = ib_ano_mes;
+							 String BillingTag = field[0];
+							 String Client = field[1];
+							 String Agent = field[2];
+							 String Instance = field[3];
+							 String Backupset = field[4];
+							 String Subclient = field[5];
+							 String StoragePolicy = field[6];
+							 String Copy = field[7];
+							 //String media = field[8].replace("\"", "");
+							 
+							 double MediaSize = Double.parseDouble(field[8].replace("\"", ""));
+							 
+							 ibcsv.add(new InputBillCSV(Competencia, BillingTag, Client, Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, MediaSize));
+							 line++;
+						 }
+//						 else {
+//							 System.out.println("else");
+//							 
+//							 
+//						 }
+						 lineCSV = br.readLine();
+						 line++;
+							 
+				} //fim do while
+				 
+				 for(InputBillCSV item : ibcsv) {
+					 BillTags bt = new BillTags();
+					 BillTags btTemp = new BillTags(null,item.getBillingTag(),null);
+					 System.out.println("item: " + item.getBillingTag());
+					 String name = item.getBillingTag();
+					 bt = btServices.findByName(name);
+					 System.out.println("var: "+ name);
+					 System.out.println("objeto: "+ bt);
+				 }
+				 
+			}catch (IOException e) {
+				System.out.println("Error reading file: " + e.getMessage());
+			}finally {
+				lbMessages.setText("Importação concluida." );
+			} //final do bloco try
+		} //final do bloco if
 	
 	
 	
@@ -109,8 +216,6 @@ public class ImportCommvaultFileController implements Initializable {
 	@FXML
 	private void cbMesesOnAction () {
 		cptMES = cbMeses.getSelectionModel().getSelectedItem();
-		System.out.println(cptMES);
-		lbMessages.setText(cptMES);
 		txtAno.requestFocus();
 		
 	}
@@ -118,7 +223,6 @@ public class ImportCommvaultFileController implements Initializable {
 	@FXML
 	private void txtAnoOnEnter(KeyEvent e) {
 		if(e.getCode().equals(KeyCode.ENTER)) {
-	        System.out.println("enter");
 	        btAbrir.requestFocus();
 		}
 	}
@@ -138,6 +242,7 @@ public class ImportCommvaultFileController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		obsList = FXCollections.observableArrayList(Meses);
 		cbMeses.setItems(obsList);
+		initializenodes();
 		
 	}
 

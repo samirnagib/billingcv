@@ -147,6 +147,7 @@ public class BillTagsDaoJDBC implements BillTagsDao {
 	}
 	
 	private BillTags instantiateBillTags(ResultSet rs) throws SQLException {
+		
 		BillTags billtags = new BillTags();
 		
 		billtags.setIdbillTag(rs.getInt("idbillTag"));
@@ -154,6 +155,36 @@ public class BillTagsDaoJDBC implements BillTagsDao {
 		billtags.setBillPriceTB(rs.getDouble("billPriceTB"));
 		
 		return billtags;
+	}
+
+
+	@Override
+	public BillTags findByName(String Name) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+	
+		String query = "select billTags.* from billTags where billtagName like ? ESCAPE '!'";
+		try {
+			Name = Name
+				    .replace("!", "!!")
+				    .replace("%", "!%")
+				    .replace("_", "!_")
+				    .replace("[", "![");
+			st = conn.prepareStatement( query );
+			st.setString(1, Name +"%");
+			rs = st.executeQuery();
+			if (rs.next()) {
+				BillTags bill = instantiateBillTags(rs);
+				return bill;
+			}
+			return null;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}		
 	}
 
 }

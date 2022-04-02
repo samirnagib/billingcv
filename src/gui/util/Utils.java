@@ -13,6 +13,11 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.dao.BillTagsDao;
+import model.dao.ClientDao;
+import model.dao.DaoFactory;
+import model.entities.BillTags;
+import model.entities.Client;
 
 public class Utils {
 	public static Stage currentStage(ActionEvent event) {
@@ -76,6 +81,33 @@ public class Utils {
 	                new FileChooser.ExtensionFilter("Todos os Arquivos", "*.*")
 	            );
 	    }
+	
+	
+	public static Client searchClientbyName(String searchClient) {
+		ClientDao cDao = DaoFactory.createClientDao();
+		Client client = new Client();
+		
+		client = cDao.findByName(searchClient);
+		
+		if (client == null) {
+			return null;
+		}
+		
+		return client;
+		
+	}
+	
+	public static BillTags searchBillsTags(String searchBillTags ) {
+		BillTagsDao btDao = DaoFactory.createBillTagsDao();
+		BillTags bt = new BillTags();
+		
+		bt = btDao.findByName(searchBillTags);
+		
+		if (bt == null) {
+			return null;
+		}
+		return bt;
+	}
 
 	  
 	
