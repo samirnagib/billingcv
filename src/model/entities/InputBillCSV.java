@@ -15,15 +15,26 @@ public class InputBillCSV implements Serializable {
 	private String Subclient;
 	private String StoragePolicy;
 	private String Copy;
+	
+
+	private double feBackupSize;
+	private double feArchiveSize;
+	private double PrimaryAppSize;
+	private double ProtectedAppSize;
+
 	private double MediaSize;
+	
 	
 	
 	public InputBillCSV() {
 	}
 
 
+	
+
 	public InputBillCSV(String competencia, String billingTag, String client, String agent, String instance,
-			String backupset, String subclient, String storagePolicy, String copy, double mediaSize) {
+			String backupset, String subclient, String storagePolicy, String copy, double feBackupSize,
+			double feArchiveSize, double primaryAppSize, double protectedAppSize, double mediaSize) {
 		Competencia = competencia;
 		BillingTag = billingTag;
 		Client = client;
@@ -33,8 +44,14 @@ public class InputBillCSV implements Serializable {
 		Subclient = subclient;
 		StoragePolicy = storagePolicy;
 		Copy = copy;
+		this.feBackupSize = feBackupSize;
+		this.feArchiveSize = feArchiveSize;
+		PrimaryAppSize = primaryAppSize;
+		ProtectedAppSize = protectedAppSize;
 		MediaSize = mediaSize;
 	}
+
+
 
 
 	public String getCompetencia() {
@@ -42,9 +59,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setCompetencia(String competencia) {
 		Competencia = competencia;
 	}
+
+
 
 
 	public String getBillingTag() {
@@ -52,9 +73,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setBillingTag(String billingTag) {
 		BillingTag = billingTag;
 	}
+
+
 
 
 	public String getClient() {
@@ -62,9 +87,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setClient(String client) {
 		Client = client;
 	}
+
+
 
 
 	public String getAgent() {
@@ -72,9 +101,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setAgent(String agent) {
 		Agent = agent;
 	}
+
+
 
 
 	public String getInstance() {
@@ -82,9 +115,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setInstance(String instance) {
 		Instance = instance;
 	}
+
+
 
 
 	public String getBackupset() {
@@ -92,9 +129,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setBackupset(String backupset) {
 		Backupset = backupset;
 	}
+
+
 
 
 	public String getSubclient() {
@@ -102,9 +143,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setSubclient(String subclient) {
 		Subclient = subclient;
 	}
+
+
 
 
 	public String getStoragePolicy() {
@@ -112,9 +157,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setStoragePolicy(String storagePolicy) {
 		StoragePolicy = storagePolicy;
 	}
+
+
 
 
 	public String getCopy() {
@@ -122,9 +171,69 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setCopy(String copy) {
 		Copy = copy;
 	}
+
+
+
+
+	public double getFeBackupSize() {
+		return feBackupSize;
+	}
+
+
+
+
+	public void setFeBackupSize(double feBackupSize) {
+		this.feBackupSize = feBackupSize;
+	}
+
+
+
+
+	public double getFeArchiveSize() {
+		return feArchiveSize;
+	}
+
+
+
+
+	public void setFeArchiveSize(double feArchiveSize) {
+		this.feArchiveSize = feArchiveSize;
+	}
+
+
+
+
+	public double getPrimaryAppSize() {
+		return PrimaryAppSize;
+	}
+
+
+
+
+	public void setPrimaryAppSize(double primaryAppSize) {
+		PrimaryAppSize = primaryAppSize;
+	}
+
+
+
+
+	public double getProtectedAppSize() {
+		return ProtectedAppSize;
+	}
+
+
+
+
+	public void setProtectedAppSize(double protectedAppSize) {
+		ProtectedAppSize = protectedAppSize;
+	}
+
+
 
 
 	public double getMediaSize() {
@@ -132,9 +241,13 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	public void setMediaSize(double mediaSize) {
 		MediaSize = mediaSize;
 	}
+
+
 
 
 	@Override
@@ -164,13 +277,18 @@ public class InputBillCSV implements Serializable {
 	}
 
 
+
+
 	@Override
 	public String toString() {
 		return "InputBillCSV [Competencia=" + Competencia + ", BillingTag=" + BillingTag + ", Client=" + Client
 				+ ", Agent=" + Agent + ", Instance=" + Instance + ", Backupset=" + Backupset + ", Subclient="
-				+ Subclient + ", StoragePolicy=" + StoragePolicy + ", Copy=" + Copy + ", MediaSize=" + MediaSize + "]";
+				+ Subclient + ", StoragePolicy=" + StoragePolicy + ", Copy=" + Copy + ", feBackupSize=" + feBackupSize
+				+ ", feArchiveSize=" + feArchiveSize + ", PrimaryAppSize=" + PrimaryAppSize + ", ProtectedAppSize="
+				+ ProtectedAppSize + ", MediaSize=" + MediaSize + "]";
 	}
-	
+
+
 	
 	
 }

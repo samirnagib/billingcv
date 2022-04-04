@@ -168,7 +168,11 @@ public class ImportCommvaultFileController implements Initializable {
 							 String Subclient = field[5].replace("\"", "");
 							 String StoragePolicy = field[6].replace("\"", "");
 							 String Copy = field[7].replace("\"", "");
-							 double MediaSize = Double.parseDouble(field[8].replace("\"", ""));
+							 double FrontEndBackupSize = Double.parseDouble(field[8].replace("\"", ""));
+							 double FrontEndArchiveSize = Double.parseDouble(field[9].replace("\"", ""));
+							 double PrimaryAppSize = Double.parseDouble(field[10].replace("\"", ""));
+							 double ProtectedAppSize = Double.parseDouble(field[11].replace("\"", ""));
+							 double MediaSize = Double.parseDouble(field[12].replace("\"", ""));
 
 							 BillTags tabelaP = new BillTags();
 							 Client server = new Client();
@@ -184,14 +188,14 @@ public class ImportCommvaultFileController implements Initializable {
 								System.out.println("server null");
 							 	System.out.println("Campo 1: " + Client);
 						 	}
-							 //System.out.println(tabelaP);
-							// System.out.println(server);
+							 System.out.println(tabelaP);
+							 System.out.println(server);
 							 
-							 ib_taxcalculated = MediaSize * tabelaP.getBillPriceTB();
+							 ib_taxcalculated = (FrontEndBackupSize + FrontEndArchiveSize + PrimaryAppSize + ProtectedAppSize + MediaSize)* tabelaP.getBillPriceTB();
 							 
-							 InputBill conta = new InputBill(null, Competencia, tabelaP.getIdbillTag(), server.getIdClient(), Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, MediaSize, ib_taxcalculated, tabelaP, server);
-							// System.out.println(conta);
-							 ibcsv.add(new InputBillCSV(Competencia, BillingTag, Client, Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, MediaSize));
+							 InputBill conta = new InputBill(null, Competencia, tabelaP.getIdbillTag(), server.getIdClient(), Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, FrontEndBackupSize, FrontEndArchiveSize, PrimaryAppSize, ProtectedAppSize, MediaSize, ib_taxcalculated, tabelaP, server);
+
+							 ibcsv.add(new InputBillCSV(Competencia, BillingTag, Client, Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, FrontEndBackupSize, FrontEndArchiveSize, PrimaryAppSize, ProtectedAppSize, MediaSize));
 							 ib.add(conta);
 							 line++;
 						 }
@@ -223,8 +227,12 @@ public class ImportCommvaultFileController implements Initializable {
 					 System.out.println("SubClient..: "+ item.getCv_subclient());
 					 System.out.println("St. Policy.: "+ item.getCv_storagepolicy());
 					 System.out.println("Copy.......: "+ item.getCv_copyname());
+					 System.out.println("FE Backup..: "+ item.getCv_febackupsize());
+					 System.out.println("FE Archive.: "+ item.getCv_fearchivesize());
+					 System.out.println("Primary App: "+ item.getCv_primaryappsize());
+					 System.out.println("Protected..: "+ item.getCv_protectedappsize());
 					 System.out.println("Media Size.: "+ item.getCv_mediasize());
-					 System.out.println("TxCalculada: "+ item.getIb_taxcalculated());
+					 System.out.println("TxCalculada: "+ String.format("%.2f",item.getIb_taxcalculated()));
 					 System.out.println("----------------------");
 					 
 					 
