@@ -19,6 +19,7 @@ import com.sun.javafx.binding.StringFormatter;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,9 +30,13 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.FormatStringConverter;
@@ -45,13 +50,15 @@ import model.entities.BillTags;
 import model.entities.Client;
 import model.entities.InputBill;
 import model.entities.InputBillCSV;
+import model.entities.InputBillResult;
 import model.services.BillTagsServices;
 import model.services.ClientServices;
 import model.services.OwnerServices;
 
 public class ImportCommvaultFileController implements Initializable {
 
-	
+	@FXML
+	private VBox vBoxTV;
 	
 	@FXML
 	private ComboBox<String> cbMeses;
@@ -70,6 +77,56 @@ public class ImportCommvaultFileController implements Initializable {
 	
 	@FXML
 	private Button btImportar;
+	
+	@FXML
+	private TableView<InputBillResult> tvConta;
+	
+	@FXML
+	private TableColumn<InputBillResult, String> tvcCompetencia;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcBillingTag;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcClient;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcAgent;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcInstance;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcBackupset;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcSubclient;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcStoragePolicy;
+
+	@FXML
+	private TableColumn<InputBillResult, String> tvcCopy;
+
+	@FXML
+	private TableColumn<InputBillResult, Double> tvcfebackupsize;
+
+	@FXML
+	private TableColumn<InputBillResult, Double> tvcfearchivesize;
+
+	@FXML
+	private TableColumn<InputBillResult, Double> tvcprimaryappsize;
+
+	@FXML
+	private TableColumn<InputBillResult, Double> tvcprotectedappsize;
+
+	@FXML
+	private TableColumn<InputBillResult, Double> tvcMediaSize;
+	
+
+	@FXML
+	private TableColumn<InputBillResult, Double> tvcCustoTotal;
+	
 	
 	private File file;
 	
@@ -97,12 +154,14 @@ public class ImportCommvaultFileController implements Initializable {
 	private String Meses[] = {"JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ" };
 	
 	private ObservableList<String> obsList;
+	private ObservableList<InputBillResult> obsIBR;
 	
 	//Informar a quantidade de servidores novos encontrados;
 	
 	
 	List<InputBillCSV> ibcsv = new ArrayList<>();
 	List<InputBill> ib = new ArrayList<>();
+	List<InputBillResult> list = new ArrayList<>();
 	
 	
 	// conexão com banco de dados
@@ -183,6 +242,9 @@ public class ImportCommvaultFileController implements Initializable {
 							 if (tabelaP == null) {
 								 System.out.println("tabela null");
 								 System.out.println("Campo 0: " + BillingTag);
+								 BillTags novaFaixa = new BillTags(null,BillingTag,1.0);
+								 btDao.insert(novaFaixa);
+								 tabelaP = btDao.findByName(BillingTag);
 							 }
 							 if (server == null ) {
 								System.out.println("server null");
@@ -210,13 +272,7 @@ public class ImportCommvaultFileController implements Initializable {
 				} //fim do while
 				 
 				 for(InputBill item : ib) {
-//					 BillTags bt = new BillTags();
-//					 BillTags btTemp = new BillTags(null,item.getBillingTag(),null);
-//					 System.out.println("item: " + item.getBillingTag());
-//					 String name = item.getBillingTag();
-//					 bt = btServices.findByName(name);
-//					 System.out.println("var: "+ name);
-//					 System.out.println("objeto: "+ bt);
+
 					 
 					 System.out.println("Competencia: "+ item.getIb_ano_mes());
 					 System.out.println("Bill Tag...: "+ item.getId_billTag() + " " + item.getBilltag().getBilltagName().toUpperCase());
@@ -235,8 +291,10 @@ public class ImportCommvaultFileController implements Initializable {
 					 System.out.println("TxCalculada: "+ String.format("%.2f",item.getIb_taxcalculated()));
 					 System.out.println("----------------------");
 					 
-					 
+					 InputBillResult ibr = new InputBillResult(item.getIb_ano_mes(), item.getId_billTag() + " " + item.getBilltag().getBilltagName().toUpperCase(), item.getId_client() + " " + item.getClient().getClientName(), item.getCv_agent(), item.getCv_instance(), item.getCv_backupset(), item.getCv_subclient(), item.getCv_storagepolicy(), item.getCv_copyname(), item.getCv_febackupsize(), item.getCv_fearchivesize(), item.getCv_primaryappsize(), item.getCv_protectedappsize(), item.getCv_mediasize(), item.getIb_taxcalculated());
+					 list.add(ibr);
 				 }
+				 updateTableView();
 				 
 			}catch (IOException e) {
 				System.out.println("Error reading file: " + e.getMessage());
@@ -249,6 +307,16 @@ public class ImportCommvaultFileController implements Initializable {
 	
 	}
 	
+	private void updateTableView() {
+		obsIBR = FXCollections.observableArrayList(list);
+		tvConta.setItems(obsIBR);
+		
+	}
+
+
+
+
+
 	@FXML
 	private void cbMesesOnAction () {
 		cptMES = cbMeses.getSelectionModel().getSelectedItem();
@@ -272,6 +340,36 @@ public class ImportCommvaultFileController implements Initializable {
 	
 	private void initializenodes() {
 		Constraints.setTextFieldInteger(txtAno);
+		tvcCompetencia.setCellValueFactory(new PropertyValueFactory<>("Competencia"));
+		tvcBillingTag.setCellValueFactory(new PropertyValueFactory<>("BillingTag"));
+		tvcClient.setCellValueFactory(new PropertyValueFactory<>("Client"));
+		tvcAgent.setCellValueFactory(new PropertyValueFactory<>("Agent"));
+		tvcInstance.setCellValueFactory(new PropertyValueFactory<>("Instance"));
+		tvcBackupset.setCellValueFactory(new PropertyValueFactory<>("Backupset"));
+		tvcSubclient.setCellValueFactory(new PropertyValueFactory<>("Subclient"));
+		tvcStoragePolicy.setCellValueFactory(new PropertyValueFactory<>("StoragePolicy"));
+		tvcCopy.setCellValueFactory(new PropertyValueFactory<>("Copy"));
+		tvcfebackupsize.setCellValueFactory(new PropertyValueFactory<>("febackupsize"));
+		Utils.formatTableColumnDouble(tvcfebackupsize,4);
+		tvcfearchivesize.setCellValueFactory(new PropertyValueFactory<>("fearchivesize"));
+		Utils.formatTableColumnDouble(tvcfearchivesize,4);
+		tvcprimaryappsize.setCellValueFactory(new PropertyValueFactory<>("primaryappsize"));
+		Utils.formatTableColumnDouble(tvcprimaryappsize,4);
+		tvcprotectedappsize.setCellValueFactory(new PropertyValueFactory<>("protectedappsize"));
+		Utils.formatTableColumnDouble(tvcprotectedappsize,4);
+		tvcMediaSize.setCellValueFactory(new PropertyValueFactory<>("MediaSize"));
+		Utils.formatTableColumnDouble(tvcMediaSize,4);
+		tvcCustoTotal.setCellValueFactory(new PropertyValueFactory<>("CustoTotal"));
+		Utils.formatTableColumnDouble(tvcCustoTotal,2);
+		
+		
+		
+//		Stage stage = (Stage) LoginController.getMainScene().getWindow();
+//		ReadOnlyDoubleProperty hstage = stage.heightProperty();
+//		vBoxTV.prefHeightProperty().bind(hstage-10);
+//		tvConta.prefHeightProperty().bind(vBoxTV.heightProperty());
+//		tvConta.prefWidthProperty().bind(vBoxTV.widthProperty());
+		
 	}
 		
 	@Override
