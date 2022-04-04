@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
+import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import com.sun.javafx.binding.StringFormatter;
 
@@ -42,6 +43,7 @@ import model.dao.InputBillDao;
 import model.dao.OwnerDao;
 import model.entities.BillTags;
 import model.entities.Client;
+import model.entities.InputBill;
 import model.entities.InputBillCSV;
 import model.services.BillTagsServices;
 import model.services.ClientServices;
@@ -72,18 +74,8 @@ public class ImportCommvaultFileController implements Initializable {
 	private File file;
 	
 	//Variaveis de Banco de dados
-	private Integer idInputBill;
 	private String ib_ano_mes;
-	private Integer id_billTag;
-	private Integer id_client;
-	private String cv_agent;
-	private String cv_instance;
-	private String cv_backupset;
-	private String cv_subclient;
-	private String cv_storagepolicy;
-	private String cv_copyname;
-	private String cv_mediasize;
-	private String ib_taxcalculated;
+	private double ib_taxcalculated;
 
 	private Integer idbillTag;
 	private String billtagName;
@@ -108,8 +100,10 @@ public class ImportCommvaultFileController implements Initializable {
 	
 	//Informar a quantidade de servidores novos encontrados;
 	
-	List<String> newserver = new ArrayList<>();
+	
 	List<InputBillCSV> ibcsv = new ArrayList<>();
+	List<InputBill> ib = new ArrayList<>();
+	
 	
 	// conexão com banco de dados
 	
@@ -163,23 +157,42 @@ public class ImportCommvaultFileController implements Initializable {
 					 	
 					 	Locale.setDefault(Locale.US);
 						 String[] field = lineCSV.split(",");
-//						 System.out.println(field);
-						 String stline = field[1];
+
 						 if ( line > 1 ) {
 							 String Competencia = ib_ano_mes;
-							 String BillingTag = field[0];
-							 String Client = field[1];
-							 String Agent = field[2];
-							 String Instance = field[3];
-							 String Backupset = field[4];
-							 String Subclient = field[5];
-							 String StoragePolicy = field[6];
-							 String Copy = field[7];
-							 //String media = field[8].replace("\"", "");
-							 
+							 String BillingTag = field[0].replace("\"", "");
+							 String Client = field[1].replace("\"", "");
+							 String Agent = field[2].replace("\"", "");
+							 String Instance = field[3].replace("\"", "");
+							 String Backupset = field[4].replace("\"", "");
+							 String Subclient = field[5].replace("\"", "");
+							 String StoragePolicy = field[6].replace("\"", "");
+							 String Copy = field[7].replace("\"", "");
 							 double MediaSize = Double.parseDouble(field[8].replace("\"", ""));
+
+							 BillTags tabelaP = new BillTags();
+							 Client server = new Client();
+							
+							 tabelaP = btDao.findByName(BillingTag);
+							 server = clDao.findByName(Client);
 							 
+							 if (tabelaP == null) {
+								 System.out.println("tabela null");
+								 System.out.println("Campo 0: " + BillingTag);
+							 }
+							 if (server == null ) {
+								System.out.println("server null");
+							 	System.out.println("Campo 1: " + Client);
+						 	}
+							 //System.out.println(tabelaP);
+							// System.out.println(server);
+							 
+							 ib_taxcalculated = MediaSize * tabelaP.getBillPriceTB();
+							 
+							 InputBill conta = new InputBill(null, Competencia, tabelaP.getIdbillTag(), server.getIdClient(), Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, MediaSize, ib_taxcalculated, tabelaP, server);
+							// System.out.println(conta);
 							 ibcsv.add(new InputBillCSV(Competencia, BillingTag, Client, Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, MediaSize));
+							 ib.add(conta);
 							 line++;
 						 }
 //						 else {
@@ -192,14 +205,29 @@ public class ImportCommvaultFileController implements Initializable {
 							 
 				} //fim do while
 				 
-				 for(InputBillCSV item : ibcsv) {
-					 BillTags bt = new BillTags();
-					 BillTags btTemp = new BillTags(null,item.getBillingTag(),null);
-					 System.out.println("item: " + item.getBillingTag());
-					 String name = item.getBillingTag();
-					 bt = btServices.findByName(name);
-					 System.out.println("var: "+ name);
-					 System.out.println("objeto: "+ bt);
+				 for(InputBill item : ib) {
+//					 BillTags bt = new BillTags();
+//					 BillTags btTemp = new BillTags(null,item.getBillingTag(),null);
+//					 System.out.println("item: " + item.getBillingTag());
+//					 String name = item.getBillingTag();
+//					 bt = btServices.findByName(name);
+//					 System.out.println("var: "+ name);
+//					 System.out.println("objeto: "+ bt);
+					 
+					 System.out.println("Competencia: "+ item.getIb_ano_mes());
+					 System.out.println("Bill Tag...: "+ item.getId_billTag() + " " + item.getBilltag().getBilltagName().toUpperCase());
+					 System.out.println("Client.....: "+ item.getId_client() + " " + item.getClient().getClientName());
+					 System.out.println("Agente.....: "+ item.getCv_agent());
+					 System.out.println("Instancia..: "+ item.getCv_instance());
+					 System.out.println("Bkp Set....: "+ item.getCv_backupset());
+					 System.out.println("SubClient..: "+ item.getCv_subclient());
+					 System.out.println("St. Policy.: "+ item.getCv_storagepolicy());
+					 System.out.println("Copy.......: "+ item.getCv_copyname());
+					 System.out.println("Media Size.: "+ item.getCv_mediasize());
+					 System.out.println("TxCalculada: "+ item.getIb_taxcalculated());
+					 System.out.println("----------------------");
+					 
+					 
 				 }
 				 
 			}catch (IOException e) {

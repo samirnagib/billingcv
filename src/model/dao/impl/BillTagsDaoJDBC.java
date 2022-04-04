@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-
 import db.DB;
 import db.DbException;
 import model.dao.BillTagsDao;
@@ -159,19 +157,19 @@ public class BillTagsDaoJDBC implements BillTagsDao {
 
 
 	@Override
-	public BillTags findByName(String Name) {
+	public BillTags findByName(String billtagName) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 	
 		String query = "select billTags.* from billTags where billtagName like ? ESCAPE '!'";
 		try {
-			Name = Name
+			billtagName = billtagName
 				    .replace("!", "!!")
 				    .replace("%", "!%")
 				    .replace("_", "!_")
 				    .replace("[", "![");
 			st = conn.prepareStatement( query );
-			st.setString(1, Name +"%");
+			st.setString(1, billtagName +"%");
 			rs = st.executeQuery();
 			if (rs.next()) {
 				BillTags bill = instantiateBillTags(rs);

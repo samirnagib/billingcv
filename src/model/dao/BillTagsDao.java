@@ -11,6 +11,6 @@ public interface BillTagsDao {
 	void deleteById(Integer id);
 	BillTags findById(Integer id);
 	List<BillTags> findAll();
-	BillTags findByName(String name);
+	BillTags findByName(String billtagName);
 	
 }
