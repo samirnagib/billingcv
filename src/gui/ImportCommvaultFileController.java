@@ -149,6 +149,7 @@ public class ImportCommvaultFileController implements Initializable {
 	private String cptMES;
 	private String cptANO;
 	private String path;
+	private String pathSave;
 	
 	//Parametros para ComboBox
 	private String Meses[] = {"JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ" };
@@ -162,6 +163,8 @@ public class ImportCommvaultFileController implements Initializable {
 	List<InputBillCSV> ibcsv = new ArrayList<>();
 	List<InputBill> ib = new ArrayList<>();
 	List<InputBillResult> list = new ArrayList<>();
+	List<BillTags> newBTagList  = new ArrayList<>();
+	List<Client> newClientList  = new ArrayList<>();
 	
 	
 	// conexão com banco de dados
@@ -174,6 +177,7 @@ public class ImportCommvaultFileController implements Initializable {
 	private BillTagsServices btServices;
 	private OwnerServices ownerService;
 	
+		
 	public void setServices(ClientServices clientService, BillTagsServices btServices, OwnerServices ownerService) {
 		this.clientService = clientService;
 		this.btServices = btServices;
@@ -192,6 +196,8 @@ public class ImportCommvaultFileController implements Initializable {
 		file = fileChooser.showOpenDialog(stage);
 		lbPath.setText(file.getAbsolutePath());
 		path = file.getAbsolutePath();
+		pathSave = file.getParent() + System.getProperty("file.separator");
+		
 	}
 	
 	@FXML
@@ -245,13 +251,18 @@ public class ImportCommvaultFileController implements Initializable {
 								 BillTags novaFaixa = new BillTags(null,BillingTag,1.0);
 								 btDao.insert(novaFaixa);
 								 tabelaP = btDao.findByName(BillingTag);
+								 newBTagList.add(tabelaP);
 							 }
 							 if (server == null ) {
 								System.out.println("server null");
 							 	System.out.println("Campo 1: " + Client);
+							 	Client novoCliente = new Client(null,Client,Client,1,1,null,null);
+							 	clDao.insert(novoCliente);
+							 	server = clDao.findByName(Client);
+							 	newClientList.add(server);
 						 	}
-							 System.out.println(tabelaP);
-							 System.out.println(server);
+//							 System.out.println(tabelaP);
+//							 System.out.println(server);
 							 
 							 ib_taxcalculated = (FrontEndBackupSize + FrontEndArchiveSize + PrimaryAppSize + ProtectedAppSize + MediaSize)* tabelaP.getBillPriceTB();
 							 
@@ -295,6 +306,7 @@ public class ImportCommvaultFileController implements Initializable {
 					 list.add(ibr);
 				 }
 				 updateTableView();
+				 
 				 
 			}catch (IOException e) {
 				System.out.println("Error reading file: " + e.getMessage());
