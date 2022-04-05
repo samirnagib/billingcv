@@ -18,7 +18,7 @@ public class DaoFactory {
 	}
 	
 	public static InputBillDao createInputBillDao() {
-		return new InputBillDaoJDBC();
+		return new InputBillDaoJDBC(DB.getConnection());
 	}
 
 	public static OwnerDao createOwnerDao() {

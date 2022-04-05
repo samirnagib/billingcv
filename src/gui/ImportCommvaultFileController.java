@@ -2,8 +2,10 @@ package gui;
 
 import java.awt.Event;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,9 +50,11 @@ import model.dao.InputBillDao;
 import model.dao.OwnerDao;
 import model.entities.BillTags;
 import model.entities.Client;
+import model.entities.ClientType;
 import model.entities.InputBill;
 import model.entities.InputBillCSV;
 import model.entities.InputBillResult;
+import model.entities.Owner;
 import model.services.BillTagsServices;
 import model.services.ClientServices;
 import model.services.OwnerServices;
@@ -172,6 +176,8 @@ public class ImportCommvaultFileController implements Initializable {
 	BillTagsDao btDao = DaoFactory.createBillTagsDao();
 	ClientDao clDao = DaoFactory.createClientDao();
 	InputBillDao ibDao = DaoFactory.createInputBillDao();
+	ClientTypeDao ctDao  = DaoFactory.createClientTypeDao();
+	OwnerDao oDao  = DaoFactory.createOwnerDao();
 
 	private ClientServices clientService;
 	private BillTagsServices btServices;
@@ -256,13 +262,17 @@ public class ImportCommvaultFileController implements Initializable {
 							 if (server == null ) {
 								System.out.println("server null");
 							 	System.out.println("Campo 1: " + Client);
-							 	Client novoCliente = new Client(null,Client,Client,1,1,null,null);
+							 	Integer id = 1;
+							 	ClientType ct = new ClientType();
+							 	Owner ow = new Owner();
+							 	ct = ctDao.findById(id);
+							 	ow = oDao.findById(id);
+							 	Client novoCliente = new Client(null,Client,Client,id,id,ct,ow);
 							 	clDao.insert(novoCliente);
 							 	server = clDao.findByName(Client);
 							 	newClientList.add(server);
 						 	}
-//							 System.out.println(tabelaP);
-//							 System.out.println(server);
+
 							 
 							 ib_taxcalculated = (FrontEndBackupSize + FrontEndArchiveSize + PrimaryAppSize + ProtectedAppSize + MediaSize)* tabelaP.getBillPriceTB();
 							 
@@ -272,11 +282,6 @@ public class ImportCommvaultFileController implements Initializable {
 							 ib.add(conta);
 							 line++;
 						 }
-//						 else {
-//							 System.out.println("else");
-//							 
-//							 
-//						 }
 						 lineCSV = br.readLine();
 						 line++;
 							 
@@ -302,10 +307,43 @@ public class ImportCommvaultFileController implements Initializable {
 					 System.out.println("TxCalculada: "+ String.format("%.2f",item.getIb_taxcalculated()));
 					 System.out.println("----------------------");
 					 
-					 InputBillResult ibr = new InputBillResult(item.getIb_ano_mes(), item.getId_billTag() + " " + item.getBilltag().getBilltagName().toUpperCase(), item.getId_client() + " " + item.getClient().getClientName(), item.getCv_agent(), item.getCv_instance(), item.getCv_backupset(), item.getCv_subclient(), item.getCv_storagepolicy(), item.getCv_copyname(), item.getCv_febackupsize(), item.getCv_fearchivesize(), item.getCv_primaryappsize(), item.getCv_protectedappsize(), item.getCv_mediasize(), item.getIb_taxcalculated());
+					 InputBillResult ibr = new InputBillResult(item.getIb_ano_mes(), item.getBilltag().getBilltagName().toUpperCase(), item.getClient().getClientName(), item.getCv_agent(), item.getCv_instance(), item.getCv_backupset(), item.getCv_subclient(), item.getCv_storagepolicy(), item.getCv_copyname(), item.getCv_febackupsize(), item.getCv_fearchivesize(), item.getCv_primaryappsize(), item.getCv_protectedappsize(), item.getCv_mediasize(), item.getIb_taxcalculated());
 					 list.add(ibr);
 				 }
 				 updateTableView();
+				 
+				 int numNvBT = newBTagList.size();
+				 int numNvCl = newClientList.size();
+				 
+				 if ( numNvBT > 0 ) {
+					 Alerts.showAlert("AVISO DE NOVA FAIXA DE COBRANÇA", null, "Foram encontrados " + numNvBT + " nova(s) faixas de cobrança", AlertType.INFORMATION);
+					 Alerts.showAlert("AVISO DE NOVA FAIXA DE COBRANÇA", "O relatório com as novas faixas estão no caminho abaixo:", pathSave + "NovasFaixas.txt", AlertType.INFORMATION);
+					 try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathSave + "NovasFaixas.txt"))) {
+						 for (BillTags item : newBTagList ) {
+							 bw.write("Codigo : " + item.getIdbillTag() +" - Nome da Faixa: " + item.getBilltagName());
+							 bw.newLine();
+						 }
+						 System.out.println( pathSave + "NovasFaixas.txt - CRIADO!");
+						 
+					 } catch (IOException e) {
+							System.out.println("Error writing file: " + e.getMessage());
+						}
+				 }
+				 
+				 if ( numNvCl > 0 ) {
+					 Alerts.showAlert("AVISO DE NOVO CLIENTE", null, "Foram encontrados " + numNvCl + " novo(s) clientes", AlertType.INFORMATION);
+					 Alerts.showAlert("AVISO DE NOVO CLIENTE", "O relatório com os novos clientes estão no caminho abaixo:", pathSave + "NovosClientes.txt", AlertType.INFORMATION);
+					 try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathSave + "NovosClientes.txt"))) {
+						 for (Client item : newClientList ) {
+							 bw.write("Codigo : " + item.getIdClient() +" - Nome do Cliente: " + item.getClientName());
+							 bw.newLine();
+						 }
+						 System.out.println( pathSave + "NovosClientes.txt - CRIADO!");
+						 
+					 } catch (IOException e) {
+							System.out.println("Error writing file: " + e.getMessage());
+						}
+				 }
 				 
 				 
 			}catch (IOException e) {

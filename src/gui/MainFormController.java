@@ -38,6 +38,11 @@ public class MainFormController implements Initializable {
 	@FXML
 	private MenuItem menuBillTag;
 	
+
+	@FXML
+	private MenuItem menuChargeBack;
+	
+	
 	@FXML
 	private MenuItem menuImportClients;
 	
@@ -100,6 +105,11 @@ public class MainFormController implements Initializable {
 		
 	}
 	
+	@FXML
+	public void onMenuChargeBackAction() {
+		System.out.println("onMenuChargeBackAction");	
+		
+	}
 	@FXML
 	public void onMenuImportClientsAction() {
 		loadView("/gui/ClientImport.fxml",  x -> {}  );

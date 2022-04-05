@@ -102,7 +102,7 @@ public class ClientTypeDaoJDBC implements ClientTypeDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT ClientType.* FROM clientType WHERE idType = ?");
+			st = conn.prepareStatement("SELECT clientType.* FROM clientType WHERE idType = ?");
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {

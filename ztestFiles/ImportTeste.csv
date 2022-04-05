@@ -34,3 +34,4 @@
 "DCCM - OnPremisses","cmay22lb25","Linux File System","DefaultInstanceName","GCOM - FILESERVER","GCOM_DB_CASSANDRA","#STP_DATACENTER_DB_02","1.Primary","3.677","0","0.001","0.001","0"
 "DCCM - OnPremisses","cmay22lb25","Linux File System","DefaultInstanceName","GCOM - FILESERVER","GCOM_DB_MYSQL_03","#STP_DATACENTER_DB_01","1.Primary","2.715","0","0","0","0"
 "DCCM - OnPremisses","cmay22lb25","Linux File System","DefaultInstanceName","GCOM - FILESERVER","GCOM_DB_MONGO","#STP_DATACENTER_DB_01","1.Primary","2.188","0","0","0","0"
+"Billing Tag 001","SERVIDOR 001","Agent","Instance","Backupset","Subclient","Storage Policy","Copy","100.0","100.0","100.0","100.0","200.026"

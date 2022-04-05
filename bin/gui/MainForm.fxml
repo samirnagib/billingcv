@@ -19,6 +19,7 @@
                         <MenuItem fx:id="menuOwner" mnemonicParsing="false" onAction="#onMenuOwnerAction" text="Responsável" />
                         <MenuItem fx:id="menuClients" mnemonicParsing="false" onAction="#onMenuClientsAction" text="Clientes" />
                         <MenuItem fx:id="menuBillTag" mnemonicParsing="false" onAction="#onMenuBillTagAction" text="TAG de Cobrança" />
+                        <MenuItem fx:id="menuChargeBack" mnemonicParsing="false" onAction="#onMenuChargeBackAction" text="Charge Back" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Importação">
