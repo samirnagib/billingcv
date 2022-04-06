@@ -122,35 +122,25 @@ public class ClientImportController implements Initializable  {
 								 owEmail2  = campo[5];
 								 owProjectArea = campo[6];
 								 owAR  = campo[7];
-//								 System.out.println("Cliente....: " + clientName);
-//								 System.out.println("Hostname...: " + clientHostname);
-//								 System.out.println("Tipo.......: " + typeName);
-//								 System.out.println("Responsavel: " + owName);
-//								 System.out.println("Email 1....: " + owEmail1);
-//								 System.out.println("Email 2....: " + owEmail2);
-//								 System.out.println("Aera ......: " + owProjectArea);
-//								 System.out.println("AR.........: " + owAR);
 								 
 								 ClientType tserver = new ClientType();
 								 Owner tresp = new Owner();
 								 Client tClient = new Client();
 								 tserver = ctDAO.findByName(typeName);
 								 if (tserver == null ) {
+									 lblMessage.setText("O Tipo de servidor " + typeName + " não existe na base de dados, cadastrando." );
 									 ClientType tserver2 = new ClientType(null, typeName);
 									 ctDAO.insert(tserver2);
 								 }
 								 tresp = oDao.findByName(owName);
 								 if (tresp == null) {
+									 lblMessage.setText("O Responsável " + owName + " não existe na base de dados, cadastrando." );
 									 Owner tresp2 = new Owner(null, owName, owEmail1, owEmail2, owProjectArea, owAR);
 									 oDao.insert(tresp2);
 								 }
 								 tserver = ctDAO.findByName(typeName);
 								 tresp = oDao.findByName(owName);
-//								 System.out.println(tserver);
-//								 System.out.println(tresp);
-//								 System.out.println(tClient); 
 								 tClient = new Client(null, clientName, clientHostname, tserver.getIdType(), tresp.getIdOwner(), tserver, tresp);
-								// System.out.println(tClient);
 								 ct.add(new ClientType(null, typeName));
 								 resp.add(new Owner(null, owName, owEmail1, owEmail2, owProjectArea, owAR));
 								 client.add(tClient);
@@ -164,40 +154,7 @@ public class ClientImportController implements Initializable  {
 					  * 3º pesquisa na tablea de Clientes, se o servidor existe, caso positivo pula, em negativo cadastra
 					  */
 					
-					 
-					 // tabela responsavel
-					 
-					 for(Owner item : resp) {
-						 
-						 String search = item.getOwName();
-						 //System.out.println(search);
-						 //System.out.println(oDao.searchByName(search));
-						 if ( oDao.searchByName(search) ) {
-							 lblMessage.setText("O Responsável " + search + " existe na base de dados" );
-							 //System.out.println("O Responsável " + search + " existe na base de dados" );
-						 } else {
-							 lblMessage.setText("O Responsável " + search + " não existe na base de dados, cadastrando." );
-							 //System.out.println("O Responsável " + search + " não existe na base de dados, cadastrando." );
-							 //oDao.insert(item);
-						 }
-					 }
-					
-					// tabela Tipo de Servidor
-					 					 
-					 for(ClientType item2 : ct) {
-						 
-						 String search = item2.getTypeName();
-						 if (ctDAO.searchByName(search)) {
-							 lblMessage.setText("O Tipo de servidor " + search + " existe na base de dados" );
-							 //System.out.println("O Tipo de servidor " + search + " existe na base de dados" );
-						 } else {
-							 lblMessage.setText("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
-							 //System.out.println("O Tipo de servidor " + search + " não existe na base de dados, cadastrando." );
-							 //ctDAO.insert(item2);
-						 }
-						 
-					 }
-					 //*/
+
 					// tabela Clientes
 					
 					 for(Client item : client) {
@@ -207,13 +164,9 @@ public class ClientImportController implements Initializable  {
 						if (clientDAO.searchByName(search)) {
 							Client temp = new Client(clientDAO.findByName(search).getIdClient(),item.getClientName(),item.getClientHostname(),item.getIdType(),item.getIdOwner(),item.getClientType(),item.getOwner());
 							 lblMessage.setText("O servidor " + search + " existe na base de dados" );
-//							 System.out.println("O servidor " + search + " existe na base de dados" );
-//							 System.out.println(temp);
 							 clientDAO.update(temp);
 						}else {
 							lblMessage.setText("O servidor " + search + " não existe na base de dados, cadastrando." );
-//							System.out.println("O servidor " + search + " não existe na base de dados, cadastrando." );
-//							System.out.println(item);
 							clientDAO.insert(item);
 						}
 						
@@ -235,11 +188,5 @@ public class ClientImportController implements Initializable  {
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}
-
-	
-	
-	// COnfigurando a caixa de dialogo
-	
-		
 
 }

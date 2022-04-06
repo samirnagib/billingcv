@@ -1,0 +1,4 @@
+Codigo : 13 - Nome da Faixa: Billing Tag 001
+Codigo : 14 - Nome da Faixa: Billing Tag 002
+Codigo : 15 - Nome da Faixa: Billing Tag 003
+Codigo : 16 - Nome da Faixa: Billing Tag 004

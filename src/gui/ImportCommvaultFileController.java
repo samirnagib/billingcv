@@ -253,8 +253,9 @@ public class ImportCommvaultFileController implements Initializable {
 							
 							 tabelaP = btDao.findByName(BillingTag);
 							 server = clDao.findByName(Client);
-							 cType = ctDao.findById(server.getIdType());
-							 resp = oDao.findById(server.getIdOwner());
+							 
+							 //System.out.println("Objeto server: " + server);
+							 //System.out.println("ID de Cliente: " + server.getIdClient());
 							 
 							 if (tabelaP == null) {
 								 System.out.println("tabela null");
@@ -277,7 +278,10 @@ public class ImportCommvaultFileController implements Initializable {
 							 	server = clDao.findByName(Client);
 							 	newClientList.add(server);
 						 	}
-
+							 int idc = (int) server.getIdClient();
+							 int idr = (int) server.getOwner().getIdOwner();
+							 cType = ctDao.findById(idc);
+							 resp = oDao.findById(idr); 
 							 
 							 ib_taxcalculated = (FrontEndBackupSize + FrontEndArchiveSize + PrimaryAppSize + ProtectedAppSize + MediaSize)* tabelaP.getBillPriceTB();
 							 
@@ -293,25 +297,23 @@ public class ImportCommvaultFileController implements Initializable {
 				} //fim do while
 				 
 				 for(InputBill item : ib) {
-
-					 
-					 System.out.println("Competencia: "+ item.getIb_ano_mes());
-					 System.out.println("Bill Tag...: "+ item.getId_billTag() + " " + item.getBilltag().getBilltagName().toUpperCase());
-					 System.out.println("Client.....: "+ item.getId_client() + " " + item.getClient().getClientName());
-					 System.out.println("Agente.....: "+ item.getCv_agent());
-					 System.out.println("Instancia..: "+ item.getCv_instance());
-					 System.out.println("Bkp Set....: "+ item.getCv_backupset());
-					 System.out.println("SubClient..: "+ item.getCv_subclient());
-					 System.out.println("St. Policy.: "+ item.getCv_storagepolicy());
-					 System.out.println("Copy.......: "+ item.getCv_copyname());
-					 System.out.println("FE Backup..: "+ item.getCv_febackupsize());
-					 System.out.println("FE Archive.: "+ item.getCv_fearchivesize());
-					 System.out.println("Primary App: "+ item.getCv_primaryappsize());
-					 System.out.println("Protected..: "+ item.getCv_protectedappsize());
-					 System.out.println("Media Size.: "+ item.getCv_mediasize());
-					 System.out.println("TxCalculada: "+ String.format("%.2f",item.getIb_taxcalculated()));
-					 System.out.println("----------------------");
-					 
+//					 System.out.println("Competencia: "+ item.getIb_ano_mes());
+//					 System.out.println("Bill Tag...: "+ item.getId_billTag() + " " + item.getBilltag().getBilltagName().toUpperCase());
+//					 System.out.println("Client.....: "+ item.getId_client() + " " + item.getClient().getClientName());
+//					 System.out.println("Agente.....: "+ item.getCv_agent());
+//					 System.out.println("Instancia..: "+ item.getCv_instance());
+//					 System.out.println("Bkp Set....: "+ item.getCv_backupset());
+//					 System.out.println("SubClient..: "+ item.getCv_subclient());
+//					 System.out.println("St. Policy.: "+ item.getCv_storagepolicy());
+//					 System.out.println("Copy.......: "+ item.getCv_copyname());
+//					 System.out.println("FE Backup..: "+ item.getCv_febackupsize());
+//					 System.out.println("FE Archive.: "+ item.getCv_fearchivesize());
+//					 System.out.println("Primary App: "+ item.getCv_primaryappsize());
+//					 System.out.println("Protected..: "+ item.getCv_protectedappsize());
+//					 System.out.println("Media Size.: "+ item.getCv_mediasize());
+//					 System.out.println("TxCalculada: "+ String.format("%.2f",item.getIb_taxcalculated()));
+//					 System.out.println("----------------------");
+					 ibDao.insert(item);
 					 InputBillResult ibr = new InputBillResult(item.getIb_ano_mes(), item.getBilltag().getBilltagName().toUpperCase(), item.getClient().getClientName(), item.getCv_agent(), item.getCv_instance(), item.getCv_backupset(), item.getCv_subclient(), item.getCv_storagepolicy(), item.getCv_copyname(), item.getCv_febackupsize(), item.getCv_fearchivesize(), item.getCv_primaryappsize(), item.getCv_protectedappsize(), item.getCv_mediasize(), item.getIb_taxcalculated());
 					 list.add(ibr);
 				 }
