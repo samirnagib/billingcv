@@ -206,6 +206,7 @@ public class ImportCommvaultFileController implements Initializable {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	@FXML
 	private void btImportarOnAction (ActionEvent event) {
 		// System.out.println("btImportarOnAction");
@@ -247,9 +248,13 @@ public class ImportCommvaultFileController implements Initializable {
 
 							 BillTags tabelaP = new BillTags();
 							 Client server = new Client();
+							 ClientType cType = new ClientType();
+							 Owner resp = new Owner();
 							
 							 tabelaP = btDao.findByName(BillingTag);
 							 server = clDao.findByName(Client);
+							 cType = ctDao.findById(server.getIdType());
+							 resp = oDao.findById(server.getIdOwner());
 							 
 							 if (tabelaP == null) {
 								 System.out.println("tabela null");
@@ -276,7 +281,7 @@ public class ImportCommvaultFileController implements Initializable {
 							 
 							 ib_taxcalculated = (FrontEndBackupSize + FrontEndArchiveSize + PrimaryAppSize + ProtectedAppSize + MediaSize)* tabelaP.getBillPriceTB();
 							 
-							 InputBill conta = new InputBill(null, Competencia, tabelaP.getIdbillTag(), server.getIdClient(), Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, FrontEndBackupSize, FrontEndArchiveSize, PrimaryAppSize, ProtectedAppSize, MediaSize, ib_taxcalculated, tabelaP, server);
+							 InputBill conta = new InputBill(null, Competencia, tabelaP.getIdbillTag(), server.getIdClient(), Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, FrontEndBackupSize, FrontEndArchiveSize, PrimaryAppSize, ProtectedAppSize, MediaSize, ib_taxcalculated, tabelaP, server, cType, resp);
 
 							 ibcsv.add(new InputBillCSV(Competencia, BillingTag, Client, Agent, Instance, Backupset, Subclient, StoragePolicy, Copy, FrontEndBackupSize, FrontEndArchiveSize, PrimaryAppSize, ProtectedAppSize, MediaSize));
 							 ib.add(conta);

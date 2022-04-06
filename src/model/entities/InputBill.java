@@ -25,6 +25,8 @@ public class InputBill implements Serializable {
 	
 	private BillTags billtag;
 	private Client client;
+	private ClientType clientType;
+	private Owner owner;
 	
 	public InputBill() {
 	}
@@ -34,7 +36,7 @@ public class InputBill implements Serializable {
 	public InputBill(Integer idInputBill, String ib_ano_mes, Integer id_billTag, Integer id_client, String cv_agent,
 			String cv_instance, String cv_backupset, String cv_subclient, String cv_storagepolicy, String cv_copyname,
 			double cv_febackupsize, double cv_fearchivesize, double cv_primaryappsize, double cv_protectedappsize,
-			double cv_mediasize, double ib_taxcalculated, BillTags billtag, Client client) {
+			double cv_mediasize, double ib_taxcalculated, BillTags billtag, Client client, ClientType clientType, Owner owner) {
 		this.idInputBill = idInputBill;
 		this.ib_ano_mes = ib_ano_mes;
 		this.id_billTag = id_billTag;
@@ -53,6 +55,32 @@ public class InputBill implements Serializable {
 		this.ib_taxcalculated = ib_taxcalculated;
 		this.billtag = billtag;
 		this.client = client;
+		this.clientType = clientType;
+		this.owner = owner;
+	}
+
+
+
+	public ClientType getClientType() {
+		return clientType;
+	}
+
+
+
+	public void setClientType(ClientType clientType) {
+		this.clientType = clientType;
+	}
+
+
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 
 
