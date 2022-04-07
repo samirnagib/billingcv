@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import model.services.BillTagsServices;
 import model.services.ClientServices;
 import model.services.ClientTypeServices;
+import model.services.InputBillServices;
 import model.services.OwnerServices;
 import model.services.UsersServices;
 
@@ -107,7 +108,11 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuChargeBackAction() {
-		System.out.println("onMenuChargeBackAction");	
+		loadView("/gui/InputBillList.fxml", (InputBillListController controller) -> {
+			controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
+			controller.loadAssociatedObjects();
+			controller.updateTableView("ALL");
+		});
 		
 	}
 	@FXML
@@ -166,7 +171,7 @@ public class MainFormController implements Initializable {
 		}
 		catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loadind view", e.getMessage(), AlertType.ERROR);
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 	}

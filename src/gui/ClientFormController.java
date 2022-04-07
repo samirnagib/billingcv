@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import model.entities.Client;
 import model.entities.ClientType;
+import model.entities.InputBill;
 import model.entities.Owner;
 import model.exceptions.ValidationException;
 import model.services.ClientServices;
@@ -232,5 +233,6 @@ public class ClientFormController implements Initializable {
 			lbError1.setText(errors.get("name"));
 		}
 	}
-	
+
+	 
 }

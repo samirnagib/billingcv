@@ -148,6 +148,8 @@ public class ClientDaoJDBC implements ClientDao {
 		client.setClientType(clientType);
 		return client;
 	}
+	
+	
 
 	private Owner instantiateOwner(ResultSet rs) throws SQLException {
 		Owner owner = new Owner();
@@ -240,6 +242,8 @@ public class ClientDaoJDBC implements ClientDao {
 			DB.closeResultSet(rs);
 		}
 	}
+	
+	
 
 	
 
@@ -349,5 +353,7 @@ public class ClientDaoJDBC implements ClientDao {
 			return false;
 		
 	}
+
+	
 
 }

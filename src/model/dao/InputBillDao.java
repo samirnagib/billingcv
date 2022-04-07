@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 
+import model.entities.Client;
 import model.entities.InputBill;
 
 public interface InputBillDao {
@@ -13,5 +14,7 @@ public interface InputBillDao {
 	InputBill findById(Integer id);
 	List<InputBill> findByCompetencia(String competencia);
 	List<InputBill> findAll();
+	List<InputBill> listCpts();
+	List<InputBill> listDistinctClient();
 
 }

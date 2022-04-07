@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<VBox prefHeight="768.0" prefWidth="1081.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InputBillListController">
    <children>
       <Label text="Registro do movimento de rateio">
          <font>
@@ -24,27 +23,29 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Nova Movimentação" />
+          <Button fx:id="btNovo" mnemonicParsing="false" onAction="#btNovoOnAction" text="Novo" />
             <Label text="Selecione a Competência:" />
-            <ComboBox prefWidth="150.0" />
-            <CheckBox mnemonicParsing="false" text="Filtrar por Cliente" />
-            <ComboBox prefHeight="25.0" prefWidth="297.0" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Recalcular" />
+            <ComboBox fx:id="cbCompetencia" onAction="#cbCompetenciaOnAction" prefWidth="150.0" />
+            <CheckBox fx:id="chkFilter" mnemonicParsing="false" onAction="#chkFilterOnAction" text="Filtrar por Cliente" />
+            <ComboBox fx:id="cbClientes" disable="true" onAction="#cbClientesOnAction" prefHeight="25.0" prefWidth="235.0" />
+            <Button fx:id="btClearFilters" mnemonicParsing="false" onAction="#btClearFiltersOnAction" text="Limpar Filtros" />
+            <Button fx:id="btEraseCPT" mnemonicParsing="false" onAction="#btEraseCPTOnAction" text="Apagar Competência" />
+            <Button fx:id="btRecalcular" mnemonicParsing="false" onAction="#btRecalcularOnAction" prefHeight="25.0" prefWidth="108.0" text="Recalcular" />
         </items>
       </ToolBar>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewFatura" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="Competencia" />
-            <TableColumn prefWidth="150.0" text="Client Name" />
-            <TableColumn prefWidth="150.0" text="Faixa dr Cobrança" />
-            <TableColumn prefWidth="150.0" text="Agente" />
-            <TableColumn prefWidth="150.0" text="Instância" />
-            <TableColumn prefWidth="150.0" text="Backupset" />
-            <TableColumn prefWidth="150.0" text="SubClient" />
-            <TableColumn prefWidth="75.0" text="Valor Total" />
-            <TableColumn prefWidth="70.0" text="Edit" />
-            <TableColumn prefWidth="70.0" text="Delete" />
+          <TableColumn fx:id="tc_idInputBill" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tc_ib_ano_mes" prefWidth="75.0" text="Competencia" />
+            <TableColumn fx:id="tc_ClientName" prefWidth="150.0" text="Client Name" />
+            <TableColumn fx:id="tc_BillTag" prefWidth="150.0" text="Faixa de Cobrança" />
+            <TableColumn fx:id="tc_Agente" prefWidth="150.0" text="Agente" />
+            <TableColumn fx:id="tc_Instancia" prefWidth="150.0" text="Instância" />
+            <TableColumn fx:id="tc_BackupSet" prefWidth="150.0" text="Backupset" />
+            <TableColumn fx:id="tc_SubClient" prefWidth="150.0" text="SubClient" />
+            <TableColumn fx:id="tc_Total" prefWidth="75.0" text="Valor Total" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="70.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="70.0" />
         </columns>
       </TableView>
    </children>

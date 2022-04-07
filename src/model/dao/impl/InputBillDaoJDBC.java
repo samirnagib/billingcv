@@ -35,6 +35,7 @@ public class InputBillDaoJDBC implements InputBillDao {
 	
 	private InputBill instantiateBill(ResultSet rs, BillTags billTags, Client client, ClientType clientType, Owner owner) throws SQLException {
 		InputBill fatura = new InputBill();
+		fatura.setIdInputBill(rs.getInt("idInputBill"));
 		fatura.setId_billTag(rs.getInt("id_billTag"));
 		fatura.setIb_ano_mes(rs.getString("ib_ano_mes"));
 		fatura.setBilltag(billTags);
@@ -56,6 +57,19 @@ public class InputBillDaoJDBC implements InputBillDao {
 		
 		return fatura;
 	}
+	
+	private InputBill instantiateBillSimpleCpt(ResultSet rs) throws SQLException {
+		InputBill fatura = new InputBill();
+		fatura.setIb_ano_mes(rs.getString("ib_ano_mes"));
+		return fatura;
+	}
+	
+	private InputBill instantiateBillSimpleClient(ResultSet rs, Client client) throws SQLException {
+		InputBill fatura = new InputBill();
+		fatura.setClient(client);
+		return fatura;
+	}
+	
 	
 	private BillTags instantiatebillTags(ResultSet rs) throws SQLException {
 		BillTags billTags = new BillTags();
@@ -89,6 +103,13 @@ public class InputBillDaoJDBC implements InputBillDao {
 		client.setClientHostname(rs.getString("clientHostname"));
 		client.setOwner(owner);
 		client.setClientType(clientType);
+		return client;
+	}
+	
+	private Client instatiateSimpleClient(ResultSet rs) throws SQLException {
+		Client client = new Client();
+		
+		client.setClientName(rs.getString("clientName"));
 		return client;
 	}
 	
@@ -353,6 +374,79 @@ public class InputBillDaoJDBC implements InputBillDao {
 				InputBill obj = instantiateBill(rs, bt, cl, ct, ow);
 				list.add(obj);
 			
+			}
+			return list;
+			
+		}catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+		
+	}
+	// listagem das competencias cadastradas
+	public List<InputBill> listCpts() {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			st = conn.prepareStatement("select distinct ib_ano_mes from inputBill;");
+			
+			rs = st.executeQuery();
+			
+			List<InputBill> list = new ArrayList<>();
+			Map<String, InputBill> mapBill = new HashMap<>();
+			
+			while (rs.next()) {
+				InputBill ibCpt = mapBill.get(rs.getString("ib_ano_mes"));
+				
+				
+				InputBill obj = instantiateBillSimpleCpt(rs);
+				list.add(obj);
+			
+			}
+			return list;
+			
+		}catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+		
+	}
+
+
+	@Override
+	public List<InputBill> listDistinctClient() {
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			st = conn.prepareStatement("select distinct clientes.clientName from inputBill INNER JOIN clientes ON inputBill.id_client = clientes.idClient;");
+			
+			rs = st.executeQuery();
+			
+			List<InputBill> list = new ArrayList<>();
+			Map<String, InputBill> mapBill = new HashMap<>();
+			Map<String, Client> mapClient = new HashMap<>();
+			
+			while (rs.next()) {
+				
+				Client cl = mapClient.get(rs.getString("clientName"));
+				if ( cl == null ) {
+					cl = instatiateSimpleClient(rs);
+					mapClient.put(rs.getString("clientName"), cl);
+				}
+				
+				InputBill obj = instantiateBillSimpleClient(rs, cl); 
+				list.add(obj);
+				
+				
 			}
 			return list;
 			

@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.entities.Client;
 import model.entities.ClientType;
+import model.entities.InputBill;
 import model.entities.Owner;
 
 public interface ClientDao {
@@ -17,6 +18,7 @@ public interface ClientDao {
 	List<Client> findByClientType(ClientType clientType);
 	List<Client> findByOwner(Owner owner);
 	boolean searchByName(String clientName);
+	
 	
 	
 }
