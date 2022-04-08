@@ -55,12 +55,12 @@ public class InputBillListController implements Initializable, DataChangeListene
 	
 	@FXML
 	private Button btClearFilters;
+
+	@FXML
+	private ComboBox<String> cbCompetencia;
 	
 	@FXML
-	private ComboBox<InputBill> cbCompetencia;
-	
-	@FXML
-	private ComboBox<InputBill> cbClientes;
+	private ComboBox<String> cbClientes;
 	
 	@FXML
 	private CheckBox chkFilter;
@@ -107,9 +107,13 @@ public class InputBillListController implements Initializable, DataChangeListene
 	private OwnerServices owServices;
 	private BillTagsServices btServices;
 	
-	private ObservableList<InputBill> obsListClient;
-	private ObservableList<InputBill> obsListIBCPT;
+	private ObservableList<String> obsListClient;
+	
+	private ObservableList<String> obsListIBCPT;
 	private ObservableList<InputBill> obsListIBTV;
+	
+	private List<String> Servidores = new ArrayList<>();	
+	private List<String> Meses = new ArrayList<>();
 	
 	public void setServices(InputBillServices ibServices, ClientServices clServices, ClientTypeServices ctServices, OwnerServices owServices, BillTagsServices btServices) {
 		this.ibServices = ibServices;
@@ -126,8 +130,8 @@ public class InputBillListController implements Initializable, DataChangeListene
 	private void chkFilterOnAction() {
 		if ( chkFilter.selectedProperty().getValue() == true ) {
 			cbClientes.setDisable(false);
-			loadClientObjects();
-			initializeComboBoxClientes();
+			//loadClientObjects();
+			//initializeComboBoxClientes();
 			
 		} else {
 			cbClientes.getSelectionModel().clearSelection();
@@ -155,25 +159,20 @@ public class InputBillListController implements Initializable, DataChangeListene
 	
 	@FXML
 	private void btClearFiltersOnAction(ActionEvent e) {
-		System.out.println("btClearFilters");
-		cbCompetencia.getSelectionModel().clearAndSelect(0);
-		initializeComboBoxCompetencia();
+		//cbCompetencia.getSelectionModel().clearAndSelect(0);
+		chkFilter.fire();
 		updateTableView("ALL");
 	};
 	
 	@FXML
 	private void cbCompetenciaOnAction() {
-		cbCompetencia.setOnAction(e -> {
-			InputBill ib = new InputBill();
-			ib = cbCompetencia.getValue();
-			updateTableView((String) ib.getIb_ano_mes()) ;
-			System.out.println(ib.getIb_ano_mes());
-		});
+		System.out.println(cbCompetencia.getValue());
+		String competencia = cbCompetencia.getValue();
+		updateTableView(competencia);
 	}
 	
 	@FXML
 	private void cbClientesOnAction() {
-		System.out.println("cbClientesOnAction");
 		System.out.println(cbClientes.getValue());
 	}
 	
@@ -246,7 +245,7 @@ public class InputBillListController implements Initializable, DataChangeListene
 		Utils.formatTableColumnDouble(tc_Total, 2);
 		
 		
-		initializeComboBoxCompetencia();
+		// initializeComboBoxCompetencia();
 		
 		Stage stage = (Stage) LoginController.getMainScene().getWindow();
 		tableViewFatura.prefHeightProperty().bind(stage.heightProperty());
@@ -261,22 +260,36 @@ public class InputBillListController implements Initializable, DataChangeListene
 		List<InputBill> lstCpt = ibServices.listCompetencia();
 		List<InputBill> lstClientes = ibServices.listDistinctClient();
 		
-		obsListIBCPT = FXCollections.observableArrayList(lstCpt);
+		for ( InputBill ib : lstCpt ) {
+			Meses.add(ib.getIb_ano_mes()) ;
+		}
+		
+
+		for ( InputBill ib : lstClientes ) {
+			Servidores.add(ib.getClient().getClientName().toUpperCase()) ;
+		}
+		
+		
+		obsListIBCPT = FXCollections.observableArrayList(Meses);
 		cbCompetencia.setItems(obsListIBCPT);
 		
-		obsListClient = FXCollections.observableArrayList(lstClientes);
+		obsListClient = FXCollections.observableArrayList(Servidores);
 		cbClientes.setItems(obsListClient);
 			
 	}
 	
-	private void loadClientObjects() {
-		if (ibServices == null ) {
-			throw new IllegalStateException("ibServices was nulll");
-		}
-		List<InputBill> lstClientes = ibServices.listDistinctClient();
-		obsListClient = FXCollections.observableArrayList(lstClientes);
-		cbClientes.setItems(obsListClient);
-	}
+//	private void loadClientObjects() {
+//		if (ibServices == null ) {
+//			throw new IllegalStateException("ibServices was nulll");
+//		}
+//		List<InputBill> lstClientes = ibServices.listDistinctClient();
+//		for ( InputBill ib : lstClientes ) {
+//			Servidores.add(ib.getClient().getClientName().toUpperCase()) ;
+//		}
+//
+//		obsListClient = FXCollections.observableArrayList(Servidores);
+//		cbClientes.setItems(obsListClient);
+//	}
 	
 	public void updateTableView(String Method) {
 		if (ibServices == null) {
@@ -296,29 +309,29 @@ public class InputBillListController implements Initializable, DataChangeListene
 //		initRemoveButtons(); 
 	}
 	
-	private void initializeComboBoxCompetencia() {
-		Callback<ListView<InputBill>, ListCell<InputBill>> factory = lv -> new ListCell<InputBill>() {
-			@Override
-			protected void updateItem(InputBill item, boolean empty) {
-				super.updateItem(item, empty);
-				setText(empty ? "" : item.getIb_ano_mes());
-			}
-		};
-		cbCompetencia.setCellFactory(factory);
-		cbCompetencia.setButtonCell(factory.call(null)); 
-	}
-	
-	private void initializeComboBoxClientes() {
-		Callback<ListView<InputBill>, ListCell<InputBill>> factory = lv -> new ListCell<InputBill>() {
-			@Override
-			protected void updateItem(InputBill item, boolean empty) {
-				super.updateItem(item, empty);
-				setText(empty ? "" : item.getClient().getClientName());
-			}
-		};
-		cbClientes.setCellFactory(factory);
-		cbClientes.setButtonCell(factory.call(null)); 
-	}
+//	private void initializeComboBoxCompetencia() {
+//		Callback<ListView<String>, ListCell<String>> factory = lv -> new ListCell<String>() {
+//			@Override
+//			protected void updateItem(String item, boolean empty) {
+//				super.updateItem(item, empty);
+//				setText(empty ? "" : item.);
+//			}
+//		};
+//		cbCompetencia.setCellFactory(factory);
+//		cbCompetencia.setButtonCell(factory.call(null)); 
+//	}
+//	
+//	private void initializeComboBoxClientes() {
+//		Callback<ListView<InputBill>, ListCell<InputBill>> factory = lv -> new ListCell<InputBill>() {
+//			@Override
+//			protected void updateItem(InputBill item, boolean empty) {
+//				super.updateItem(item, empty);
+//				setText(empty ? "" : item.getClient().getClientName());
+//			}
+//		};
+//		cbClientes.setCellFactory(factory);
+//		cbClientes.setButtonCell(factory.call(null)); 
+//	}
 	
 
 	@Override

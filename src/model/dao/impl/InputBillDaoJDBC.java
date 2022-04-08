@@ -419,7 +419,7 @@ public class InputBillDaoJDBC implements InputBillDao {
 		
 	}
 
-
+	// LISTAGEM DOS CLIENTES CADASTRADOS.
 	@Override
 	public List<InputBill> listDistinctClient() {
 		
@@ -427,7 +427,7 @@ public class InputBillDaoJDBC implements InputBillDao {
 		ResultSet rs = null;
 		try {
 			
-			st = conn.prepareStatement("select distinct clientes.clientName from inputBill INNER JOIN clientes ON inputBill.id_client = clientes.idClient;");
+			st = conn.prepareStatement("select distinct clientes.clientName from inputBill INNER JOIN clientes ON inputBill.id_client = clientes.idClient order by clientes.clientName");
 			
 			rs = st.executeQuery();
 			
