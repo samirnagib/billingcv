@@ -18,6 +18,10 @@ public class InputBillServices {
 		return dao.findByCompetencia(competencia);
 	}
 	
+	public List<InputBill> findByCompetenciaAndClient(String competencia, String Server) {
+		return dao.findByCompetenciaAndClient(competencia, Server);
+	}
+	
 	public void saveORupdate(InputBill obj) {
 		if (obj.getId_billTag() == null) {
 			dao.insert(obj);

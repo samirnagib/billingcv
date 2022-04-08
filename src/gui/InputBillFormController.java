@@ -23,6 +23,13 @@ public class InputBillFormController implements Initializable {
 	private ClientTypeServices ctServices;
 	private OwnerServices owServices;
 	private BillTagsServices btServices;
+	private InputBill entity;
+	
+	
+	
+	public void setInputBill(InputBill entity) {
+		this.entity = entity;
+	}
 	
 	public void setServices(InputBillServices ibServices, ClientServices clServices, ClientTypeServices ctServices, OwnerServices owServices, BillTagsServices btServices) {
 		this.ibServices = ibServices;

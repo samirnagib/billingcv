@@ -115,6 +115,8 @@ public class InputBillListController implements Initializable, DataChangeListene
 	private List<String> Servidores = new ArrayList<>();	
 	private List<String> Meses = new ArrayList<>();
 	
+	private String competencia;
+	
 	public void setServices(InputBillServices ibServices, ClientServices clServices, ClientTypeServices ctServices, OwnerServices owServices, BillTagsServices btServices) {
 		this.ibServices = ibServices;
 		this.clServices = clServices;
@@ -130,12 +132,9 @@ public class InputBillListController implements Initializable, DataChangeListene
 	private void chkFilterOnAction() {
 		if ( chkFilter.selectedProperty().getValue() == true ) {
 			cbClientes.setDisable(false);
-			//loadClientObjects();
-			//initializeComboBoxClientes();
-			
+						
 		} else {
-			cbClientes.getSelectionModel().clearSelection();
-			cbClientes.getItems().clear();
+			updateTableView("ALL", null, null);
 			cbClientes.setDisable(true);
 			
 		}
@@ -143,8 +142,13 @@ public class InputBillListController implements Initializable, DataChangeListene
 	}
 	
 	@FXML
-	private void btNovoOnAction() {
-		System.out.println("btNovoOnAction");
+	private void btNovoOnAction(ActionEvent event) {
+		//System.out.println("btNovoOnAction");
+		Stage parentStage = Utils.currentStage(event);
+		InputBill obj = new InputBill();
+		createDialogForm(obj, "/gui/InputBillForm.fxml", parentStage);
+		
+		
 	};
 	
 	@FXML
@@ -159,21 +163,22 @@ public class InputBillListController implements Initializable, DataChangeListene
 	
 	@FXML
 	private void btClearFiltersOnAction(ActionEvent e) {
-		//cbCompetencia.getSelectionModel().clearAndSelect(0);
 		chkFilter.fire();
-		updateTableView("ALL");
+		competencia= "";
+		cbCompetencia.getSelectionModel().selectFirst();
+		updateTableView("ALL", null, null);
 	};
 	
 	@FXML
 	private void cbCompetenciaOnAction() {
-		System.out.println(cbCompetencia.getValue());
-		String competencia = cbCompetencia.getValue();
-		updateTableView(competencia);
+		competencia = cbCompetencia.getValue();
+		updateTableView("CPT",competencia,null);
 	}
 	
 	@FXML
 	private void cbClientesOnAction() {
-		System.out.println(cbClientes.getValue());
+		String servidor = cbClientes.getValue();
+		updateTableView("SRV", competencia, servidor);
 	}
 	
 	@Override
@@ -189,14 +194,14 @@ public class InputBillListController implements Initializable, DataChangeListene
 			
 			InputBillFormController controller = loader.getController();
 			
-			
-			controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
-			controller.loadAssociatedObjects();
-			controller.subscribeDataChangeListener(this);
-			controller.updateFormData();
+			//controller.setInputBill(obj);
+			//controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
+			//controller.loadAssociatedObjects();
+			//controller.subscribeDataChangeListener(this);
+			//controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Entre com dos dados do Cliente:");
+			dialogStage.setTitle("Registro de Movimentação única:");
 			dialogStage.setScene(new Scene(pane));
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(parentStage);
@@ -291,15 +296,31 @@ public class InputBillListController implements Initializable, DataChangeListene
 //		cbClientes.setItems(obsListClient);
 //	}
 	
-	public void updateTableView(String Method) {
+	public void updateTableView(String Method, String competencia, String servidor) {
+		/* DEFAULTS PARAMETERS
+		 *  ALL - List All Clientes and Competencias
+		 * 	CPT - Filter by Competencia
+		 *  SRV - Filter by Compentencia and Clients
+		 */
 		if (ibServices == null) {
 			throw new IllegalStateException("O Service estava nulo");
 		}
 		List<InputBill> list = new ArrayList<>();
 		if (Method.equals("ALL") ) {
 			list = ibServices.findAll();
-		} else {
-			list = ibServices.findByCompetencia(Method);
+		} else if (Method.equals("CPT") )  {
+			if (competencia != null ) {
+				list = ibServices.findByCompetencia(competencia);
+			} else {
+				throw new IllegalArgumentException("Os parametros Competencia e Servidor não podem estar vazios");
+			}
+			
+		} else if (Method.equals("SRV") )  {
+			if (competencia != null && servidor != null) {
+				list = ibServices.findByCompetenciaAndClient(competencia, servidor);
+			} else {
+				throw new IllegalArgumentException("Os parametros Competencia e Servidor não podem estar vazios");
+			}
 		}
 		
 		obsListIBTV = FXCollections.observableArrayList(list);
@@ -336,7 +357,7 @@ public class InputBillListController implements Initializable, DataChangeListene
 
 	@Override
 	public void onDataChanged() {
-		updateTableView("ALL");
+		updateTableView("ALL",null,null);
 		
 	}
 

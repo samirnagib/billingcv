@@ -460,4 +460,66 @@ public class InputBillDaoJDBC implements InputBillDao {
 		
 	}
 
+
+	@Override
+	public List<InputBill> findByCompetenciaAndClient(String competencia, String Server) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			st = conn.prepareStatement("SELECT inputBill.idInputBill, inputBill.id_billTag, inputBill.ib_ano_mes, inputBill.id_client,clientes.idClient, clientes.clientName, clientes.clientHostname, billTags.idbillTag, billTags.billtagName, billTags.billPriceTB, inputBill.cv_agent, inputBill.cv_instance, inputBill.cv_backupset,inputBill.cv_subclient, inputBill.cv_storagepolicy, inputBill.cv_copyname, inputBill.cv_febackupsize, inputBill.cv_fearchivesize, inputBill.cv_primaryappsize, inputBill.cv_protectedappsize, inputBill.cv_mediasize, inputBill.ib_taxcalculated, clientType.idType,clientType.typeName, owner.idOwner, owner.owName, owner.owProjectArea, owner.owAR\r\n"  
+					+ "from inputBill INNER JOIN billTags ON  inputBill.id_billTag = billTags.idbillTag INNER JOIN clientes ON inputBill.id_client = clientes.idClient INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner\r\n"
+					+ "WHERE inputBill.ib_ano_mes = ? AND clientes.clientName = ?");
+			st.setString(1, competencia);
+			st.setString(2, Server);
+			rs = st.executeQuery();
+			
+			List<InputBill> list = new ArrayList<>();
+			Map<Integer, BillTags> mapBT = new HashMap<>();
+			Map<Integer, Client> mapClient = new HashMap<>();
+			Map<Integer, ClientType> mapCT = new HashMap<>();
+			Map<Integer, Owner> mapO = new HashMap<>();
+			
+			while (rs.next()) {
+				BillTags bt = mapBT.get(rs.getInt("idbillTag"));
+				if (bt == null) {
+					bt = instantiatebillTags(rs);
+					mapBT.put(rs.getInt("idbillTag"), bt);
+				}
+				
+				
+				ClientType ct = mapCT.get(rs.getInt("idType"));
+				if (ct == null) {
+					ct = instatiateClientType(rs);
+					mapCT.put(rs.getInt("idType"), ct);
+				}
+				
+				Owner ow = mapO.get(rs.getInt("idOwner"));
+				if (ow == null ) {
+					ow = instantiateOwner(rs);
+					mapO.put(rs.getInt("idOwner"), ow);
+				}
+
+				Client cl = mapClient.get(rs.getInt("idClient"));
+				if ( cl == null ) {
+					cl = instatiateClient(rs, ct, ow);
+					mapClient.put(rs.getInt("idClient"), cl);
+				}
+				
+				InputBill obj = instantiateBill(rs, bt, cl, ct, ow);
+				list.add(obj);
+			
+			}
+			return list;
+			
+		}catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+			
+	}
+
 }

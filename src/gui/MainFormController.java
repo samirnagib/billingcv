@@ -111,7 +111,7 @@ public class MainFormController implements Initializable {
 		loadView("/gui/InputBillList.fxml", (InputBillListController controller) -> {
 			controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
 			controller.loadAssociatedObjects();
-			controller.updateTableView("ALL");
+			controller.updateTableView("ALL",null, null);
 		});
 		
 	}
