@@ -2,6 +2,8 @@ package model.services;
 
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSplitPaneUI;
+
 import model.dao.DaoFactory;
 import model.dao.InputBillDao;
 import model.entities.InputBill;
@@ -31,7 +33,8 @@ public class InputBillServices {
 	}
 	
 	public void remove(InputBill obj) {
-		dao.deleteById(obj.getId_billTag());
+		System.out.println(obj.getIdInputBill());
+		dao.deleteById(obj.getIdInputBill());
 	}
 	
 	public void removeCompetencia(String competencia) {

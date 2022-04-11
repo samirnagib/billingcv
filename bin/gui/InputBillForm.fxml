@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="655.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="655.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InputBillFormController">
    <children>
       <GridPane layoutX="41.0" layoutY="30.0" prefHeight="544.0" prefWidth="785.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
@@ -59,21 +59,21 @@
             <Label text="Total:" GridPane.rowIndex="16" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="17">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Salvar" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Cancelar" />
+                  <Button fx:id="btSave" mnemonicParsing="false" onAction="#btSaveOnAction" prefHeight="25.0" prefWidth="75.0" text="Salvar" />
+                  <Button fx:id="btCancel" mnemonicParsing="false" onAction="#btCancelOnAction" prefHeight="25.0" prefWidth="75.0" text="Cancelar" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </HBox>
-            <Label GridPane.columnIndex="1">
+            <Label fx:id="lbl_idInputBill" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label contentDisplay="CENTER">
+                  <Label fx:id="lblAnoMes" contentDisplay="CENTER" visible="false">
                      <padding>
                         <Insets right="5.0" top="5.0" />
                      </padding>
@@ -81,33 +81,33 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <ComboBox prefHeight="25.0" prefWidth="91.0">
+                  <ComboBox fx:id="cbMes" prefHeight="25.0" prefWidth="91.0" visible="false">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
                   </ComboBox>
-                  <ComboBox prefHeight="25.0" prefWidth="89.0" />
+                  <ComboBox fx:id="cbAno" prefHeight="25.0" prefWidth="89.0" visible="false" />
                </children>
             </HBox>
-            <ComboBox prefHeight="25.0" prefWidth="346.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="14" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="15" />
-            <TextField alignment="CENTER_RIGHT" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="16">
+            <ComboBox fx:id="cbBillTags" onAction="#cbBillTagsOnAction" prefHeight="25.0" prefWidth="346.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cbServidor" onKeyPressed="#cbServidor" prefHeight="25.0" prefWidth="349.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtAgente" onKeyPressed="#txtAgente" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtInstancia" onKeyPressed="#txtInstancia" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtBackupSet" onKeyPressed="#txtBackupSet" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtSubClient" onKeyPressed="#txtSubClient" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txtStoragePolicy" onKeyPressed="#txtStoragePolicy" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="txtCopy" onKeyPressed="#txtCopy" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="txtFEBackup" onKeyPressed="#txtFEBackup" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="txtFEArchive" onKeyPressed="#txtFEArchive" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="txtPrimaryApp" onKeyPressed="#txtPrimaryApp" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <TextField fx:id="txtProtectedApp" onKeyPressed="#txtProtectedApp" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <TextField fx:id="txtMediaSize" onKeyPressed="#txtMediaSize" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <TextField fx:id="txtTotal" alignment="CENTER_RIGHT" editable="false" onKeyPressed="#txtTotalOnKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="16">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </TextField>
-            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="txtVRFaixa" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
          </children>
       </GridPane>
    </children>
