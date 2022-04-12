@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="829e1ad1-3874-4bad-af37-23b2d7895504">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[b3duZXIgLDEyNiwxMzAsNDJkNThmMmUtMmIyZC00MTc1LTk5MmMtYmE3MDEyNjgyZTk0O2NsaWVu
+dGVzICwxNSw3MixlNDkyOTg1ZC02NTljLTQ1YzAtOWVmMC1jMmZkY2I3MTI5MWU7YGNsaWVudFR5
+cGVgICwxMjYsMTUsNTllYzFkMzUtOWZhYi00OWFmLWJiYTQtYmRmMDlhMTliOTMzOw==]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="cvbillinf_tst"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT clientes.*,
+	`clientType`.`typeName`,
+	owner.`owName`
+FROM clientes
+	INNER JOIN `clientType` ON 
+	 clientes.`idType` = `clientType`.`idType` 
+	INNER join owner ON 
+	 clientes.`idOwner` = owner.`idOwner`]]>
+	</queryString>
+	<field name="idClient" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idClient"/>
+		<property name="com.jaspersoft.studio.field.label" value="idClient"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="clientName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="clientName"/>
+		<property name="com.jaspersoft.studio.field.label" value="clientName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="clientHostname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="clientHostname"/>
+		<property name="com.jaspersoft.studio.field.label" value="clientHostname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="idType" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idType"/>
+		<property name="com.jaspersoft.studio.field.label" value="idType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="idOwner" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idOwner"/>
+		<property name="com.jaspersoft.studio.field.label" value="idOwner"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="typeName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="typeName"/>
+		<property name="com.jaspersoft.studio.field.label" value="typeName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clienttype"/>
+	</field>
+	<field name="owName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="owName"/>
+		<property name="com.jaspersoft.studio.field.label" value="owName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owner"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<image>
+				<reportElement x="20" y="6" width="40" height="44" uuid="690080f8-5c0e-4fa6-8be1-a7f996e35a6b"/>
+				<imageExpression><![CDATA["/imagens/GloboEdit.fw.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="70" y="6" width="274" height="30" uuid="81852212-56ff-47b5-ad4e-9515c5ba5b5b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE CLIENTES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="13">
+			<staticText>
+				<reportElement x="0" y="0" width="137" height="13" uuid="49bab3c3-e1b1-4570-b294-5e81968871a8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[SERVIDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="0" width="138" height="13" uuid="e78c8fdf-f24f-47ae-b2a2-1a8955d200b2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[HOSTNAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="148" height="13" uuid="c585bfc7-76a1-4ed8-9405-1092b5612778"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TIPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="0" width="116" height="13" uuid="b6a13b79-60b3-4188-bb33-fb4737ce2e09"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[RESPONSÁVEL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField>
+				<reportElement x="1" y="1" width="136" height="14" uuid="b824624a-822e-41fc-9648-a29d07c88dbc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clientName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="1" width="138" height="14" uuid="952e84b2-e029-4a72-a384-5a14e5dc8d2b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9515101e-b14d-4429-8eb8-a7c33bc79df5"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clientHostname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="1" width="148" height="14" uuid="39833159-3570-4e04-996c-596c77555e9e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="313b15e0-000d-4b26-b991-c25b58100455"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{typeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="1" width="116" height="14" uuid="4bcce196-e9d6-418e-b160-a8c34ca701de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="80ec4688-cbf2-4ba8-bdab-47982ae55333"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{owName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="446" y="0" width="60" height="13" uuid="24724433-258f-4a50-806b-7eeae8b84e93"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="506" y="0" width="47" height="13" uuid="a5cb670a-9fe2-4fdc-ba5b-3c285fb3a89c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

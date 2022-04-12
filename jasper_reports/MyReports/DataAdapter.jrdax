@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>Clientes</name>
+  <classpath>D:\java-libs\mysql-connector-java-8.0.28\mysql-connector-java-8.0.28.jar</classpath>
+  <driver>com.mysql.jdbc.Driver</driver>
+  <username>appuser</username>
+  <password>Robot@032022</password>
+  <url>jdbc:mysql://mybd001.mysql.database.azure.com:3306/cvbill_tst?allowPublicKeyRetrieval=true&amp;useSSL=true</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+  <transactionIsolation>SERIALIZABLE</transactionIsolation>
+</jdbcDataAdapter>

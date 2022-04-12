@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>billingcv</name>
+	<name>MyReports</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -11,20 +11,13 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<name>net.sf.jasperreports.builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>net.sf.jasperreports.nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/report/GloboEdit.fw.png</name>
-			<type>1</type>
-			<location>D:/hds/Billing/workspace/billingcv/imagens/GloboEdit.fw.png</location>
-		</link>
-	</linkedResources>
 </projectDescription>
