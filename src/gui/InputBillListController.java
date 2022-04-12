@@ -167,7 +167,7 @@ public class InputBillListController implements Initializable, DataChangeListene
 	private void btRecalcularOnAction() {
 		System.out.println("btRecalcularOnAction");
 		if (competencia == null) {
-			Alerts.showAlert("MENSAGEM DE ERRO", null, "Favor seleciona uma competência", AlertType.ERROR);
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "Favor seleciona uma competï¿½ncia", AlertType.ERROR);
 			cbCompetencia.requestFocus();
 		} else {
 			
@@ -195,6 +195,7 @@ public class InputBillListController implements Initializable, DataChangeListene
 				ibServices.saveORupdate(item);
 				
 			}
+			Alerts.showAlert("AVISO", "", "RecÃ¡lculo completo.", AlertType.INFORMATION);
 			updateTableView("CPT", competencia, null);
 		}
 		
@@ -206,7 +207,7 @@ public class InputBillListController implements Initializable, DataChangeListene
 	private void btEraseCPTOnAction() {
 		//System.out.println("btEraseCPTOnAction");
 		if (competencia == null) {
-			Alerts.showAlert("MENSAGEM DE ERRO", null, "Favor seleciona uma competência", AlertType.ERROR);
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "Favor seleciona uma competï¿½ncia", AlertType.ERROR);
 			cbCompetencia.requestFocus();
 		} else {
 			ibServices.removeCompetencia(competencia);
@@ -260,7 +261,7 @@ public class InputBillListController implements Initializable, DataChangeListene
 			
 			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Registro de Movimentação única:");
+			dialogStage.setTitle("Registro de Movimentaï¿½ï¿½o ï¿½nica:");
 			dialogStage.setScene(new Scene(pane));
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(parentStage);
@@ -360,14 +361,14 @@ public class InputBillListController implements Initializable, DataChangeListene
 			if (competencia != null ) {
 				list = ibServices.findByCompetencia(competencia);
 			} else {
-				throw new IllegalArgumentException("Os parametros Competencia e Servidor não podem estar vazios");
+				throw new IllegalArgumentException("Os parametros Competencia e Servidor nï¿½o podem estar vazios");
 			}
 			
 		} else if (Method.equals("SRV") )  {
 			if (competencia != null && servidor != null) {
 				list = ibServices.findByCompetenciaAndClient(competencia, servidor);
 			} else {
-				throw new IllegalArgumentException("Os parametros Competencia e Servidor não podem estar vazios");
+				throw new IllegalArgumentException("Os parametros Competencia e Servidor nï¿½o podem estar vazios");
 			}
 		}
 		

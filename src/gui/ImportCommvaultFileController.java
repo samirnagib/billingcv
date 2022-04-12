@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.Event;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,10 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-import javax.swing.plaf.synth.SynthSplitPaneUI;
-
-import com.sun.javafx.binding.StringFormatter;
 
 import gui.util.Alerts;
 import gui.util.Constraints;
@@ -149,7 +145,7 @@ public class ImportCommvaultFileController implements Initializable {
 	private Integer idOwner;
  
 	
-	//variavel auxiliar para formação da competencia
+	//variavel auxiliar para formaï¿½ï¿½o da competencia
 	private String cptMES;
 	private String cptANO;
 	private String path;
@@ -171,7 +167,7 @@ public class ImportCommvaultFileController implements Initializable {
 	List<Client> newClientList  = new ArrayList<>();
 	
 	
-	// conexão com banco de dados
+	// conexï¿½o com banco de dados
 	
 	BillTagsDao btDao = DaoFactory.createBillTagsDao();
 	ClientDao clDao = DaoFactory.createClientDao();
@@ -211,7 +207,7 @@ public class ImportCommvaultFileController implements Initializable {
 	private void btImportarOnAction (ActionEvent event) {
 		// System.out.println("btImportarOnAction");
 		if (txtAno.getText()==null || txtAno.getText().trim().equals("")) {
-			Alerts.showAlert("Mensagem de Erro", null, "O Campo Ano não pode estar vazio", AlertType.ERROR);
+			Alerts.showAlert("Mensagem de Erro", null, "O Campo Ano nï¿½o pode estar vazio", AlertType.ERROR);
 			txtAno.requestFocus();
 		}
 		cptANO = txtAno.getText();
@@ -323,8 +319,8 @@ public class ImportCommvaultFileController implements Initializable {
 				 int numNvCl = newClientList.size();
 				 
 				 if ( numNvBT > 0 ) {
-					 Alerts.showAlert("AVISO DE NOVA FAIXA DE COBRANÇA", null, "Foram encontrados " + numNvBT + " nova(s) faixas de cobrança", AlertType.INFORMATION);
-					 Alerts.showAlert("AVISO DE NOVA FAIXA DE COBRANÇA", "O relatório com as novas faixas estão no caminho abaixo:", pathSave + "NovasFaixas.txt", AlertType.INFORMATION);
+					 Alerts.showAlert("AVISO DE NOVA FAIXA DE COBRANï¿½A", null, "Foram encontrados " + numNvBT + " nova(s) faixas de cobranï¿½a", AlertType.INFORMATION);
+					 Alerts.showAlert("AVISO DE NOVA FAIXA DE COBRANï¿½A", "O relatï¿½rio com as novas faixas estï¿½o no caminho abaixo:", pathSave + "NovasFaixas.txt", AlertType.INFORMATION);
 					 try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathSave + "NovasFaixas.txt"))) {
 						 for (BillTags item : newBTagList ) {
 							 bw.write("Codigo : " + item.getIdbillTag() +" - Nome da Faixa: " + item.getBilltagName());
@@ -339,7 +335,7 @@ public class ImportCommvaultFileController implements Initializable {
 				 
 				 if ( numNvCl > 0 ) {
 					 Alerts.showAlert("AVISO DE NOVO CLIENTE", null, "Foram encontrados " + numNvCl + " novo(s) clientes", AlertType.INFORMATION);
-					 Alerts.showAlert("AVISO DE NOVO CLIENTE", "O relatório com os novos clientes estão no caminho abaixo:", pathSave + "NovosClientes.txt", AlertType.INFORMATION);
+					 Alerts.showAlert("AVISO DE NOVO CLIENTE", "O relatï¿½rio com os novos clientes estï¿½o no caminho abaixo:", pathSave + "NovosClientes.txt", AlertType.INFORMATION);
 					 try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathSave + "NovosClientes.txt"))) {
 						 for (Client item : newClientList ) {
 							 bw.write("Codigo : " + item.getIdClient() +" - Nome do Cliente: " + item.getClientName());
@@ -356,7 +352,7 @@ public class ImportCommvaultFileController implements Initializable {
 			}catch (IOException e) {
 				System.out.println("Error reading file: " + e.getMessage());
 			}finally {
-				lbMessages.setText("Importação concluida." );
+				lbMessages.setText("Importaï¿½ï¿½o concluida." );
 			} //final do bloco try
 		} //final do bloco if
 	
