@@ -26,7 +26,7 @@ public class Teste {
 				
 		//List<InputBill> comp = ibDao.listCpts();
 		
-		List<InputBill> cli = ibDao.findByCompetenciaAndClient("JAN 2021", "RJ2K8VMREP01");
+		List<InputBill> cli = ibDao.findByCompetencia("JAN 2021");
 		
 		
 	

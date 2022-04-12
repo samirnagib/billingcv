@@ -166,11 +166,54 @@ public class InputBillListController implements Initializable, DataChangeListene
 	@FXML
 	private void btRecalcularOnAction() {
 		System.out.println("btRecalcularOnAction");
+		if (competencia == null) {
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "Favor seleciona uma competência", AlertType.ERROR);
+			cbCompetencia.requestFocus();
+		} else {
+			
+			List<InputBill> fatura = new ArrayList<>();
+			// BillTags preco = new BillTags();
+			fatura = ibServices.findByCompetencia(competencia);
+			//preco = btServices.findAll();
+			for (InputBill item : fatura ) {
+				
+				System.out.println("Codigo da Fatura" + item.getIdInputBill());
+				
+				double feb = item.getCv_febackupsize();
+				double fea = item.getCv_fearchivesize();
+				double pria = item.getCv_primaryappsize();
+				double proa = item.getCv_protectedappsize();
+				double ms = item.getCv_mediasize();
+				
+				BillTags preco = btServices.findByName((String) item.getBilltag().getBilltagName());
+				
+				double vrUnitario = (double) preco.getBillPriceTB();
+				double valorTotal = (feb + fea + pria + proa + ms) * vrUnitario;
+
+				item.setIb_taxcalculated(valorTotal);
+				
+				ibServices.saveORupdate(item);
+				
+			}
+			updateTableView("CPT", competencia, null);
+		}
+		
+		
+		
 	};
 	
 	@FXML
 	private void btEraseCPTOnAction() {
-		System.out.println("btEraseCPTOnAction");
+		//System.out.println("btEraseCPTOnAction");
+		if (competencia == null) {
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "Favor seleciona uma competência", AlertType.ERROR);
+			cbCompetencia.requestFocus();
+		} else {
+			ibServices.removeCompetencia(competencia);
+			updateTableView("ALL", null, null);
+		}
+		
+		
 	};
 	
 	@FXML
