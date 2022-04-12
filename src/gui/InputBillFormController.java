@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import db.DbException;
 import gui.listeners.DataChangeListener;
+import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -15,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -118,6 +123,8 @@ public class InputBillFormController implements Initializable {
 	private double vrUnitario;
 	private double valorTotal;
 	
+	private String vrCompetencia;
+	
 	
 	private ObservableList<String> obsMes;
 	private ObservableList<String> obsAno;
@@ -158,15 +165,9 @@ public class InputBillFormController implements Initializable {
 		this.btServices = btServices;
 	}
 	
-	
-	
-	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO Auto-generated method stub
-		
 		initializeNodes();
-		 
 		
 	}
 
@@ -187,9 +188,6 @@ public class InputBillFormController implements Initializable {
 		Constraints.setTextFieldDouble(txtProtectedApp);
 		Constraints.setTextFieldDouble(txtMediaSize);
 		Constraints.setTextFieldDouble(txtTotal);
-		
-		
-		
 	}
 
 	private void initializeComboBoxServidores() {
@@ -238,18 +236,30 @@ public class InputBillFormController implements Initializable {
 		obsServer = FXCollections.observableArrayList(lsserver);
 		cbServidor.setItems(obsServer);
 
-		
 	}
 
 	private InputBill getFormData() {
-		InputBill obj = new InputBill();
+		InputBill fatura = new InputBill();
 		
-		
-		
-	
-		
-		
-		return obj;
+		fatura.setIdInputBill(Utils.tryParseToInt(lbl_idInputBill.getText()));
+		System.out.println(lbl_idInputBill.getText());
+		fatura.setIb_ano_mes(vrCompetencia);
+		fatura.setBilltag(cbBillTags.getValue());
+		fatura.setClient(cbServidor.getValue());
+		fatura.setCv_agent(txtAgente.getText());
+		fatura.setCv_instance(txtInstancia.getText());
+		fatura.setCv_backupset(txtBackupSet.getText());
+		fatura.setCv_subclient(txtSubClient.getText());
+		fatura.setCv_storagepolicy(txtStoragePolicy.getText());
+		fatura.setCv_copyname(txtCopy.getText());
+		fatura.setCv_febackupsize(Utils.tryParseToDouble(txtFEBackup.getText()));
+		fatura.setCv_fearchivesize(Utils.tryParseToDouble(txtFEArchive.getText()));
+		fatura.setCv_primaryappsize(Utils.tryParseToDouble(txtPrimaryApp.getText()));
+		fatura.setCv_protectedappsize(Utils.tryParseToDouble(txtProtectedApp.getText()));
+		fatura.setCv_mediasize(Utils.tryParseToDouble(txtMediaSize.getText()));
+		fatura.setIb_taxcalculated(Utils.tryParseToDouble(txtTotal.getText()));
+
+		return fatura;
 	}
 
 
@@ -257,9 +267,16 @@ public class InputBillFormController implements Initializable {
 		if (entity == null) {
 			throw new IllegalStateException("Entity was null");
 		}
-		
-		lbl_idInputBill.setText(String.valueOf(entity.getIdInputBill()));
-		lblAnoMes.setText(entity.getIb_ano_mes());
+		if (entity.getIdInputBill()== null) {
+			lbl_idInputBill.setText("");
+		} else {
+			lbl_idInputBill.setText(String.valueOf(entity.getIdInputBill())); 
+		}
+		if (entity.getIb_ano_mes() != null ) {
+			lblAnoMes.setText(entity.getIb_ano_mes());
+			vrCompetencia = (String) entity.getIb_ano_mes();
+			System.out.println(vrCompetencia);
+		}
 		if (entity.getClient() == null) {
 			cbServidor.getSelectionModel().selectFirst();
 		} else {
@@ -334,10 +351,82 @@ public class InputBillFormController implements Initializable {
 	}
 	
 	@FXML
-	public void btSaveOnAction() {
-		System.out.println("btSaveOnAction");
+	public void cbAnoOnAction() {
+		String mes = null;
+		String ano = null;
+		
+		if (cbMes.getValue() == null) {
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "O campo mês não pode estar vazio.", AlertType.ERROR);
+			cbMes.requestFocus();
+		} else {
+			mes = cbMes.getValue();
+		}
+		
+		if (cbAno.getValue() == null) {
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "O campo ano não pode estar vazio.", AlertType.ERROR);
+			cbAno.requestFocus();
+		} else {
+			ano = cbAno.getValue();
+		}
+		
+		vrCompetencia = mes + " " + ano;
+		System.out.println(vrCompetencia);
 	}
 	
+
+	@FXML
+	public void cbMesOnAction() {
+		String mes = null;
+		String ano = null;
+		
+		if (cbMes.getValue() == null) {
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "O campo mês não pode estar vazio.", AlertType.ERROR);
+			cbMes.requestFocus();
+		} else {
+			mes = cbMes.getValue();
+		}
+		
+		if (cbAno.getValue() == null) {
+			Alerts.showAlert("MENSAGEM DE ERRO", null, "O campo ano não pode estar vazio.", AlertType.ERROR);
+			cbAno.requestFocus();
+		} else {
+			ano = cbAno.getValue();
+		}
+		
+		vrCompetencia = mes + " " + ano;
+		System.out.println(vrCompetencia);
+	}
+	
+	@FXML
+	public void btSaveOnAction(ActionEvent event) {
+		System.out.println("btSaveOnAction");
+		if (entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		if (ibServices == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		try {
+			entity = getFormData();
+			System.out.println("Get Form Data: " + entity.getIdInputBill());
+			ibServices.saveORupdate(entity);
+			notifyDataChangeListeners();
+			Utils.currentStage(event).close();
+			
+		} catch (DbException e) {
+			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
+		}
+		
+		
+		
+	}
+	
+	private void notifyDataChangeListeners() {
+		for (DataChangeListener listener : dataChangeListeners) {
+			listener.onDataChanged();
+		}
+	}
+
 	@FXML
 	public void btCancelOnAction(ActionEvent event) {
 		System.out.println("btCancelOnAction");

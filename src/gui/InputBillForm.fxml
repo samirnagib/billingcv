@@ -81,33 +81,36 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbMes" prefHeight="25.0" prefWidth="91.0" visible="false">
+                  <ComboBox fx:id="cbMes" onAction="#cbMesOnAction" prefHeight="25.0" prefWidth="100.0" visible="false">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
                   </ComboBox>
-                  <ComboBox fx:id="cbAno" prefHeight="25.0" prefWidth="89.0" visible="false" />
+                  <ComboBox fx:id="cbAno" onAction="#cbAnoOnAction" prefHeight="25.0" prefWidth="100.0" visible="false" />
                </children>
             </HBox>
-            <ComboBox fx:id="cbBillTags" onAction="#cbBillTagsOnAction" prefHeight="25.0" prefWidth="346.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="cbServidor" onKeyPressed="#cbServidor" prefHeight="25.0" prefWidth="349.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cbBillTags" onAction="#cbBillTagsOnAction" prefHeight="25.0" prefWidth="360.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cbServidor" onKeyPressed="#cbServidor" prefHeight="25.0" prefWidth="360.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtAgente" onKeyPressed="#txtAgente" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtInstancia" onKeyPressed="#txtInstancia" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtBackupSet" onKeyPressed="#txtBackupSet" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="txtSubClient" onKeyPressed="#txtSubClient" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="txtStoragePolicy" onKeyPressed="#txtStoragePolicy" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <TextField fx:id="txtCopy" onKeyPressed="#txtCopy" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField fx:id="txtFEBackup" onKeyPressed="#txtFEBackup" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="txtFEArchive" onKeyPressed="#txtFEArchive" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <TextField fx:id="txtPrimaryApp" onKeyPressed="#txtPrimaryApp" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <TextField fx:id="txtProtectedApp" onKeyPressed="#txtProtectedApp" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-            <TextField fx:id="txtMediaSize" onKeyPressed="#txtMediaSize" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <TextField fx:id="txtFEBackup" alignment="CENTER_RIGHT" onKeyPressed="#txtFEBackup" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="txtFEArchive" alignment="CENTER_RIGHT" onKeyPressed="#txtFEArchive" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="txtPrimaryApp" alignment="CENTER_RIGHT" onKeyPressed="#txtPrimaryApp" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <TextField fx:id="txtProtectedApp" alignment="CENTER_RIGHT" onKeyPressed="#txtProtectedApp" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <TextField fx:id="txtMediaSize" alignment="CENTER_RIGHT" onKeyPressed="#txtMediaSize" GridPane.columnIndex="1" GridPane.rowIndex="15" />
             <TextField fx:id="txtTotal" alignment="CENTER_RIGHT" editable="false" onKeyPressed="#txtTotalOnKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="16">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtVRFaixa" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="txtVRFaixa" alignment="CENTER_RIGHT" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></TextField>
          </children>
       </GridPane>
    </children>

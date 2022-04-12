@@ -25,7 +25,8 @@ public class InputBillServices {
 	}
 	
 	public void saveORupdate(InputBill obj) {
-		if (obj.getId_billTag() == null) {
+		System.out.println("Save/Update: " + obj.getIdInputBill());
+		if (obj.getIdInputBill() == null) {
 			dao.insert(obj);
 		} else {
 			dao.update(obj);

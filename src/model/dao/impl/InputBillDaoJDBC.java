@@ -140,7 +140,7 @@ public class InputBillDaoJDBC implements InputBillDao {
 				ResultSet rs = st.getGeneratedKeys();
 				if (rs.next()) {
 					int id = rs.getInt(1);
-					obj.setIdInputBill(id);;
+					obj.setIdInputBill(id);
 				}
 				DB.closeResultSet(rs);
 			}
@@ -164,7 +164,7 @@ public class InputBillDaoJDBC implements InputBillDao {
 	public void update(InputBill obj) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("UPDATE inputBill SET ib_ano_mes = ?, id_billTag = ?, id_client = ?, cv_agent = ?, cv_instance = ?, cv_backupset = ?, cv_subclient = ?, cv_storagepolicy = ?, cv_copyname = ?, cv_febackupsize = ?, cv_fearchivesize = ?, cv_primaryappsize = ?, cv_protectedappsize = ?, cv_mediasize = ?, ib_taxcalculated = ? WHERE idInputBill = ?");
+			st = conn.prepareStatement("UPDATE inputbill SET ib_ano_mes = ?, id_billTag = ?, id_client = ?, cv_agent = ?, cv_instance = ?, cv_backupset = ?, cv_subclient = ?, cv_storagepolicy = ?, cv_copyname = ?, cv_febackupsize = ?, cv_fearchivesize = ?, cv_primaryappsize = ?, cv_protectedappsize = ?, cv_mediasize = ?, ib_taxcalculated = ? WHERE idInputBill = ?");
 			
 			st.setString(1, obj.getIb_ano_mes());
 			st.setInt(2, obj.getBilltag().getIdbillTag());
@@ -181,6 +181,7 @@ public class InputBillDaoJDBC implements InputBillDao {
 			st.setDouble(13, obj.getCv_protectedappsize());
 			st.setDouble(14, obj.getCv_mediasize());
 			st.setDouble(15, obj.getIb_taxcalculated());
+			st.setInt(16, obj.getIdInputBill());
 			
 			st.executeUpdate();
 			
