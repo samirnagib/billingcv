@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainFormController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainFormController">
    <content>
       <VBox prefHeight="200.0" prefWidth="932.0">
          <children>
@@ -30,7 +30,8 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Relatórios">
                   <items>
-                    <MenuItem fx:id="menuReportVideo" mnemonicParsing="false" onAction="#onMenuReportVideoAction" text="Em Video" />
+                    <MenuItem fx:id="menuReportVideo" mnemonicParsing="false" onAction="#onMenuReportListClientAction" text="Listagem de Clientes" />
+                        <MenuItem fx:id="menuReportChargeBack" mnemonicParsing="false" onAction="#onMenuReportListChargeBackAction" text="Listagem de ChargeBack" />
                         <MenuItem fx:id="menuReportPrint" mnemonicParsing="false" onAction="#onMenuReportPrintAction" text="Impresso" />
                   </items>
                 </Menu>

@@ -54,6 +54,9 @@ public class MainFormController implements Initializable {
 	private MenuItem menuReportVideo;
 	
 	@FXML
+	private MenuItem menuReportChargeBack;
+	
+	@FXML
 	private MenuItem menuReportPrint;
 	
 	@FXML
@@ -127,9 +130,16 @@ public class MainFormController implements Initializable {
 	}
 	
 	@FXML
-	public void onMenuReportVideoAction() {
+	public void onMenuReportListClientAction() {
 		System.out.println("onMenuReportVideoAction");		
 	}
+	
+
+	@FXML
+	public void onMenuReportListChargeBackAction() {
+		System.out.println("onMenuReportListChargeBackAction");		
+	}
+	
 	
 	@FXML
 	public void onMenuReportPrintAction() {
@@ -144,7 +154,7 @@ public class MainFormController implements Initializable {
 	@FXML
 	public void onMenuExitAction() {
 		System.out.println("onMenuExitAction");
-		//Alerts.showConfirmation("Pergunta", "", "Você deseja Sair?");
+		//Alerts.showConfirmation("Pergunta", "", "Vocï¿½ deseja Sair?");
 	}
 	
 	@Override
