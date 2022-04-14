@@ -1,10 +1,6 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class jbdcDAO {
 
@@ -16,6 +12,7 @@ public class jbdcDAO {
 
 	public boolean validate(String LoginUser, String UserPassword ) throws SQLException {
 		try {
+			
 			conn = DB.getConnection();
 			st = conn.prepareStatement("SELECT userlogin, userpasswd, userLevelAccess FROM users WHERE userlogin = ? AND userpasswd = ? AND userLevelAccess = 1", Statement.RETURN_GENERATED_KEYS); 
 			st.setString(1, LoginUser);

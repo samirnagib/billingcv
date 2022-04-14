@@ -2,31 +2,39 @@ package db;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
 import java.util.Properties;
 
 public class DB {
 	
 	private static Connection conn = null;
 	
-	public static Connection getConnection() {
+	
+	public static Connection getConnection()   {
 		final String DB_USER = "appuser";
 		final String DB_PASSWORD = "Robot@032022";
-
 		
 		if (conn == null) {
 			try {
+				
+				//Class.forName("com.mysql.jdbc.Driver").newInstance();
+				
 				Properties props = loadProperties();
+				
 				String url = props.getProperty("dburl");
 				conn = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);
+				
 			}
 			catch (SQLException e) {
 				throw new DbException(e.getMessage());
+				
+			} /*
+			catch (Exception e) {
+				throw new DbException(e.getMessage());
 			}
+			*/
+			
 		}
 			
 		

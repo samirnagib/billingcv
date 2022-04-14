@@ -9,11 +9,11 @@ public class DaoFactory {
 		return new BillTagsDaoJDBC(DB.getConnection());
 	}
 	
-	public static ClientDao createClientDao() {
+	public static ClientDao createClientDao()  {
 		return new ClientDaoJDBC(DB.getConnection());
 	}
 	
-	public static ClientTypeDao createClientTypeDao() {
+	public static ClientTypeDao createClientTypeDao(){
 		return	new ClientTypeDaoJDBC(DB.getConnection());
 	}
 	
@@ -21,7 +21,7 @@ public class DaoFactory {
 		return new InputBillDaoJDBC(DB.getConnection());
 	}
 
-	public static OwnerDao createOwnerDao() {
+	public static OwnerDao createOwnerDao(){
 		return new OwnerDaoJDBC(DB.getConnection());
 	}
 

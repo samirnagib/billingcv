@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 import gui.util.Alerts;
+import gui.util.Utils;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -152,9 +155,9 @@ public class MainFormController implements Initializable {
 	}
 		
 	@FXML
-	public void onMenuExitAction() {
-		System.out.println("onMenuExitAction");
-		//Alerts.showConfirmation("Pergunta", "", "Vocï¿½ deseja Sair?");
+	public void onMenuExitAction(ActionEvent event) {
+		
+		Platform.exit();  //Encerra a aplicação.
 	}
 	
 	@Override

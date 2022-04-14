@@ -20,11 +20,4 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/report/GloboEdit.fw.png</name>
-			<type>1</type>
-			<location>D:/hds/Billing/workspace/billingcv/imagens/GloboEdit.fw.png</location>
-		</link>
-	</linkedResources>
 </projectDescription>

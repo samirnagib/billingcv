@@ -2,10 +2,14 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import db.DbException;
 import db.DbIntegrityException;
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
@@ -36,6 +40,7 @@ import model.entities.Client;
 import model.services.ClientServices;
 import model.services.ClientTypeServices;
 import model.services.OwnerServices;
+import reports.Relatorio;
 
 public class ClientListController implements Initializable, DataChangeListener {
 
@@ -67,6 +72,9 @@ public class ClientListController implements Initializable, DataChangeListener {
 	@FXML
 	private Button btNovo;
 	
+	@FXML
+	private Button brPrint;
+	
 	private ClientServices service;
 	
 	private ObservableList<Client> obsList;
@@ -83,7 +91,14 @@ public class ClientListController implements Initializable, DataChangeListener {
 		//System.out.println("btNovoOnAction");
 	}
 	
-	
+	@FXML
+	private void brPrintOnAction() {
+		HashMap fill = new HashMap<>();
+		Relatorio.callReport("ListagemClientes", "Listagem de Clientes", fill);
+
+		
+		
+	}
 	
 	
 	@Override
