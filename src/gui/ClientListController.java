@@ -1,14 +1,17 @@
 package gui;
 
+import java.awt.Frame;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import db.DB;
 import db.DbException;
 import db.DbIntegrityException;
 import gui.listeners.DataChangeListener;
@@ -33,6 +36,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -40,7 +44,11 @@ import model.entities.Client;
 import model.services.ClientServices;
 import model.services.ClientTypeServices;
 import model.services.OwnerServices;
-import reports.Relatorio;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class ClientListController implements Initializable, DataChangeListener {
 
@@ -91,12 +99,36 @@ public class ClientListController implements Initializable, DataChangeListener {
 		//System.out.println("btNovoOnAction");
 	}
 	
+	
 	@FXML
 	private void brPrintOnAction() {
-		HashMap fill = new HashMap<>();
-		Relatorio.callReport("ListagemClientes", "Listagem de Clientes", fill);
-
+		/*Stage stage = new Stage();
+		FileChooser fileChooser = new FileChooser();
+		Utils.configureFileChooserImportFiles(fileChooser, "Abrir arquivo de relatorio");
 		
+		String fileName =fileChooser.showOpenDialog(stage).getAbsolutePath(); 
+		System.out.println(fileName);
+		*/ 
+		String fileName = "D:\\hds\\Billing\\workspace\\billingcv\\src\\reports\\ListagemClientes.jrxml";
+		
+		try {
+			JasperReport jasperReport =  JasperCompileManager.compileReport(fileName);
+			Connection conn = DB.getConnection();
+			Map<String, Object> hm = new HashMap<String,Object>();
+			
+			JasperPrint print = JasperFillManager.fillReport(jasperReport, hm, conn);
+			JasperViewer oia = new JasperViewer(print, false);
+			oia.setVisible(true);
+			oia.setExtendedState(Frame.MAXIMIZED_BOTH);
+			oia.setTitle("Title");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}/*	
+		*/			
+				
+		System.out.println("Sent to printer.");
 		
 	}
 	

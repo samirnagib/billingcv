@@ -18,6 +18,8 @@ import model.entities.Users;
 public class Teste {
 
 	public static void main(String[] args) {
+	
+		
 		
 		InputBillDao ibDao = DaoFactory.createInputBillDao();	
 		

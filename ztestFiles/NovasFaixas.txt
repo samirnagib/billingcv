@@ -1,3 +1,2 @@
-Codigo : 17 - Nome da Faixa: Billing Tag 005
-Codigo : 18 - Nome da Faixa: Billing Tag 006
-Codigo : 19 - Nome da Faixa: Billing Tag 007
+Codigo : 20 - Nome da Faixa: Billing Tag 010
+Codigo : 21 - Nome da Faixa: Billing Tag 011
