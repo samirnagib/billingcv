@@ -1,12 +1,23 @@
 Client;Host Name;Tipo;Responsavel pelo Servidor;Email principal;Email Alternativo;Área ou Projeto;AR da Área ou Projeto
-B_ISILON;10.134.160.15;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
-C_ISILON;10.134.160.16;Apliance File Server;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
-D_ISILON;10.134.160.17;Apliance;INFRA OPERACAO;supso2@g.globo;;Gerencia de Operacao;0
-E_ISILON;10.134.160.18;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
-F_ISILON;10.134.160.19;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
-G_ISILON;10.134.160.20;Apliance;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
-H_ISILON;10.134.160.21;Apliance File Server;INFRA ESSENTIALS;supso@g.globo;;Gerencia de Servidores;0
-brho11glo1014;10.37.25.156;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
-brho11glo1029;10.37.25.196;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
-brho11glo102e;10.37.24.155;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
-brho11glo1042;10.37.25.176;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
+brho11glo2014;10.37.25.12;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
+brho11glo2029;10.37.25.16;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
+brho11glo202e;10.37.24.15;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
+brho11glo2042;10.37.25.16;Banco de Dados Oracle;DB Producação;dbproducao@g.globo;welington.mesquita@g.globo;Gerencia de Banco de Dados;0101
+A SERVIDOR 100;192.168.175.1;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 101;192.168.175.2;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 102;192.168.175.3;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 103;192.168.175.4;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 104;192.168.175.5;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 105;192.168.175.6;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 106;192.168.175.7;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 107;192.168.175.8;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 108;192.168.175.9;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 200;191.168.165.1;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 201;191.168.165.2;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 202;191.168.165.3;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 203;191.168.165.4;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 204;191.168.165.5;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 205;191.168.165.6;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 206;191.168.165.7;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 207;191.168.165.8;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252
+A SERVIDOR 208;191.168.165.9;Servidor Virtual;Samir Nagib;samir@g.globo;backoffice.backup@g.globo;Grupo de proteção de dados;AR171252

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Frame;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -49,6 +50,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import reports.report;
 
 
 
@@ -106,35 +108,11 @@ public class ClientListController implements Initializable, DataChangeListener {
 	
 	@FXML
 	private void brPrintOnAction() {
-		/*Stage stage = new Stage();
-		FileChooser fileChooser = new FileChooser();
-		Utils.configureFileChooserImportFiles(fileChooser, "Abrir arquivo de relatorio");
 		
-		String fileName =fileChooser.showOpenDialog(stage).getAbsolutePath(); 
-		System.out.println(fileName);
-		*/ 
-		String fileName = "D:\\hds\\Billing\\workspace\\billingcv\\src\\reports\\ListagemClientes.jrxml";
-		
-		try {
-			JasperReport jasperReport =  JasperCompileManager.compileReport(fileName);
-			Connection conn = DB.getConnection();
-			Map<String, Object> hm = new HashMap<String,Object>();
-			
-			JasperPrint print = JasperFillManager.fillReport(jasperReport, hm, conn);
-			JasperViewer oia = new JasperViewer(print, false);
-			oia.setVisible(true);
-			oia.setExtendedState(Frame.MAXIMIZED_BOTH);
-			oia.setTitle("Title");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			e.getMessage();
-		}/*	
-		*/			
-				
-		System.out.println("Sent to printer.");
+		report.callRelatorio("ListagemClientes", "Listagem de clientes");
 		
 	}
+		
 	
 	
 	@Override
