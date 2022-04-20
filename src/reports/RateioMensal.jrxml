@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 4.8.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RateioMensal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="647162d6-7618-4b88-96dd-43a338723ff4">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="YGlucHV0QmlsbGAgLDE1LDE1LDc0NGZhZTUxLTIzZjQtNDE1NS05MzVjLWNmNDk2N2NlNWIyZTtv&#xA;d25lciAsNDU5LDI4OCwzOTg3MjBiZi00YTM0LTQwNjMtYjEyMi02MzYyN2IxMDQ5M2Y7Y2xpZW50&#xA;ZXMgLDE4OCwyNDEsMzZkYWU4ZjItMjJkMy00ZTY5LTk1NmYtZGU3YjJkYzk5Nzc3O2BiaWxsVGFn&#xA;c2AgLDE4OCwxMDAsMWYwYWY1MDgtNjVlYS00NGUzLWJjZjctYWU4OTM5ZDQ5NmM4O2BjbGllbnRU&#xA;eXBlYCAsMzM4LDI0Niw1YWU1NmUzZi1hZGE4LTRmM2YtOGJjOC1kMDBiOGEzZjg3OTc7"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="cvbillinf_tst"/>
 	<parameter name="COMPETENCIA" class="java.lang.String"/>
 	<queryString language="SQL">
@@ -42,7 +42,7 @@ FROM `inputBill`
 	 clientes.`idType` = `clientType`.`idType` 
 	INNER join owner ON 
 	 clientes.`idOwner` = owner.`idOwner`
-	 WHERE ib_ano_mes =  $P{COMPETENCIA} ]]>
+	 WHERE ib_ano_mes =  $P{COMPETENCIA}]]>
 	</queryString>
 	<field name="idInputBill" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="idInputBill"/>
@@ -184,6 +184,8 @@ FROM `inputBill`
 		<property name="com.jaspersoft.studio.field.label" value="owAR"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="owner"/>
 	</field>
+	<sortField name="owName"/>
+	<sortField name="clientName"/>
 	<variable name="ib_taxcalculated1" class="java.lang.Double" resetType="Group" resetGroup="Responsável" calculation="Sum">
 		<variableExpression><![CDATA[$F{ib_taxcalculated}]]></variableExpression>
 	</variable>
@@ -198,17 +200,17 @@ FROM `inputBill`
 		<groupHeader>
 			<band height="32">
 				<rectangle>
-					<reportElement x="0" y="0" width="802" height="31" forecolor="#0905FF" backcolor="#0905FF" uuid="9cd67abb-8076-45d6-8271-41a82fc05da2"/>
+					<reportElement x="0" y="0" width="802" height="31" forecolor="#A6DAE7" backcolor="#A6DAE7" uuid="9cd67abb-8076-45d6-8271-41a82fc05da2"/>
 				</rectangle>
 				<textField>
-					<reportElement x="80" y="-1" width="360" height="14" forecolor="#FFFFFF" uuid="5f4d8d35-f2b3-41e2-bc96-23379053120f"/>
+					<reportElement x="80" y="-1" width="360" height="14" forecolor="#000000" uuid="5f4d8d35-f2b3-41e2-bc96-23379053120f"/>
 					<textElement>
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{owName}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="80" height="12" forecolor="#D2D2FC" uuid="99efc4de-705a-4b4e-bfd4-4bdb2d028225">
+					<reportElement x="0" y="0" width="80" height="12" forecolor="#000000" uuid="99efc4de-705a-4b4e-bfd4-4bdb2d028225">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -217,7 +219,7 @@ FROM `inputBill`
 					<text><![CDATA[RESPONSÁVEL]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="14" width="100" height="12" forecolor="#D2D2FC" uuid="3112fd98-7894-449d-89d1-0e143f739608">
+					<reportElement x="0" y="14" width="100" height="12" forecolor="#000000" uuid="3112fd98-7894-449d-89d1-0e143f739608">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -226,21 +228,21 @@ FROM `inputBill`
 					<text><![CDATA[ÁREA OU PROJETO:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="14" width="280" height="15" forecolor="#FFFFFF" uuid="0f46a32d-ffed-4d77-8a34-e770c90961e4"/>
+					<reportElement x="100" y="14" width="280" height="15" forecolor="#000000" uuid="0f46a32d-ffed-4d77-8a34-e770c90961e4"/>
 					<textElement>
 						<font fontName="Arial" size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{owProjectArea}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="700" y="0" width="100" height="14" forecolor="#FFFFFF" uuid="0f6bcc16-090f-4116-9824-1d9ee2a82047"/>
+					<reportElement x="700" y="0" width="100" height="14" forecolor="#000000" uuid="0f6bcc16-090f-4116-9824-1d9ee2a82047"/>
 					<textElement>
 						<font fontName="DejaVu Sans" size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{owAR}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="560" y="0" width="140" height="12" forecolor="#D2D2FC" uuid="ae6358d4-ac14-43c1-ab3c-6e8e6bfeed49">
+					<reportElement x="560" y="0" width="140" height="12" forecolor="#000000" uuid="ae6358d4-ac14-43c1-ab3c-6e8e6bfeed49">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -253,17 +255,17 @@ FROM `inputBill`
 		<groupFooter>
 			<band height="20">
 				<rectangle>
-					<reportElement x="0" y="0" width="802" height="19" forecolor="#FFFFFF" backcolor="#027070" uuid="85b5842b-97b2-4948-b966-7ebc531aa5c2"/>
+					<reportElement x="0" y="0" width="802" height="19" forecolor="#FFFFFF" backcolor="#EF8FAB" uuid="85b5842b-97b2-4948-b966-7ebc531aa5c2"/>
 				</rectangle>
 				<textField pattern="¤#,##0.00;¤-#,##0.00">
-					<reportElement x="657" y="1" width="141" height="15" forecolor="#FFFFFF" uuid="4431e251-f307-4fde-8a5a-223b927af5f1"/>
+					<reportElement x="657" y="1" width="141" height="15" forecolor="#000000" uuid="4431e251-f307-4fde-8a5a-223b927af5f1"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{ib_taxcalculated1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="469" y="2" width="188" height="16" forecolor="#FFFFFF" uuid="34d0b9c8-c912-42cd-949a-5c968cf534d3"/>
+					<reportElement x="469" y="2" width="188" height="16" forecolor="#000000" uuid="34d0b9c8-c912-42cd-949a-5c968cf534d3"/>
 					<textElement textAlignment="Right">
 						<font fontName="DejaVu Sans" size="12"/>
 					</textElement>
@@ -289,7 +291,7 @@ FROM `inputBill`
 	<columnHeader>
 		<band height="33" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="802" height="33" forecolor="#0905FF" backcolor="#0905FF" uuid="f9703545-6106-49e7-bf34-3ed64cc5a9a3"/>
+				<reportElement x="0" y="0" width="802" height="33" forecolor="#B9B2DB" backcolor="#B9B2DB" uuid="f9703545-6106-49e7-bf34-3ed64cc5a9a3"/>
 			</rectangle>
 			<textField>
 				<reportElement x="685" y="2" width="111" height="27" forecolor="#FFFFFF" uuid="cbe92342-0381-4c18-9463-f8e8097dc52b"/>
@@ -303,7 +305,7 @@ FROM `inputBill`
 	<detail>
 		<band height="62" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="30" width="802" height="31" forecolor="#FFFFFF" backcolor="#024F03" uuid="76f9e970-6446-4cb1-92b1-e12be5251cac"/>
+				<reportElement x="0" y="30" width="802" height="31" forecolor="#FFFFFF" backcolor="#FEE3B8" uuid="76f9e970-6446-4cb1-92b1-e12be5251cac"/>
 			</rectangle>
 			<textField>
 				<reportElement x="44" y="0" width="186" height="13" forecolor="#04027A" uuid="27f2512b-fbf7-4f83-ad60-91b32ce4d9f6">
@@ -342,7 +344,7 @@ FROM `inputBill`
 				<textFieldExpression><![CDATA[$F{cv_instance}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤#,##0.00;¤-#,##0.00">
-				<reportElement x="668" y="44" width="133" height="14" forecolor="#FFFFFF" uuid="2fd03069-2d8c-45b0-83e8-95e3179af9ad">
+				<reportElement x="668" y="44" width="133" height="14" forecolor="#000000" uuid="2fd03069-2d8c-45b0-83e8-95e3179af9ad">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd2216df-0a3e-4e9f-b996-d88beb515086"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -414,21 +416,21 @@ FROM `inputBill`
 				<textFieldExpression><![CDATA[$F{clientHostname}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#;(-#,##0.00#)">
-				<reportElement x="155" y="32" width="117" height="13" forecolor="#FFFFFF" uuid="41e4b5e9-e2dc-4c63-8d06-e590d53b0de0"/>
+				<reportElement x="155" y="32" width="117" height="13" forecolor="#000000" uuid="41e4b5e9-e2dc-4c63-8d06-e590d53b0de0"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans Mono" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[SUM($F{cv_febackupsize},$F{cv_fearchivesize},$F{cv_primaryappsize},$F{cv_protectedappsize},$F{cv_mediasize})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="5" y="33" width="150" height="11" forecolor="#FFFFFF" uuid="e28deefb-7d44-412d-ad33-2a513d851802"/>
+				<reportElement x="5" y="33" width="150" height="11" forecolor="#000000" uuid="e28deefb-7d44-412d-ad33-2a513d851802"/>
 				<textElement>
 					<font fontName="DejaVu Sans Mono" size="8"/>
 				</textElement>
 				<text><![CDATA[Volume de dados da Faixa (TB):]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="100" y="45" width="240" height="12" forecolor="#FFFFFF" uuid="755bbabe-ac97-4089-9627-ba7842151183">
+				<reportElement x="100" y="45" width="240" height="12" forecolor="#000000" uuid="755bbabe-ac97-4089-9627-ba7842151183">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dcd6b3ff-2f2a-4c58-9cd6-562b09bdac29"/>
 				</reportElement>
 				<textElement>
@@ -437,14 +439,14 @@ FROM `inputBill`
 				<textFieldExpression><![CDATA[$F{billtagName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="5" y="46" width="125" height="11" forecolor="#FFFFFF" uuid="4439254f-ed64-4bd9-959f-f6bf311a59cc"/>
+				<reportElement x="5" y="46" width="125" height="11" forecolor="#000000" uuid="4439254f-ed64-4bd9-959f-f6bf311a59cc"/>
 				<textElement>
 					<font fontName="DejaVu Sans Mono" size="8"/>
 				</textElement>
 				<text><![CDATA[Faixa de Cobrança:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="555" y="46" width="113" height="11" forecolor="#FFFFFF" uuid="4f2e15b9-a158-4776-8e6a-ad814ed51fe8"/>
+				<reportElement x="555" y="46" width="113" height="11" forecolor="#000000" uuid="4f2e15b9-a158-4776-8e6a-ad814ed51fe8"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans Mono" size="8"/>
 				</textElement>

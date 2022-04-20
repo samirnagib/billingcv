@@ -24,6 +24,7 @@ import model.services.ClientTypeServices;
 import model.services.InputBillServices;
 import model.services.OwnerServices;
 import model.services.UsersServices;
+import reports.report;
 
 public class MainFormController implements Initializable {
 
@@ -134,19 +135,20 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuReportListClientAction() {
-		System.out.println("onMenuReportVideoAction");		
+		report.callRelatorio("ListagemClientes", "Listagem de clientes");		
 	}
 	
 
 	@FXML
 	public void onMenuReportListChargeBackAction() {
-		System.out.println("onMenuReportListChargeBackAction");		
+		System.out.println("onMenuReportListChargeBackAction");	
+		loadView("/gui/PrintFatura.fxml", x -> {} );
 	}
 	
 	
 	@FXML
 	public void onMenuReportPrintAction() {
-		System.out.println("onMenuReportPrintAction");		
+		System.out.println("Faixas de Cobrança: onMenuReportPrintAction");		
 	}
 	
 	@FXML

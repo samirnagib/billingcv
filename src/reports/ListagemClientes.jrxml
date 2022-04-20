@@ -93,7 +93,13 @@ FROM clientes
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="20" splitType="Stretch">
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="18" forecolor="#FFFFFF" backcolor="#B9B2DB" uuid="619756da-74ab-47e1-adf3-45420335456a"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
 				<reportElement x="5" y="2" width="238" height="13" uuid="e7e9283f-4437-41d3-b4b1-b8130ecf0935">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -103,18 +109,18 @@ FROM clientes
 				</textElement>
 				<text><![CDATA[RELATÓRIO GERAL DE CLIENTES]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="0" y="0" width="553" height="18" backcolor="rgba(255, 255, 255, 0.0)" uuid="619756da-74ab-47e1-adf3-45420335456a"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="19" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="17" width="553" height="1" backcolor="rgba(255, 255, 255, 0.0)" uuid="68e750b8-0c63-4363-9c2c-2ab230c64764"/>
+				<reportElement x="0" y="0" width="555" height="19" forecolor="#FFFFFF" backcolor="#FEE3B8" uuid="c9f43a77-4bc3-4495-b274-3d26ab16315f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="17" width="555" height="1" backcolor="rgba(255, 255, 255, 0.0)" uuid="68e750b8-0c63-4363-9c2c-2ab230c64764"/>
 				<graphicElement>
 					<pen lineWidth="1.0"/>
 				</graphicElement>
@@ -237,7 +243,7 @@ FROM clientes
 				<textFieldExpression><![CDATA[$F{owEmail2}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="13" width="560" height="1" uuid="015559d6-7887-434f-a8b5-215a0c2b2e36">
+				<reportElement positionType="FixRelativeToBottom" x="0" y="13" width="555" height="1" uuid="015559d6-7887-434f-a8b5-215a0c2b2e36">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
@@ -265,7 +271,7 @@ FROM clientes
 	<summary>
 		<band height="21" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="1" width="553" height="18" backcolor="rgba(255, 255, 255, 0.0)" uuid="6b071358-da8d-4b08-8ff8-0ce0355454f0"/>
+				<reportElement x="0" y="1" width="555" height="18" backcolor="#A6DAE7" uuid="6b071358-da8d-4b08-8ff8-0ce0355454f0"/>
 				<graphicElement>
 					<pen lineWidth="1.0"/>
 				</graphicElement>
