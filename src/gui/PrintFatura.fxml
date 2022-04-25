@@ -41,7 +41,7 @@
             <Label text="Selecione a Competência:" />
             <Label text="Selecione o Responsável" GridPane.rowIndex="1" />
             <Label text="Filtro aplicado:" GridPane.rowIndex="2" />
-            <Label fx:id="lbFiltroAplicado" text="00" textFill="#0d0054" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="lbFiltroAplicado" textFill="#0d0054" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="cbCompetencia" prefHeight="25.0" prefWidth="456.0" GridPane.columnIndex="1">
+            <ComboBox fx:id="cbCompetencia" onAction="#cbCompetenciaOnAction" prefHeight="25.0" prefWidth="456.0" GridPane.columnIndex="1">
                <padding>
                   <Insets left="5.0" />
                </padding>

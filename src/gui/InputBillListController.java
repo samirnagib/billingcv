@@ -361,14 +361,14 @@ public class InputBillListController implements Initializable, DataChangeListene
 			if (competencia != null ) {
 				list = ibServices.findByCompetencia(competencia);
 			} else {
-				throw new IllegalArgumentException("Os parametros Competencia e Servidor n�o podem estar vazios");
+				throw new IllegalArgumentException("Os parametros Competencia e Servidor nao podem estar vazios");
 			}
 			
 		} else if (Method.equals("SRV") )  {
 			if (competencia != null && servidor != null) {
 				list = ibServices.findByCompetenciaAndClient(competencia, servidor);
 			} else {
-				throw new IllegalArgumentException("Os parametros Competencia e Servidor n�o podem estar vazios");
+				throw new IllegalArgumentException("Os parametros Competencia e Servidor naoo podem estar vazios");
 			}
 		}
 		

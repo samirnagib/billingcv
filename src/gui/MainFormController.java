@@ -142,7 +142,10 @@ public class MainFormController implements Initializable {
 	@FXML
 	public void onMenuReportListChargeBackAction() {
 		System.out.println("onMenuReportListChargeBackAction");	
-		loadView("/gui/PrintFatura.fxml", x -> {} );
+		loadView("/gui/PrintFatura.fxml",  (PrintFormController controller) -> {
+			controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
+			controller.loadAssociatedObjects();
+		});
 	}
 	
 	

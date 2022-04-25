@@ -13,5 +13,6 @@ public interface OwnerDao {
 	Owner findByName(String Name);
 	boolean searchByName(String owName);
 	List<Owner> findAll();
+	
 
 }
