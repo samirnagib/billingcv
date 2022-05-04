@@ -15,7 +15,10 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.export.ExporterInput;
 import net.sf.jasperreports.export.OutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleExporterInput;
@@ -62,10 +65,7 @@ public class report {
 			System.out.println("-");
 			
 		}
-		
-		
 		System.out.println(appPath + repFolder + reportName + ".pdf");
-		
 		
 		try {
 			JasperReport jasperReport =  JasperCompileManager.compileReport(reportFullName);
@@ -74,9 +74,6 @@ public class report {
 			
 			JasperPrint print = JasperFillManager.fillReport(jasperReport, hm, conn);
 			JasperViewer oia = new JasperViewer(print, false);
-			
-			
-			
 			
 			JRPdfExporter exporter = new JRPdfExporter();
 			ExporterInput exporterInput = new SimpleExporterInput(print);
@@ -96,11 +93,72 @@ public class report {
 			e.printStackTrace();
 			e.getMessage();
 		}	
-		
-		
-		
-		
-		
 	}
+	
+
+	public static void callRelatorioChargeBack(String reportName, String windowsTitle, String Query) {
+		
+		JRDesignQuery qry = new JRDesignQuery();
+		
+		String appPath = null;
+		String fileName = reportName + ".jrxml";
+		String repFolder = null;
+		String reportFullName;
+		String pdfFolder = null;
+		
+		try {
+			appPath = new File(".").getCanonicalPath();
+			Properties data = loadRepProperties();
+			repFolder = data.getProperty("repfolder");
+			
+			
+		} catch (IOException e1) {
+			
+			e1.printStackTrace();
+		} finally {
+			reportFullName = appPath + repFolder + fileName;
+			System.out.println("app path: " + appPath);
+			System.out.println("repfold : " + repFolder);
+			System.out.println("filename: " + fileName);
+			System.out.println("pdf name: " + reportName + ".pdf");
+			System.out.println("-");
+			
+		}
+		System.out.println(appPath + repFolder + reportName + ".pdf");
+		
+		try {
+			Connection conn = DB.getConnection();
+			
+			qry.setText(Query);
+			
+			JasperDesign JD = JRXmlLoader.load(reportFullName);
+			JD.setQuery(qry);
+			JasperReport jasperReport = JasperCompileManager.compileReport(JD);
+			
+			Map<String, Object> hm = new HashMap<String,Object>();
+			
+			JasperPrint print = JasperFillManager.fillReport(jasperReport, hm, conn);
+			JasperViewer oia = new JasperViewer(print, false);
+			
+			JRPdfExporter exporter = new JRPdfExporter();
+			ExporterInput exporterInput = new SimpleExporterInput(print);
+			exporter.setExporterInput(exporterInput);
+			OutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(appPath + repFolder + reportName+".pdf");
+	        exporter.setExporterOutput(exporterOutput);
+			SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+	        exporter.setConfiguration(configuration);
+	        exporter.exportReport();
+			
+			
+			oia.setVisible(true);
+			oia.setExtendedState(Frame.MAXIMIZED_BOTH);
+			oia.setTitle("Vizualizar Impressão: " + windowsTitle);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}	
+	}
+
 
 }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 4.8.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RateioMensal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="647162d6-7618-4b88-96dd-43a338723ff4">
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="b3duZXIgLDQ1OSwyODgsOWU5ZGRhZDEtNmM1Mi00YTFkLWI1OTgtOGFlMzIzM2VkYmEwO2BpbnB1&#xA;dEJpbGxgICwxNSwxNSxiMTYzMTU4NS1mOWJjLTQ4ZjUtODZjZC1kN2NmOTU5MDJjMDU7YGNsaWVu&#xA;dFR5cGVgICwzMzgsMjQ2LDY1YzBiMWM4LTcxOTMtNDI1OS05OTNkLTE1NWI1MDEwNTg3MztgYmls&#xA;bFRhZ3NgICwxODgsMTAwLGI4YjY3ZjQ4LWYyYWYtNGNhYS05ZGUyLTYzZTE2ZTcxMmY3ZTtjbGll&#xA;bnRlcyAsMTg4LDI0MSw5MjhiYWY0Yy1hOTQzLTRjMTgtYjcwZS1mZjEzMjJlMTUwY2Y7"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="cvbillinf_tst"/>
 	<parameter name="COMPETENCIA" class="java.lang.String"/>
+	<parameter name="RESP" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT `inputBill`.`idInputBill`,
 	`inputBill`.`id_billTag`,
@@ -41,8 +42,7 @@ FROM `inputBill`
 	INNER JOIN `clientType` ON 
 	 clientes.`idType` = `clientType`.`idType` 
 	INNER join owner ON 
-	 clientes.`idOwner` = owner.`idOwner`
-	 WHERE ib_ano_mes =  $P{COMPETENCIA}]]>
+	 clientes.`idOwner` = owner.`idOwner`]]>
 	</queryString>
 	<field name="idInputBill" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="idInputBill"/>
