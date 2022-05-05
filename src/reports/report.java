@@ -11,6 +11,11 @@ import java.util.Properties;
 
 import db.DB;
 import db.DbException;
+import model.entities.InputBill;
+import model.entities.Owner;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.fill.*;
+import net.sf.jasperreports.functions.standard.TextFunctions.*;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -96,10 +101,25 @@ public class report {
 	}
 	
 
-	public static void callRelatorioChargeBack(String reportName, String windowsTitle, String Query) {
+	public static void callRelatorioChargeBack(String reportName, String windowsTitle, InputBill fatura, Owner Responsavel) {
+		String	competencia;
+		Integer resp;
+		Integer Choice=null;
 		
-		JRDesignQuery qry = new JRDesignQuery();
+		if ( fatura != null ) {
+			if ( Responsavel != null ) {
+				Choice = 1;
+			} else {
+				Choice = 2;
+			}
+		} else {
+			if ( Responsavel != null ) {
+				Choice = 3;
+			}
+		}
 		
+		
+			
 		String appPath = null;
 		String fileName = reportName + ".jrxml";
 		String repFolder = null;
@@ -127,18 +147,28 @@ public class report {
 		System.out.println(appPath + repFolder + reportName + ".pdf");
 		
 		try {
+			
+			JasperReport jasperReport =  JasperCompileManager.compileReport(reportFullName);
 			Connection conn = DB.getConnection();
-			
-			qry.setText(Query);
-			
-			JasperDesign JD = JRXmlLoader.load(reportFullName);
-			JD.setQuery(qry);
-			JasperReport jasperReport = JasperCompileManager.compileReport(JD);
-			
 			Map<String, Object> hm = new HashMap<String,Object>();
+			switch (Choice) {
+			case 1:   // todos
+				resp = Responsavel.getIdOwner();
+				competencia = fatura.getIb_ano_mes();
+		
+			case 2:   // todos
+				competencia = fatura.getIb_ano_mes();
+				hm.put("CPT", competencia);
+			case 3:   // todos
+				resp = Responsavel.getIdOwner();
+				hm.put("RESPID", resp);
+			default:
 			
+			}			
 			JasperPrint print = JasperFillManager.fillReport(jasperReport, hm, conn);
 			JasperViewer oia = new JasperViewer(print, false);
+			
+			
 			
 			JRPdfExporter exporter = new JRPdfExporter();
 			ExporterInput exporterInput = new SimpleExporterInput(print);

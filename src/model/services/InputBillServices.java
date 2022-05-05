@@ -50,5 +50,9 @@ public class InputBillServices {
 		return dao.listDistinctClient();
 	}
 	
+	public InputBill ibfindCPT(String competencia) {
+		return dao.findCPT(competencia);
+	}
+	
 
 }

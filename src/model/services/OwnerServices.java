@@ -31,4 +31,8 @@ public class OwnerServices {
 		return searchByName(onwerName);
 	}
 	
+	public Owner findOwnerByName(String onwerName) {
+		return dao.findByName(onwerName);
+	}
+	
 }

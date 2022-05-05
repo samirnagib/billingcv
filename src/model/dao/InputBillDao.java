@@ -16,6 +16,7 @@ public interface InputBillDao {
 	List<InputBill> findAll();
 	List<InputBill> listCpts();
 	List<InputBill> listDistinctClient();
+	InputBill findCPT(String competencia);
 	
-
+	
 }

@@ -67,7 +67,7 @@ public class PrintFormController implements Initializable {
 		this.btServices = btServices;
 	}
 	
-	
+	private Integer ReportChoice;
 	
 	
 	
@@ -78,30 +78,36 @@ public class PrintFormController implements Initializable {
 		
 		InputBill fatura = new InputBill();
 		Owner resp = new Owner();
-		String Query;
 		
-		//if ((bCPT = false) && (bOWN = false)) {
-			System.out.println(bCPT + " - " + bOWN);
-			Query = "SELECT inputBill.idInputBill, inputBill.id_billTag, inputBill.ib_ano_mes, inputBill.id_client,clientes.idClient, clientes.clientName, clientes.clientHostname, billTags.idbillTag, billTags.billtagName, billTags.billPriceTB, inputBill.cv_agent, inputBill.cv_instance, inputBill.cv_backupset,inputBill.cv_subclient, inputBill.cv_storagepolicy, inputBill.cv_copyname, inputBill.cv_febackupsize, inputBill.cv_fearchivesize, inputBill.cv_primaryappsize, inputBill.cv_protectedappsize, inputBill.cv_mediasize, inputBill.ib_taxcalculated, clientType.idType,clientType.typeName, owner.idOwner, owner.owName, owner.owProjectArea, owner.owAR\r\n"
-					+ "from inputBill \r\n"
-					+ "INNER JOIN billTags ON  inputBill.id_billTag = billTags.idbillTag \r\n"
-					+ "INNER JOIN clientes ON inputBill.id_client = clientes.idClient \r\n"
-					+ "INNER JOIN clientType ON clientes.idType = clientType.idType \r\n"
-					+ "INNER join owner ON clientes.idOwner = owner.idOwner\r\n"
-					+ "order by  owner.owName";
-			System.out.println(Query);
-			
-			System.out.println("chama relartorio");
-			report.callRelatorioChargeBack("RateioMensal", "Relatorio de Rateio", Query);
-			
-		/*} else if ((bCPT = false) && (bOWN = true)) {
 		
-		} else if ((bCPT = true) && (bOWN = false)) {
+		switch (ReportChoice) {
+			case 0:   // todos
+				System.out.println("Todos as competencias e todos os responsáveis");
+				report.callRelatorio("RateioMensal1", "Relatorio de Rateio - TODOS");
+				break;
+			case 1:   // Todas as Competencias e UM Responsável
+				System.out.println("Todas as Competencias e UM Responsável");
+				resp = owServices.findOwnerByName(cbResponsavel.getValue());
+				report.callRelatorioChargeBack("RateioMensal2", "Relatorio de Rateio - por responsável: " + cbResponsavel.getValue(), fatura, resp);
+				break;
+			case 2:   // Uma competencia e Todos os responsáveis
+				System.out.println("Uma competencia e Todos os responsáveis");
+				fatura = ibServices.ibfindCPT(cbCompetencia.getValue());
+				report.callRelatorioChargeBack("RateioMensal3", "Relatorio de Rateio - por competencia: " + cbCompetencia.getValue(), fatura, resp);
+				
+				break;
+			case 3:   // Uma competencia e um reponsável
+				System.out.println("Uma competencia e um reponsável");
+				resp = owServices.findOwnerByName(cbResponsavel.getValue());
+				fatura = ibServices.ibfindCPT(cbCompetencia.getValue());
+				report.callRelatorioChargeBack("RateioMensal4", "Relatorio de Rateio - por resposável e competencia: " +  cbResponsavel.getValue().toUpperCase() + " " + cbCompetencia.getValue(), fatura, resp);
+				break;
+			default:   // padrão
+				System.out.println("erro");
+				
+				break;
 		
-		} else if ((bCPT = true) && (bOWN = true)) {
-			
-		}*/
-		
+		}
 		
 		
 	}
@@ -119,15 +125,17 @@ public class PrintFormController implements Initializable {
 		cbResponsavel.setValue("TODOS");
 		bCPT = false;
 		bOWN = false;
+		ReportChoice = 0;
 	}
 	
 	@FXML
 	private void cbCompetenciaOnAction() {
-		//System.out.println("cbCompetencia");
+		System.out.println("Report Choice: " + ReportChoice);
 				
 		if ( bCPT = true ) {
 			if ( cbCompetencia.getValue() == "") {
 				lbFiltroAplicado.setText( loadFilterFatura(false,false) );
+				
 				
 			}
 			
@@ -138,12 +146,13 @@ public class PrintFormController implements Initializable {
 			bCPT = true;
 		}
 		
+		ReportChoice = checkChoice();
 		
 	}
 	
 	@FXML
 	private void cbResponsavelOnAction() {
-		//System.out.println("cbResponsavel");
+		System.out.println("Report Choice: " + ReportChoice);
 		if ( bOWN = true ) {
 			if ( cbResponsavel.getValue() == "") {
 				lbFiltroAplicado.setText( loadFilterFatura(false,false) );
@@ -156,7 +165,7 @@ public class PrintFormController implements Initializable {
 			lbFiltroAplicado.setText( loadFilterFatura(true,false) );
 			bOWN = true;
 		}
-		
+		ReportChoice = checkChoice();
 	}
 	
 	
@@ -207,7 +216,7 @@ public class PrintFormController implements Initializable {
 			retCPT = cbCompetencia.getValue();
 			if ( retCPT == null ) {
 				retCPT = " Todas Competencias ";
-			}
+			} 
 				
 		} else {
 			retCPT = " Todas Competencias ";
@@ -224,11 +233,50 @@ public class PrintFormController implements Initializable {
 		}
 			
 		
-		
 		return "Competencia: " + retCPT + " Responsavel: " + retOWN;
 	}
-	
 
+	private Integer checkChoice() {
+		Integer Choice;
+		if ( (( cbCompetencia.getValue() == null ) ||  cbCompetencia.getValue().equalsIgnoreCase("TODAS"))) {
+			//todas as cptd
+			System.out.println("-= Fora do if =-");
+			System.out.println("cbComptencia..: " + cbCompetencia.getValue() );
+			System.out.println("cbResponsavel.: " + cbResponsavel.getValue() );
+			if (( cbResponsavel.getValue() == null ) || ( cbResponsavel.getValue().equalsIgnoreCase("TODOS") )) {
+				System.out.println("-=  if choice 0 =-");
+				System.out.println("cbComptencia..: " + cbCompetencia.getValue() );
+				System.out.println("cbResponsavel.: " + cbResponsavel.getValue() );
+				Choice = 0;
+			} else {
+				// um resp e todas cpts
+				System.out.println("-=  if choice 1 =-");
+				System.out.println("cbComptencia..: " + cbCompetencia.getValue() );
+				System.out.println("cbResponsavel.: " + cbResponsavel.getValue() );
+				Choice = 1;
+			}
+		}
+		else {
+			// uma cpt 
+			if (( cbResponsavel.getValue() == null ) || ( cbResponsavel.getValue().equalsIgnoreCase("TODOS") )) {
+				System.out.println("-=  if choice 2 =-");
+				System.out.println("cbComptencia..: " + cbCompetencia.getValue() );
+				System.out.println("cbResponsavel.: " + cbResponsavel.getValue() );
+				Choice = 2;
+			} else {
+				// um resp e uma cpts
+				System.out.println("-=  if choice 3 =-");
+				System.out.println("cbComptencia..: " + cbCompetencia.getValue() );
+				System.out.println("cbResponsavel.: " + cbResponsavel.getValue() );
+				Choice = 3;
+			}
+		}
+		return Choice;
+	}
+	
+	public void setReport(Integer status) {
+		this.ReportChoice = status;
+	}
 	
 
 }

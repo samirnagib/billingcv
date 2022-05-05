@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 4.8.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RateioMensal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="647162d6-7618-4b88-96dd-43a338723ff4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="cvbillinf_tst"/>
+	<parameter name="RESPID" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT `inputBill`.`idInputBill`,
+	`inputBill`.`id_billTag`,
+	`inputBill`.ib_ano_mes,
+	`inputBill`.id_client,
+	clientes.`idClient`,
+	clientes.`clientName`,
+	clientes.`clientHostname`,
+	`billTags`.`idbillTag`,
+	`billTags`.`billtagName`,
+	`billTags`.`billPriceTB`,
+	`inputBill`.cv_agent,
+	`inputBill`.cv_instance,
+	`inputBill`.cv_backupset,
+	`inputBill`.cv_subclient,
+	`inputBill`.cv_storagepolicy,
+	`inputBill`.cv_copyname,
+	`inputBill`.cv_febackupsize,
+	`inputBill`.cv_fearchivesize,
+	`inputBill`.cv_primaryappsize,
+	`inputBill`.cv_protectedappsize,
+	`inputBill`.cv_mediasize,
+	`inputBill`.ib_taxcalculated,
+	`clientType`.`idType`,
+	`clientType`.`typeName`,
+	owner.`idOwner`,
+	owner.`owName`,
+	owner.`owProjectArea`,
+	owner.`owAR`
+FROM `inputBill`
+	INNER JOIN `billTags` ON 
+	 `inputBill`.`id_billTag` = `billTags`.`idbillTag` 
+	INNER JOIN clientes ON 
+	 `inputBill`.id_client = clientes.`idClient` 
+	INNER JOIN `clientType` ON 
+	 clientes.`idType` = `clientType`.`idType` 
+	INNER join owner ON 
+	 clientes.`idOwner` = owner.`idOwner`
+	 WHERE owner.idOwner =  $P{RESPID} ]]>
+	</queryString>
+	<field name="idInputBill" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idInputBill"/>
+		<property name="com.jaspersoft.studio.field.label" value="idInputBill"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="id_billTag" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_billTag"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_billTag"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="ib_ano_mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ib_ano_mes"/>
+		<property name="com.jaspersoft.studio.field.label" value="ib_ano_mes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="id_client" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_client"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_client"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="idClient" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idClient"/>
+		<property name="com.jaspersoft.studio.field.label" value="idClient"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="clientName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="clientName"/>
+		<property name="com.jaspersoft.studio.field.label" value="clientName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="clientHostname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="clientHostname"/>
+		<property name="com.jaspersoft.studio.field.label" value="clientHostname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="idbillTag" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idbillTag"/>
+		<property name="com.jaspersoft.studio.field.label" value="idbillTag"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billtags"/>
+	</field>
+	<field name="billtagName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="billtagName"/>
+		<property name="com.jaspersoft.studio.field.label" value="billtagName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billtags"/>
+	</field>
+	<field name="billPriceTB" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="billPriceTB"/>
+		<property name="com.jaspersoft.studio.field.label" value="billPriceTB"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billtags"/>
+	</field>
+	<field name="cv_agent" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cv_agent"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_agent"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_instance" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cv_instance"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_instance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_backupset" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cv_backupset"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_backupset"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_subclient" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cv_subclient"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_subclient"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_storagepolicy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cv_storagepolicy"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_storagepolicy"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_copyname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cv_copyname"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_copyname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_febackupsize" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cv_febackupsize"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_febackupsize"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_fearchivesize" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cv_fearchivesize"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_fearchivesize"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_primaryappsize" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cv_primaryappsize"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_primaryappsize"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_protectedappsize" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cv_protectedappsize"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_protectedappsize"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="cv_mediasize" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cv_mediasize"/>
+		<property name="com.jaspersoft.studio.field.label" value="cv_mediasize"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="ib_taxcalculated" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="ib_taxcalculated"/>
+		<property name="com.jaspersoft.studio.field.label" value="ib_taxcalculated"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inputbill"/>
+	</field>
+	<field name="idType" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idType"/>
+		<property name="com.jaspersoft.studio.field.label" value="idType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clienttype"/>
+	</field>
+	<field name="typeName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="typeName"/>
+		<property name="com.jaspersoft.studio.field.label" value="typeName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clienttype"/>
+	</field>
+	<field name="idOwner" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idOwner"/>
+		<property name="com.jaspersoft.studio.field.label" value="idOwner"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owner"/>
+	</field>
+	<field name="owName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="owName"/>
+		<property name="com.jaspersoft.studio.field.label" value="owName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owner"/>
+	</field>
+	<field name="owProjectArea" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="owProjectArea"/>
+		<property name="com.jaspersoft.studio.field.label" value="owProjectArea"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owner"/>
+	</field>
+	<field name="owAR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="owAR"/>
+		<property name="com.jaspersoft.studio.field.label" value="owAR"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owner"/>
+	</field>
+	<sortField name="owName"/>
+	<sortField name="clientName"/>
+	<variable name="ib_taxcalculated1" class="java.lang.Double" resetType="Group" resetGroup="Responsável" calculation="Sum">
+		<variableExpression><![CDATA[$F{ib_taxcalculated}]]></variableExpression>
+	</variable>
+	<group name="ib_ano_mes">
+		<groupExpression><![CDATA[$F{ib_ano_mes}]]></groupExpression>
+	</group>
+	<group name="owName">
+		<groupExpression><![CDATA[$F{owName}]]></groupExpression>
+	</group>
+	<group name="Responsável" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{owName}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<rectangle>
+					<reportElement x="0" y="0" width="802" height="31" forecolor="#A6DAE7" backcolor="#A6DAE7" uuid="9cd67abb-8076-45d6-8271-41a82fc05da2"/>
+				</rectangle>
+				<textField>
+					<reportElement x="80" y="-1" width="360" height="14" forecolor="#000000" uuid="5f4d8d35-f2b3-41e2-bc96-23379053120f"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{owName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="80" height="12" forecolor="#000000" uuid="99efc4de-705a-4b4e-bfd4-4bdb2d028225">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[RESPONSÁVEL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="14" width="100" height="12" forecolor="#000000" uuid="3112fd98-7894-449d-89d1-0e143f739608">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[ÁREA OU PROJETO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="14" width="280" height="15" forecolor="#000000" uuid="0f46a32d-ffed-4d77-8a34-e770c90961e4"/>
+					<textElement>
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{owProjectArea}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="700" y="0" width="100" height="14" forecolor="#000000" uuid="0f6bcc16-090f-4116-9824-1d9ee2a82047"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{owAR}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="560" y="0" width="140" height="12" forecolor="#000000" uuid="ae6358d4-ac14-43c1-ab3c-6e8e6bfeed49">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[AR OU CENTRO DE CUSTO:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<rectangle>
+					<reportElement x="0" y="0" width="802" height="19" forecolor="#FFFFFF" backcolor="#EF8FAB" uuid="85b5842b-97b2-4948-b966-7ebc531aa5c2"/>
+				</rectangle>
+				<textField pattern="¤#,##0.00;¤-#,##0.00">
+					<reportElement x="657" y="1" width="141" height="15" forecolor="#000000" uuid="4431e251-f307-4fde-8a5a-223b927af5f1"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ib_taxcalculated1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="469" y="2" width="188" height="16" forecolor="#000000" uuid="34d0b9c8-c912-42cd-949a-5c968cf534d3"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="12"/>
+					</textElement>
+					<text><![CDATA[Total do responsável:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="2" width="291" height="18" uuid="a99e601a-d7cb-4156-a0df-fb715535c221"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RATEIO DOS CUSTOS DE BACKUP]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="33" forecolor="#B9B2DB" backcolor="#B9B2DB" uuid="f9703545-6106-49e7-bf34-3ed64cc5a9a3"/>
+			</rectangle>
+			<textField>
+				<reportElement x="685" y="2" width="111" height="27" forecolor="#FFFFFF" uuid="cbe92342-0381-4c18-9463-f8e8097dc52b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ib_ano_mes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="62" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="30" width="802" height="31" forecolor="#FFFFFF" backcolor="#FEE3B8" uuid="76f9e970-6446-4cb1-92b1-e12be5251cac"/>
+			</rectangle>
+			<textField>
+				<reportElement x="44" y="0" width="186" height="13" forecolor="#04027A" uuid="27f2512b-fbf7-4f83-ad60-91b32ce4d9f6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5acaf0af-4699-459d-bcdd-03bb8558ed2e"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clientName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="13" uuid="1c7ca547-5b82-4dd6-8230-f47af90fc29f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5acaf0af-4699-459d-bcdd-03bb8558ed2e"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="621" y="0" width="180" height="15" forecolor="#04027A" uuid="63ccf689-02ac-4835-a687-67ae98f02814">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a0dfffc5-73f6-4b27-957e-f4d3e9052877"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cv_agent}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="15" width="195" height="14" forecolor="#04027A" uuid="8a602f65-c193-49a3-94bf-acce50fbb63d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c9a28438-2db6-4a23-9603-4104c91ee358"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cv_instance}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="668" y="44" width="133" height="14" forecolor="#000000" uuid="2fd03069-2d8c-45b0-83e8-95e3179af9ad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd2216df-0a3e-4e9f-b996-d88beb515086"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ib_taxcalculated}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="517" y="1" width="102" height="13" uuid="f5d1706e-dabc-4fcf-8f06-b5bbb5480318">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5acaf0af-4699-459d-bcdd-03bb8558ed2e"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Agente de Backup]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="15" width="237" height="14" forecolor="#04027A" uuid="2d39d814-6edb-48b9-9dbc-ee206cc70d7a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="99c87d90-0299-4b50-a3fe-de14f1c8910f"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cv_backupset}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="622" y="15" width="179" height="14" forecolor="#04027A" uuid="b2ec81ff-32bf-4b14-aab5-052f87f2a034">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5a3aab5e-3268-4183-afed-6a1c8a05a7fa"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cv_subclient}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="15" width="61" height="13" uuid="29747cca-8cd3-45a1-9ddc-1ae4b3932f1c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5acaf0af-4699-459d-bcdd-03bb8558ed2e"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<text><![CDATA[BACKUP SET:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="16" width="59" height="13" uuid="225a34b4-a9f5-4cfb-a206-8a063bbcc22e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5acaf0af-4699-459d-bcdd-03bb8558ed2e"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<text><![CDATA[SUBCLIENT:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="58" height="13" uuid="897eceef-7ccf-4416-9b3b-018efc71d3a2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5acaf0af-4699-459d-bcdd-03bb8558ed2e"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="9"/>
+				</textElement>
+				<text><![CDATA[INSTÂNCIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="0" width="280" height="14" forecolor="#04027A" uuid="54aaf4ee-3233-4b10-8773-2cac22665e66">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9ab80262-4187-4c35-be49-1958028db4ca"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clientHostname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;(-#,##0.00#)">
+				<reportElement x="155" y="32" width="117" height="13" forecolor="#000000" uuid="41e4b5e9-e2dc-4c63-8d06-e590d53b0de0"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[SUM($F{cv_febackupsize},$F{cv_fearchivesize},$F{cv_primaryappsize},$F{cv_protectedappsize},$F{cv_mediasize})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="33" width="150" height="11" forecolor="#000000" uuid="e28deefb-7d44-412d-ad33-2a513d851802"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Volume de dados da Faixa (TB):]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="45" width="240" height="12" forecolor="#000000" uuid="755bbabe-ac97-4089-9627-ba7842151183">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dcd6b3ff-2f2a-4c58-9cd6-562b09bdac29"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{billtagName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="46" width="125" height="11" forecolor="#000000" uuid="4439254f-ed64-4bd9-959f-f6bf311a59cc"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Faixa de Cobrança:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="555" y="46" width="113" height="11" forecolor="#000000" uuid="4f2e15b9-a158-4776-8e6a-ad814ed51fe8"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Total dessa faixa:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="290" y="0" width="100" height="13" uuid="98b4f1b7-4a50-4899-bfc6-38029c94ff8e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Monospaced" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="390" y="0" width="100" height="13" uuid="3684fb72-5e2d-48e6-9c1b-96b9e724d98b"/>
+				<textElement textAlignment="Left">
+					<font fontName="Monospaced" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

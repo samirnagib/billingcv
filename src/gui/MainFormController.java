@@ -145,6 +145,7 @@ public class MainFormController implements Initializable {
 		loadView("/gui/PrintFatura.fxml",  (PrintFormController controller) -> {
 			controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
 			controller.loadAssociatedObjects();
+			controller.setReport(0);
 		});
 	}
 	

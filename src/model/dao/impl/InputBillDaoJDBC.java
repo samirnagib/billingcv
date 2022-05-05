@@ -524,6 +524,37 @@ public class InputBillDaoJDBC implements InputBillDao {
 	}
 
 
+	@Override
+	public InputBill findCPT(String competencia) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			st = conn.prepareStatement("SELECT inputBill.idInputBill, inputBill.id_billTag, inputBill.ib_ano_mes, inputBill.id_client,clientes.idClient, clientes.clientName, clientes.clientHostname, billTags.idbillTag, billTags.billtagName, billTags.billPriceTB, inputBill.cv_agent, inputBill.cv_instance, inputBill.cv_backupset,inputBill.cv_subclient, inputBill.cv_storagepolicy, inputBill.cv_copyname, inputBill.cv_febackupsize, inputBill.cv_fearchivesize, inputBill.cv_primaryappsize, inputBill.cv_protectedappsize, inputBill.cv_mediasize, inputBill.ib_taxcalculated, clientType.idType,clientType.typeName, owner.idOwner, owner.owName, owner.owProjectArea, owner.owAR\r\n"  
+					+ "from inputBill INNER JOIN billTags ON  inputBill.id_billTag = billTags.idbillTag INNER JOIN clientes ON inputBill.id_client = clientes.idClient INNER JOIN clientType ON clientes.idType = clientType.idType INNER join owner ON clientes.idOwner = owner.idOwner\r\n"
+					+ "WHERE inputBill.ib_ano_mes = ?");
+			st.setString(1, competencia);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				BillTags bt = instantiatebillTags(rs);
+				ClientType ct = instatiateClientType(rs);
+				Owner ow = instantiateOwner(rs);
+				Client cl = instatiateClient(rs, ct, ow);
+				InputBill ib = instantiateBill(rs, bt, cl, ct, ow);
+				return ib;
+			}
+		return null;
+		
+		}catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
+
+
 	
 
 }
