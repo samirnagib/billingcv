@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 4.8.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="billtags" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4c850a5-d698-48ac-a5f3-700ba0e2812c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="cvbillinf_tst"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM billtags]]>
+	</queryString>
+	<field name="idbillTag" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idbillTag"/>
+		<property name="com.jaspersoft.studio.field.label" value="idbillTag"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billtags"/>
+	</field>
+	<field name="billtagName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="billtagName"/>
+		<property name="com.jaspersoft.studio.field.label" value="billtagName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billtags"/>
+	</field>
+	<field name="billPriceTB" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="billPriceTB"/>
+		<property name="com.jaspersoft.studio.field.label" value="billPriceTB"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billtags"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="18" forecolor="#FFFFFF" backcolor="#B9B2DB" uuid="4d538f7f-5d37-4428-9d47-c73212fb49d7"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="2" width="238" height="13" forecolor="#FFFFFF" uuid="ac30f069-b2d3-40fb-8745-edd9b9aa8af9">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO GERAL FAIXAS DE COBRANÇA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="18" backcolor="#CCFFCC" uuid="17ee30fd-5838-4809-83cd-a149f980da30"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="18" uuid="15bc2c47-a270-468a-9d51-dbd6dfbcc7ad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f13faa3-7ea7-4514-acb0-8dda82676f70"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="1" width="396" height="16" uuid="70189698-3568-4ddb-b0d9-7ba701b1accc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4337b54f-f560-4bf2-9d63-9f93654b21b4"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="0" width="100" height="18" uuid="e1acb5f2-f9dd-4e2c-8502-cd2ace35503c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="282f499b-c158-45e9-9ab2-a8dd00903242"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Valor da Faixa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="15" backcolor="#FFFFFF" uuid="d6992090-95be-4024-b290-50cc8c24d911"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="68" height="14" uuid="02712e4f-0062-46f7-9e9e-f9037fb64970">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f13faa3-7ea7-4514-acb0-8dda82676f70"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idbillTag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="380" height="14" uuid="bfee444f-3df4-4896-90b9-c036b6ec4049">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4337b54f-f560-4bf2-9d63-9f93654b21b4"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{billtagName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.00;¤-#,##0.00">
+				<reportElement x="453" y="0" width="100" height="14" uuid="e3e4892c-d97c-4982-aff3-e674f76e094f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="282f499b-c158-45e9-9ab2-a8dd00903242"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{billPriceTB}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="15" backcolor="#FFFFFF" uuid="a66a0298-c0d3-4c4e-92b1-8b445495aa44"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="2" y="1" width="278" height="12" uuid="4833c615-da4c-46e2-9de4-03e18b7e32dd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="1" width="272" height="12" uuid="dad053ee-958d-41c9-8946-cda65ee625b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

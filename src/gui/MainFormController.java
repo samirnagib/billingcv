@@ -141,7 +141,6 @@ public class MainFormController implements Initializable {
 
 	@FXML
 	public void onMenuReportListChargeBackAction() {
-		System.out.println("onMenuReportListChargeBackAction");	
 		loadView("/gui/PrintFatura.fxml",  (PrintFormController controller) -> {
 			controller.setServices(new InputBillServices(), new ClientServices(), new ClientTypeServices(), new OwnerServices(), new BillTagsServices());
 			controller.loadAssociatedObjects();
@@ -152,7 +151,7 @@ public class MainFormController implements Initializable {
 	
 	@FXML
 	public void onMenuReportPrintAction() {
-		System.out.println("Faixas de Cobrança: onMenuReportPrintAction");		
+		report.callRelatorio("billtags", "LISTAGEM DE FAIXAS DE COBRANÇA");
 	}
 	
 	@FXML

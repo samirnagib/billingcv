@@ -63,14 +63,7 @@ public class report {
 			e1.printStackTrace();
 		} finally {
 			reportFullName = appPath + repFolder + fileName;
-			System.out.println("app path: " + appPath);
-			System.out.println("repfold : " + repFolder);
-			System.out.println("filename: " + fileName);
-			System.out.println("pdf name: " + reportName + ".pdf");
-			System.out.println("-");
-			
 		}
-		System.out.println(appPath + repFolder + reportName + ".pdf");
 		
 		try {
 			JasperReport jasperReport =  JasperCompileManager.compileReport(reportFullName);
@@ -88,8 +81,6 @@ public class report {
 			SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
 	        exporter.setConfiguration(configuration);
 	        exporter.exportReport();
-			
-			
 			oia.setVisible(true);
 			oia.setExtendedState(Frame.MAXIMIZED_BOTH);
 			oia.setTitle("Vizualizar Impressão: " + windowsTitle);
@@ -117,8 +108,6 @@ public class report {
 				Choice = 3;
 			}
 		}
-		
-		
 			
 		String appPath = null;
 		String fileName = reportName + ".jrxml";
@@ -130,24 +119,13 @@ public class report {
 			appPath = new File(".").getCanonicalPath();
 			Properties data = loadRepProperties();
 			repFolder = data.getProperty("repfolder");
-			
-			
 		} catch (IOException e1) {
-			
 			e1.printStackTrace();
 		} finally {
 			reportFullName = appPath + repFolder + fileName;
-			System.out.println("app path: " + appPath);
-			System.out.println("repfold : " + repFolder);
-			System.out.println("filename: " + fileName);
-			System.out.println("pdf name: " + reportName + ".pdf");
-			System.out.println("-");
-			
 		}
-		System.out.println(appPath + repFolder + reportName + ".pdf");
 		
 		try {
-			
 			JasperReport jasperReport =  JasperCompileManager.compileReport(reportFullName);
 			Connection conn = DB.getConnection();
 			Map<String, Object> hm = new HashMap<String,Object>();
@@ -155,7 +133,6 @@ public class report {
 			case 1:   // todos
 				resp = Responsavel.getIdOwner();
 				competencia = fatura.getIb_ano_mes();
-		
 			case 2:   // todos
 				competencia = fatura.getIb_ano_mes();
 				hm.put("CPT", competencia);
@@ -167,9 +144,6 @@ public class report {
 			}			
 			JasperPrint print = JasperFillManager.fillReport(jasperReport, hm, conn);
 			JasperViewer oia = new JasperViewer(print, false);
-			
-			
-			
 			JRPdfExporter exporter = new JRPdfExporter();
 			ExporterInput exporterInput = new SimpleExporterInput(print);
 			exporter.setExporterInput(exporterInput);
@@ -178,8 +152,6 @@ public class report {
 			SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
 	        exporter.setConfiguration(configuration);
 	        exporter.exportReport();
-			
-			
 			oia.setVisible(true);
 			oia.setExtendedState(Frame.MAXIMIZED_BOTH);
 			oia.setTitle("Vizualizar Impressão: " + windowsTitle);

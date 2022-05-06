@@ -24,7 +24,6 @@
         <items>
           <Button fx:id="btPrint" mnemonicParsing="false" onAction="#btPrintOnAction" prefHeight="25.0" prefWidth="90.0" text="Imprimir" />
             <Button fx:id="btClearFilter" mnemonicParsing="false" onAction="#btClearFiltersOnAction" prefHeight="25.0" prefWidth="90.0" text="Limpar Filtros" />
-            <Button fx:id="btFechar" mnemonicParsing="false" onAction="#brFecharOnAction" prefHeight="25.0" prefWidth="90.0" text="Fechar" />
         </items>
       </ToolBar>
       <GridPane>
