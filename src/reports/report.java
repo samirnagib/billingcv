@@ -13,6 +13,7 @@ import db.DB;
 import db.DbException;
 import model.entities.InputBill;
 import model.entities.Owner;
+import net.sf.jasperreports.compilers.ReportSourceCompilation;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.fill.*;
 import net.sf.jasperreports.functions.standard.TextFunctions.*;
@@ -66,6 +67,7 @@ public class report {
 		}
 		
 		try {
+			DefaultJasperReportsContext.getInstance().setProperty(ReportSourceCompilation.PROPERTY_LEGACY_SOURCE_INCLUDED_PARAMETERS,JRParameter.REPORT_PARAMETERS_MAP);
 			JasperReport jasperReport =  JasperCompileManager.compileReport(reportFullName);
 			Connection conn = DB.getConnection();
 			Map<String, Object> hm = new HashMap<String,Object>();
@@ -126,6 +128,7 @@ public class report {
 		}
 		
 		try {
+			DefaultJasperReportsContext.getInstance().setProperty(ReportSourceCompilation.PROPERTY_LEGACY_SOURCE_INCLUDED_PARAMETERS,JRParameter.REPORT_PARAMETERS_MAP);
 			JasperReport jasperReport =  JasperCompileManager.compileReport(reportFullName);
 			Connection conn = DB.getConnection();
 			Map<String, Object> hm = new HashMap<String,Object>();

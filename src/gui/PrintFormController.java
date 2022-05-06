@@ -71,8 +71,6 @@ public class PrintFormController implements Initializable {
 	
 	@FXML
 	private void btPrintOnAction() {
-		System.out.println("btPrint");
-		
 		InputBill fatura = new InputBill();
 		Owner resp = new Owner();
 		

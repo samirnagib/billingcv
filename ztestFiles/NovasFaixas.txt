@@ -1,2 +1,1 @@
-Codigo : 20 - Nome da Faixa: Billing Tag 010
-Codigo : 21 - Nome da Faixa: Billing Tag 011
+Codigo : 22 - Nome da Faixa: Billing Tag 011
